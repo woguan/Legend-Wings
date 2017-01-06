@@ -27,7 +27,7 @@ struct Enemy{
     private var enemyType:EnemyType
     private var actionsStandBy:[SKTexture] = []
     private var actionsDead:[SKTexture] = []
-   // private var spriteName:String
+    
     private var name = ""
     private var size:CGSize
     private var maxhp:CGFloat
@@ -43,7 +43,7 @@ struct Enemy{
         
         switch(enemyType){
         case .Regular:
-            name = "enemyOne"
+            name = "Enemy_Regular_One"
             originX = screenSize.width/10
             originY = screenSize.height
             width = screenSize.width * 0.1691
@@ -101,14 +101,57 @@ struct Enemy{
         enemyHealthBar.addChild(healthBorder)
         
         let enemyModel = SKSpriteNode()
+        enemyModel.userData = NSMutableDictionary()
+        
         switch enemyType {
         case .Regular:
-            enemyModel.texture = global.getMainTexture(main: .Enemy_1)
+            let x = randomInt(min: 1, max: 7)
+            
+            if x == 1{
+                enemyModel.hp = self.maxhp
+                enemyModel.maxHp = self.maxhp
+                enemyModel.texture = global.getMainTexture(main: .Enemy_1)
+            }
+            else if x == 2 {
+                enemyModel.hp = self.maxhp * 1.05
+                enemyModel.maxHp = self.maxhp * 1.05
+               enemyModel.texture = global.getMainTexture(main: .Enemy_2)
+            }
+            else if x == 3 {
+                enemyModel.hp = self.maxhp * 1.1
+                enemyModel.maxHp = self.maxhp * 1.1
+                enemyModel.texture = global.getMainTexture(main: .Enemy_3)
+            }
+            
+            else if x == 4 {
+                enemyModel.hp = self.maxhp * 1.12
+                enemyModel.maxHp = self.maxhp * 1.12
+                enemyModel.texture = global.getMainTexture(main: .Enemy_4)
+            }
+            else if x == 5 {
+                enemyModel.hp = self.maxhp * 1.13
+                enemyModel.maxHp = self.maxhp * 1.13
+                enemyModel.texture = global.getMainTexture(main: .Enemy_5)
+            }
+            else if x == 6 {
+                enemyModel.hp = self.maxhp * 1.14
+                enemyModel.maxHp = self.maxhp * 1.14
+               enemyModel.texture = global.getMainTexture(main: .Enemy_6)
+            }
+            else{
+                enemyModel.hp = self.maxhp * 1.15
+                enemyModel.maxHp = self.maxhp * 1.15
+                enemyModel.texture = global.getMainTexture(main: .Enemy_7)
+            }
+            
+            
             break
             
         case .Boss:
             enemyModel.texture = global.getMainTexture(main: .Boss_1)
             enemyHealthBar.position.y -= 30
+            enemyModel.hp = self.maxhp
+            enemyModel.maxHp = self.maxhp
             
         default:
             print ("THIS SHOULD NOT BE RUN__")
@@ -116,10 +159,8 @@ struct Enemy{
         }
         
         
-        enemyModel.userData = NSMutableDictionary()
         
-        enemyModel.hp = self.maxhp
-        enemyModel.maxHp = self.maxhp
+        
         enemyModel.name = name
         enemyModel.position = CGPoint(x: originX, y: originY)
         enemyModel.size = size

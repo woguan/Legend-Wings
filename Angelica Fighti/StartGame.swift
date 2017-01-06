@@ -165,94 +165,125 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        
+        var contactType:ContactType = .None
         var higherNode:SKSpriteNode?
         var lowerNode:SKSpriteNode?
-        
-        //let player = gameinfo.account.getCurrentToon()
-        let enemy = gameinfo.enemy
-       let boss = gameinfo.boss
-        
+  
         if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask{
             higherNode = contact.bodyA.node as! SKSpriteNode?
             lowerNode = contact.bodyB.node as! SKSpriteNode?
-            
-          //  print ("\(higherNode?.name!) has higher bit than \(lowerNode?.name!)")
-          //  print ("LOOOOOOK[1]: \(contact.bodyA.contactTestBitMask) IS GREATER THAN \(contact.bodyB.contactTestBitMask)")
         }
         else{
             higherNode = contact.bodyB.node as! SKSpriteNode?
             lowerNode = contact.bodyA.node as! SKSpriteNode?
-            
-        //    print ("\(lowerNode?.name!) has higher bit than \(higherNode?.name!)")
-        //    print ("LOOOOOOK[2]: \(contact.bodyB.contactTestBitMask) IS GREATER THAN \(contact.bodyA.contactTestBitMask)")
         }
         
-        if (higherNode == nil || lowerNode == nil){
+        guard let h_node = higherNode else {
+            return
+        }
+        guard let l_node = lowerNode else {
             return
         }
         
-        if (higherNode?.physicsBody?.categoryBitMask == PhysicsCategory.Imune){
-         //   print ("omg..")
-            lowerNode!.removeFromParent()
-            return
+        /*
+         POSSIBLE CASES ( lowerNode vs HigherNode ):
+         
+         
+         PLAYER & ENEMY  =  HitByEnemy
+         PLAYER & COIN   =  GotCoin
+         ENEMY  & Projectile = EnemyGotHit
+         ALL    & IMUNE  =  Immune
+         
+         NOTE: None < Player < Enemy < Projectile < Currency < Wall < Imune
+         
+         */
+        
+        
+        if (h_node.physicsBody?.categoryBitMask == PhysicsCategory.Imune){
+            contactType = .Immune
         }
    
-        if lowerNode!.name! == "enemyOne"{
-                enemy.decreaseHP(ofTarget: lowerNode!, hitBy: higherNode!)
+        else if l_node.name! == "Enemy_Regular_One" && h_node.name! == "bullet"{
+                contactType = .EnemyGotHit
             }
-        else if lowerNode!.name! == "Enemy_Boss"{
-            boss.decreaseHP(ofTarget: lowerNode!, hitBy: higherNode!)
+        else if l_node.name! == "Enemy_Boss" && h_node.name == "bullet"{
+            contactType = .BossGotHit
         }
-        else if lowerNode!.name! == "toon" && higherNode!.name! == "coin"{
-
-            self.run(self.gameinfo.mainAudio.getAction(type: .Coin))
-            
-         self.gameinfo.addCoin(amount: 1)
-            higherNode!.removeFromParent()
+        else if l_node.name! == "toon" && h_node.name! == "coin"{
+            contactType = .PlayerGetCoin
         }
         
-        
-        else if lowerNode!.name! == "toon" && higherNode!.name! != "coin"{
-            
-  
-                for gesture in (view?.gestureRecognizers)!{
-                    view?.removeGestureRecognizer(gesture)
-                }
-            gameinfo.boss.delegate = nil
-            gameinfo.enemy.delegate = nil
-      
-            for childNode in self.children{
-                childNode.removeAllActions()
-            }
-            
-            lowerNode!.removeAllActions()
-            higherNode!.removeAllActions()
-            
-            self.removeAllChildren()
-            
-            self.removeAllActions()
-            
-            self.gameinfo.mainAudio.stop()
-            
-            let scene = EndGame(size: self.size)
-            scene.collectedCoins = gameinfo.getCurrentGold()
-            view?.presentScene(scene)
-            
-            
+        else if l_node.name! == "toon" && h_node.name!.contains("Enemy"){
+            contactType = .HitByEnemy
         }
         
-      //  print ("lower: \(lowerNode!)")
-      //  print("higher: \(higherNode!)")
-
-        // bullets, enemy...
-        
-        if (higherNode?.name! == "bullet"){
-            higherNode!.removeAllActions()
-           higherNode!.removeFromParent() 
-        }
-        
-        
-        
+        contactUpdate(lowNode: l_node, highNode: h_node, contactType: contactType)
     }
 
+    func contactUpdate(lowNode: SKSpriteNode, highNode: SKSpriteNode, contactType:ContactType){
+        let enemy = gameinfo.enemy
+        let boss = gameinfo.boss
+        
+        switch contactType{
+            
+        case .EnemyGotHit:
+            enemy.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            destroy(sknode: highNode)
+            
+        case .BossGotHit:
+            boss.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            destroy(sknode: highNode)
+            
+        case .HitByEnemy:
+            
+            lowNode.removeAllActions()
+            highNode.removeAllActions()
+            prepareToChangeScene()
+
+        case .Immune:
+            destroy(sknode: lowNode)
+            
+        case .PlayerGetCoin:
+            self.run(self.gameinfo.mainAudio.getAction(type: .Coin))
+            self.gameinfo.addCoin(amount: 1)
+            destroy(sknode: highNode)
+            
+        case .None:
+            break
+        }
+    }
+    
+    func destroy(sknode: SKSpriteNode){
+        sknode.removeAllActions()
+        sknode.removeFromParent()
+    }
+    
+    func prepareToChangeScene(){
+        // remove all gestures
+        for gesture in (view?.gestureRecognizers)!{
+            view?.removeGestureRecognizer(gesture)
+        }
+        
+        // remove all delegates
+        gameinfo.boss.delegate = nil
+        gameinfo.enemy.delegate = nil
+        
+        // remove all children and its actions
+        for childNode in self.children{
+            childNode.removeAllActions()
+        }
+        self.removeAllChildren()
+        self.removeAllActions()
+        
+        // stop background audio
+        self.gameinfo.mainAudio.stop()
+        
+        // switch scene
+        let scene = EndGame(size: self.size)
+        scene.collectedCoins = gameinfo.getCurrentGold()
+        view?.presentScene(scene)
+        
+    }
+    
 }

@@ -40,6 +40,15 @@ enum ProjectileType{
     
 }
 
+enum ContactType{
+    case HitByEnemy
+    case EnemyGotHit
+    case BossGotHit
+    case PlayerGetCoin
+    case Immune
+    case None
+}
+
 class Global {
     
     deinit {
@@ -60,6 +69,12 @@ class Global {
         case Player_Toon_1
         case Gold
         case Enemy_1
+        case Enemy_2
+        case Enemy_3
+        case Enemy_4
+        case Enemy_5
+        case Enemy_6
+        case Enemy_7
     }
     
     private var boss_1_main:SKTexture
@@ -75,6 +90,12 @@ class Global {
     private var player_toon1_animation:[SKTexture] = []
     
     private var enemy_1_main:SKTexture
+    private var enemy_2_main:SKTexture
+    private var enemy_3_main:SKTexture
+    private var enemy_4_main:SKTexture
+    private var enemy_5_main:SKTexture
+    private var enemy_6_main:SKTexture
+    private var enemy_7_main:SKTexture
     
     init (){
         
@@ -84,6 +105,12 @@ class Global {
         gold_main = atlas.textureNamed("gold_main")
         player_toon1_main = atlas.textureNamed("toon_1_main")
         enemy_1_main = atlas.textureNamed("enemy_1_main")
+        enemy_2_main = atlas.textureNamed("enemy_2_main")
+        enemy_3_main = atlas.textureNamed("enemy_3_main")
+        enemy_4_main = atlas.textureNamed("enemy_4_main")
+        enemy_5_main = atlas.textureNamed("enemy_5_main")
+        enemy_6_main = atlas.textureNamed("enemy_6_main")
+        enemy_7_main = atlas.textureNamed("enemy_7_main")
         
         for texture in atlas.textureNames{
             
@@ -135,6 +162,18 @@ class Global {
             return player_toon1_main
         case .Enemy_1:
             return enemy_1_main
+        case .Enemy_2:
+            return enemy_2_main
+        case .Enemy_3:
+            return enemy_3_main
+        case .Enemy_4:
+            return enemy_4_main
+        case .Enemy_5:
+            return enemy_5_main
+        case .Enemy_6:
+            return enemy_6_main
+        case .Enemy_7:
+            return enemy_7_main
         }
     }
 }
@@ -203,7 +242,6 @@ struct AVAudio {
     }
 
 class GameInfo: GameInfoDelegate{
-//class GameInfo{
     
     deinit {
         print ("GameInfo Class deinitiated!")
@@ -248,11 +286,7 @@ class GameInfo: GameInfoDelegate{
     func load(scene: SKScene) -> (Bool, String){
         
         mainScene = scene
-        
-        //test memory leak
-        
-        
-        
+    
        // load
         loadDebugVersion()
         
@@ -310,8 +344,6 @@ class GameInfo: GameInfoDelegate{
             topright.name = "toprightCorner"
             topright.size = CGSize(width: width, height: height)
             topright.position = CGPoint(x: (parentWidth/2) - (width/2), y: parentHeight/2 - (height/2))
-            
-            
             
             // gold
             let curr = Currency(type: .Coin)
@@ -435,7 +467,6 @@ class GameInfo: GameInfoDelegate{
         
       //  enemy.getNode().maxHp = enemy.getNode().maxHp + 1
         
-      //  print(enemy.getNode().maxHp)
         if (gamestate == .NoState){
             // start enemy respawn
             wavesForNextLevel = randomInt(min: 5, max: 10)
@@ -456,8 +487,6 @@ class GameInfo: GameInfoDelegate{
  
     
     func addChild(sknode: SKNode){
-      //  print("called addChild")
-      //  delegate?.addChild(sknode: sknode)
         guard let mainscene = mainScene else{
             print ("Error:: mainScene does not exist - check Gameinfo Class/ addChild Function")
             return
