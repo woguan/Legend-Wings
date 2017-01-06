@@ -32,7 +32,7 @@ struct Currency{
         
     }
     
-    private var coinSpriteName:String?
+  //  private var coinSpriteName:String?
     private var actions:[SKTexture]
     var audioPlayer:AVAudioPlayer?
     
@@ -41,22 +41,20 @@ struct Currency{
         
         switch type{
         case .Coin:
-            coinSpriteName = "\(ITEMS_SPRITES_DIR)/Gold/main.png"
-            actions = [SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action1"), SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action2"), SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action3"), SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action4"), SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action5"), SKTexture(imageNamed: "\(ITEMS_SPRITES_DIR)/Gold/action6")]
+            actions = global.getTextures(animation: .Gold_Animation)
         default:
-            coinSpriteName = "invalid"
             actions = []
         }
         
     }
     
     func createCoin(posX:CGFloat, posY:CGFloat, createPhysicalBody:Bool, animation: Bool) -> SKSpriteNode{
-        let c = SKSpriteNode(imageNamed: coinSpriteName!)
+       // let c = SKSpriteNode(imageNamed: coinSpriteName!)
+        let c = SKSpriteNode(texture: global.getMainTexture(main: .Gold))
         c.size = CGSize(width: 30, height: 30)
         c.position = CGPoint(x: posX, y: posY)
         c.name = "coin"
         
-   
         
         if (createPhysicalBody){
             c.physicsBody =  SKPhysicsBody(texture: c.texture!, size: c.size)
@@ -73,11 +71,58 @@ struct Currency{
         
     }
     
-    func playEffect(){
-        var asd:AVAudioPlayer = AVAudioPlayer()
-        asd = audioPlayer!
-        asd.play()
+}
+
+
+struct Projectile {
+    var originX:CGFloat
+    var originY:CGFloat
+    var power:CGFloat
+    var spriteName = "bullet.png"
+    var name = "bullet"
+    var bulletType:ProjectileType
+    var size = CGSize(width: 30.0, height: 30.0)
+    
+    init (posX:CGFloat, posY:CGFloat){
+        originX = posX
+        originY = posY + 35
+        
+        // constant for now
+        
+        power = 25.0
+        bulletType = .type1
     }
     
+    func shoot() -> SKSpriteNode{
+        
+        let bullet = SKSpriteNode(imageNamed: spriteName)
+        bullet.userData = NSMutableDictionary()
+        bullet.name = name
+        bullet.position = CGPoint(x: originX, y: originY)
+        bullet.size = size
+        
+        bullet.power = self.power
+        bullet.physicsBody = SKPhysicsBody(texture: bullet.texture!, size: bullet.size)
+        bullet.physicsBody!.isDynamic = true
+        bullet.physicsBody!.affectedByGravity = false
+        bullet.physicsBody!.allowsRotation = false
+        
+        bullet.physicsBody!.categoryBitMask = PhysicsCategory.Projectile
+        bullet.physicsBody!.collisionBitMask = 0
+        bullet.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
+        
+        bullet.run(SKAction.scale(to: 5, duration: 0.48))
+        bullet.run(SKAction.sequence([SKAction.moveTo(y: 740, duration: 1), SKAction.removeFromParent()]))
+        
+        return bullet
+    }
+    mutating func setPosX(x:CGFloat){
+        originX = x
+    }
+    
+    mutating func setPosY(y:CGFloat){
+        originY = y + 35
+    }
     
 }
+

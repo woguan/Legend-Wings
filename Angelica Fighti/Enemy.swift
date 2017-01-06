@@ -11,8 +11,8 @@ import AVFoundation
 import SpriteKit
 
 
-class Enemy{
-    
+struct Enemy{
+
     enum EnemyType{
         case Boss
         case Regular
@@ -20,7 +20,6 @@ class Enemy{
         
     }
     
-    private var enemyModel:SKSpriteNode
     private var originX:CGFloat
     private var originY:CGFloat
     private var width:CGFloat
@@ -28,7 +27,7 @@ class Enemy{
     private var enemyType:EnemyType
     private var actionsStandBy:[SKTexture] = []
     private var actionsDead:[SKTexture] = []
-    private var spriteName:String
+   // private var spriteName:String
     private var name = ""
     private var size:CGSize
     private var maxhp:CGFloat
@@ -40,12 +39,10 @@ class Enemy{
     
     
     init (type: EnemyType){
-        enemyModel = SKSpriteNode()
         enemyType = type
         
         switch(enemyType){
         case .Regular:
-            spriteName = "enemyOne.png"
             name = "enemyOne"
             originX = screenSize.width/10
             originY = screenSize.height
@@ -54,8 +51,11 @@ class Enemy{
             size = CGSize(width: width, height: height)
             maxhp = 100.0
             
+            
+            currency  = Currency(type: .Coin, avaudio: delegate?.mainAudio)
+            actionsDead = global.getTextures(animation: .Puff_Animation)
+            
         case .Boss:
-            spriteName = "\(BOSS_SPRITES_DIR)/Boss_1/main.png"
             name = "Enemy_Boss"
             originX = screenSize.width/2
             originY = screenSize.height * ( 1 - 1/8)
@@ -65,9 +65,10 @@ class Enemy{
             maxhp = 1000.0
             currency  = Currency(type: .Coin)
             
+            actionsStandBy = global.getTextures(animation: .Boss_1_Move_Animation)
+            actionsDead = global.getTextures(animation: .Boss_1_Dead_Animation)
             
         default:
-            spriteName = "invalid.png"
             originX = 55
             originY = 750
             width = screenSize.width * 0.1691
@@ -77,32 +78,9 @@ class Enemy{
             currency  = Currency(type: .Coin)
             print ("THIS SHOULD NOT BE RUN___ ")
         }
-        
-    }
+}
     
-    func load() -> Bool{
-        enemyModel = SKSpriteNode(imageNamed: spriteName)
-        enemyModel.texture = SKTexture(imageNamed: spriteName)
-        enemyModel.userData = NSMutableDictionary()
-        
-        enemyModel.hp = self.maxhp
-        enemyModel.maxHp = self.maxhp
-        enemyModel.name = name
-        enemyModel.position = CGPoint(x: originX, y: originY)
-        enemyModel.size = size
-        enemyModel.physicsBody =  SKPhysicsBody(texture: (enemyModel.texture!), size: (enemyModel.size))
-        enemyModel.physicsBody!.isDynamic = false // allow physic simulation to move it
-        enemyModel.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
-        enemyModel.physicsBody!.collisionBitMask = 0
-        
-        /*let enemyHealthBar = SKSpriteNode()
-         enemyHealthBar.anchorPoint.x = 0
-         enemyHealthBar.name = "hpBar"
-         enemyHealthBar.size = CGSize(width: 60, height: 20)
-         enemyHealthBar.position.x = -(enemyHealthBar.size.width/2)
-         enemyHealthBar.position.y -= 50
-         enemyHealthBar.color = .green*/
-        
+    func createEnemy(type: EnemyType) -> SKSpriteNode?{
         
         let r = CGRect(x: 0, y: -4, width: 60, height: 10)
         let healthBorder = SKShapeNode(rect: r, cornerRadius: 5)
@@ -122,52 +100,46 @@ class Enemy{
         
         enemyHealthBar.addChild(healthBorder)
         
-        
+        let enemyModel = SKSpriteNode()
         switch enemyType {
         case .Regular:
-            currency  = Currency(type: .Coin, avaudio: delegate?.mainAudio)
-            /*for i in 1...18{
-                actionsDead += [SKTexture(imageNamed: "\(ENEMY_SPRITES_DIR)/Die/action\(i)")]
-            }*/
-            let deadTexturesAtlas312 = SKTextureAtlas(named: "test.atlas/subfolder")
-            let deadTexturesAtlas = SKTextureAtlas(named: "/\(ENEMY_SPRITES_DIR)/Die.atlas")
-           // let numTextures = deadTexturesAtlas.textureNames.count
-           
-            
-            for texture in deadTexturesAtlas312.textureNames{
-                //actionsDead.append(deadTexturesAtlas.textureNamed(texture))
-                print(texture)
-            }
-            
-            
-            for texture in deadTexturesAtlas.textureNames{
-                //actionsDead.append(deadTexturesAtlas.textureNamed(texture))
-                print(texture)
-            }
+            enemyModel.texture = global.getMainTexture(main: .Enemy_1)
+            break
             
         case .Boss:
+            enemyModel.texture = global.getMainTexture(main: .Boss_1)
             enemyHealthBar.position.y -= 30
-            actionsStandBy = [SKTexture(imageNamed: "\(BOSS_SPRITES_DIR)/Boss_1/action1"), SKTexture(imageNamed: "\(BOSS_SPRITES_DIR)/Boss_1/action2"), SKTexture(imageNamed: "\(BOSS_SPRITES_DIR)/Boss_1/action3"), SKTexture(imageNamed: "\(BOSS_SPRITES_DIR)/Boss_1/action2")]
-            for i in 4...21{
-                actionsDead += [SKTexture(imageNamed: "\(BOSS_SPRITES_DIR)/Boss_1/action\(i)")]
-            }
+            
         default:
             print ("THIS SHOULD NOT BE RUN__")
-            return false
+            return nil
         }
+        
+        
+        enemyModel.userData = NSMutableDictionary()
+        
+        enemyModel.hp = self.maxhp
+        enemyModel.maxHp = self.maxhp
+        enemyModel.name = name
+        enemyModel.position = CGPoint(x: originX, y: originY)
+        enemyModel.size = size
+        enemyModel.physicsBody =  SKPhysicsBody(texture: (enemyModel.texture!), size: (enemyModel.size))
+        enemyModel.physicsBody!.isDynamic = false // allow physic simulation to move it
+        enemyModel.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
+        enemyModel.physicsBody!.collisionBitMask = 0
         
         enemyHealthBar.isHidden = true
         
         enemyModel.addChild(enemyHealthBar)
         
-        return true
+        return enemyModel
     }
     
     func spawnEnemy(){
         
         switch enemyType {
         case .Boss:
-            guard let enemy = enemyModel.copy() as? SKSpriteNode else{
+            guard let enemy = createEnemy(type: .Boss) else{
                 print ("ERROR :: There was an error spawning boss. Check Classes.swift // Class Enemy // Method spawnEnemy()")
                 return
             }
@@ -196,19 +168,16 @@ class Enemy{
             
             delegate?.addChild(sknode: enemy)
         case .Regular:
-            for i in stride(from: originX + 10, to: screenSize.width, by: originX + enemyModel.size.width/2){
+            for i in stride(from: originX + 10, to: screenSize.width, by: originX + self.width/2){
                 
-                guard let enemy = enemyModel.copy() as? SKSpriteNode else{
+                guard let enemy = createEnemy(type: .Regular) else{
                     print ("ERROR :: There was an error creating enemy. Check Classes.swift // Class Enemy // Method spawnEnemy()")
                     return
                 }
                 enemy.position = CGPoint(x: i, y: originY)
                 enemy.hp = enemy.maxHp
-                //   enemy.sound = delegate?.mainAudio.createAudio(type: .Coin, volume: 1.0)
                 enemy.run(SKAction.sequence([SKAction.moveTo(y: -100, duration: 3), SKAction.removeFromParent()]))
                 
-                // TESTING ADDING MUSIC
-                enemy.addChild((delegate?.mainAudio.createAudio(type: .Puff))!)
                 delegate?.addChild(sknode: enemy)
             }
         case .Special:
@@ -216,9 +185,9 @@ class Enemy{
         }
     }
     
-    func getNode() -> SKSpriteNode{
+  /*  func getNode() -> SKSpriteNode{
         return enemyModel
-    }
+    }*/
     
     
     
@@ -338,5 +307,6 @@ class Enemy{
     func getCurrency() -> Currency{
         return currency!
     }
+  
     
 }

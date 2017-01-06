@@ -15,6 +15,11 @@
 		F112A7081E16702600A5DEE9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7071E16702500A5DEE9 /* Structs.swift */; };
 		F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7091E16705300A5DEE9 /* Extensions.swift */; };
 		F142C7E21E18A19B00A62E7B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F142C7E11E18A19B00A62E7B /* Enemy.swift */; };
+		F14621F81E19E75000D36A37 /* standard_animation_dead.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */; };
+		F14621FC1E19F69F00D36A37 /* images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F14621FB1E19F69F00D36A37 /* images.atlas */; };
+		F14621FE1E1AF88400D36A37 /* Musics in Resources */ = {isa = PBXBuildFile; fileRef = F14621FD1E1AF88400D36A37 /* Musics */; };
+		F14622001E1CD57500D36A37 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14621FF1E1CD57500D36A37 /* AccountInfo.swift */; };
+		F14622021E1CD5DB00D36A37 /* Toon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14622011E1CD5DB00D36A37 /* Toon.swift */; };
 		F16A64601E0C96A000BC8255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A645F1E0C96A000BC8255 /* AppDelegate.swift */; };
 		F16A64621E0C96A000BC8255 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A64611E0C96A000BC8255 /* ViewController.swift */; };
 		F16A64671E0C96A000BC8255 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F16A64661E0C96A000BC8255 /* Assets.xcassets */; };
@@ -38,6 +43,11 @@
 		F112A7071E16702500A5DEE9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		F112A7091E16705300A5DEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F142C7E11E18A19B00A62E7B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = standard_animation_dead.atlas; path = Sprites/Enemy/Standard/standard_animation_dead.atlas; sourceTree = "<group>"; };
+		F14621FB1E19F69F00D36A37 /* images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = images.atlas; sourceTree = "<group>"; };
+		F14621FD1E1AF88400D36A37 /* Musics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Musics; sourceTree = "<group>"; };
+		F14621FF1E1CD57500D36A37 /* AccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		F14622011E1CD5DB00D36A37 /* Toon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toon.swift; sourceTree = "<group>"; };
 		F16A645C1E0C96A000BC8255 /* Angelica Fighti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angelica Fighti.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F16A645F1E0C96A000BC8255 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F16A64611E0C96A000BC8255 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +94,9 @@
 		F16A645E1E0C96A000BC8255 /* Angelica Fighti */ = {
 			isa = PBXGroup;
 			children = (
+				F14621FD1E1AF88400D36A37 /* Musics */,
+				F14621FB1E19F69F00D36A37 /* images.atlas */,
+				F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */,
 				F1771DD01E17C7D200B8C6DA /* SoundEffects */,
 				F112A7051E145A3B00A5DEE9 /* Sprites */,
 				F112A7031E1295A000A5DEE9 /* backgrounds */,
@@ -98,6 +111,8 @@
 				F16A64711E0C97BF00BC8255 /* StartGame.swift */,
 				F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */,
 				F16A647A1E0CB74000BC8255 /* Classes.swift */,
+				F14622011E1CD5DB00D36A37 /* Toon.swift */,
+				F14621FF1E1CD57500D36A37 /* AccountInfo.swift */,
 				F142C7E11E18A19B00A62E7B /* Enemy.swift */,
 				F112A7071E16702500A5DEE9 /* Structs.swift */,
 				F112A7091E16705300A5DEE9 /* Extensions.swift */,
@@ -174,7 +189,10 @@
 				F1F3F7F91E0D3791000F39DD /* playerImage.png in Resources */,
 				F16A64671E0C96A000BC8255 /* Assets.xcassets in Resources */,
 				F112A7061E145A3C00A5DEE9 /* Sprites in Resources */,
+				F14621FE1E1AF88400D36A37 /* Musics in Resources */,
+				F14621F81E19E75000D36A37 /* standard_animation_dead.atlas in Resources */,
 				F112A7041E1295A000A5DEE9 /* backgrounds in Resources */,
+				F14621FC1E19F69F00D36A37 /* images.atlas in Resources */,
 				F112A7021E12227E00A5DEE9 /* coin.png in Resources */,
 				F1F3F7FC1E0D3C6B000F39DD /* enemyOne.png in Resources */,
 				F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */,
@@ -194,11 +212,13 @@
 				F112A7081E16702600A5DEE9 /* Structs.swift in Sources */,
 				F16A64621E0C96A000BC8255 /* ViewController.swift in Sources */,
 				F16A64721E0C97BF00BC8255 /* StartGame.swift in Sources */,
+				F14622021E1CD5DB00D36A37 /* Toon.swift in Sources */,
 				F16A647B1E0CB74000BC8255 /* Classes.swift in Sources */,
 				F142C7E21E18A19B00A62E7B /* Enemy.swift in Sources */,
 				F16A64601E0C96A000BC8255 /* AppDelegate.swift in Sources */,
 				F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */,
 				F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */,
+				F14622001E1CD57500D36A37 /* AccountInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

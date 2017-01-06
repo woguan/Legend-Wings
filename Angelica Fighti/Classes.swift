@@ -40,52 +40,143 @@ enum ProjectileType{
     
 }
 
-enum SoundType{
-    case Coin
-    case Puff
-}
-
-class AVAudio {
+class Global {
     
-    //private var audio
-    private var coinPlayer:AVAudioPlayer
-    private var puffPlayer:AVAudioPlayer
-    private var skCoinAction:SKAction
-    private var skPuffAction:SKAction
-    init(){
-        
-        let coinDir = Bundle.main.url(forResource: "getcoin", withExtension: "m4a", subdirectory: "SoundEffects")
-        let puffDir = Bundle.main.url(forResource: "puff", withExtension: "m4a", subdirectory: "SoundEffects")
-        
-        guard let coinSound = try? AVAudioPlayer(contentsOf: coinDir! as URL) else {
-            fatalError("Failed to initialize the audio player coin")
-        }
-        guard let puffSound = try? AVAudioPlayer(contentsOf: puffDir! as URL) else{
-            fatalError("Failed to initialize the audio player puff")
-        }
-        
-        coinSound.volume = 1.0
-        puffSound.volume = 1.0
-        
-        puffSound.prepareToPlay()
-        coinSound.prepareToPlay()
-        
-        coinPlayer = coinSound
-        puffPlayer = puffSound
-        
-        skCoinAction = SKAction.playSoundFileNamed("SoundEffects/getcoin.m4a", waitForCompletion: false)
-        skPuffAction = SKAction.playSoundFileNamed("SoundEffects/puff.m4a", waitForCompletion: false)
-        
+    deinit {
+        print ("Global is deiniiated")
     }
     
-    func play(type: SoundType){
+    enum Animation{
+        case Boss_1_Dead_Animation
+        case Boss_1_Move_Animation
+        case Puff_Animation
+        case Gold_Animation
+        case Player_Toon_1_Animation
+    }
+    
+    enum Main{
+        
+        case Boss_1
+        case Player_Toon_1
+        case Gold
+        case Enemy_1
+    }
+    
+    private var boss_1_main:SKTexture
+    private var boss_1_die_animation:[SKTexture] = []
+    private var boss_1_movement_animation:[SKTexture] = []
+    
+    private var puff_regular_animation:[SKTexture] = []
+    
+    private var gold_main:SKTexture
+    private var gold_animation:[SKTexture] = []
+    
+    private var player_toon1_main:SKTexture
+    private var player_toon1_animation:[SKTexture] = []
+    
+    private var enemy_1_main:SKTexture
+    
+    init (){
+        
+        let atlas = SKTextureAtlas(named: "images")
+        
+        boss_1_main = atlas.textureNamed("boss_1_main")
+        gold_main = atlas.textureNamed("gold_main")
+        player_toon1_main = atlas.textureNamed("toon_1_main")
+        enemy_1_main = atlas.textureNamed("enemy_1_main")
+        
+        for texture in atlas.textureNames{
+            
+            if texture.contains("boss_1_movement"){
+               boss_1_movement_animation.append(atlas.textureNamed("boss_1_movement\(boss_1_movement_animation.count + 1)"))
+            }
+            
+            if texture.contains("boss_1_die"){
+                boss_1_die_animation.append(atlas.textureNamed("boss_1_die\(boss_1_die_animation.count + 1)"))
+            }
+            
+            if texture.contains("boss_1_die"){
+               puff_regular_animation.append(atlas.textureNamed("puff_regular\(puff_regular_animation.count + 1)"))
+            }
+            
+            if texture.contains("gold_action"){
+                gold_animation.append(atlas.textureNamed("gold_action\(gold_animation.count + 1)"))
+            }
+            
+            if texture.contains("toon_1_action"){
+                 player_toon1_animation.append(atlas.textureNamed("toon_1_action\(player_toon1_animation.count + 1)"))
+            }
+            
+        }
+    }
+    
+    func getTextures(animation:Animation) -> [SKTexture]{
+        switch animation{
+        case .Boss_1_Dead_Animation:
+            return boss_1_die_animation
+        case .Boss_1_Move_Animation:
+            return boss_1_movement_animation
+        case .Gold_Animation:
+            return gold_animation
+        case .Player_Toon_1_Animation:
+            return player_toon1_animation
+        case .Puff_Animation:
+            return puff_regular_animation
+        }
+        
+    }
+    func getMainTexture(main: Main) -> SKTexture{
+        switch main{
+        case .Boss_1:
+            return boss_1_main
+        case .Gold:
+            return gold_main
+        case .Player_Toon_1:
+            return player_toon1_main
+        case .Enemy_1:
+            return enemy_1_main
+        }
+    }
+}
+
+let global:Global = Global() // Using this class to hold all paths/directories
+
+struct AVAudio {
+    
+    enum SoundType{
+        case Coin
+        case Puff
+    }
+    
+    enum BgroundSoundType{
+        case Background_Start
+    }
+    
+    //private var audio
+    private var bground_1_player:AVAudioPlayer
+
+    init(){
+      
+ 
+        let bground_1_player_dir = Bundle.main.url(forResource: "begin", withExtension: "m4a", subdirectory: "Musics")
+        
+        guard let bground_1 = try? AVAudioPlayer(contentsOf: bground_1_player_dir! as URL) else{
+            fatalError("Failed to initialize the audio player bground_1")
+        }
+  
+        bground_1.volume = 1.0
+        
+        bground_1.prepareToPlay()
+        
+        bground_1_player = bground_1
+    }
+
+    func play(type: BgroundSoundType){
         switch type{
-        case .Coin:
-            coinPlayer.currentTime = 0
-            coinPlayer.play()
-        case .Puff:
-            puffPlayer.currentTime = 0
-            puffPlayer.play()
+        case .Background_Start:
+            bground_1_player.numberOfLoops = -1
+            bground_1_player.currentTime = 0
+            bground_1_player.play()
             
         }
     }
@@ -93,10 +184,11 @@ class AVAudio {
     func getAction(type: SoundType) -> SKAction{
         switch type{
         case .Coin:
+            let skCoinAction = SKAction.playSoundFileNamed("SoundEffects/getcoin.m4a", waitForCompletion: false)
             return skCoinAction
         case .Puff:
+            let skPuffAction = SKAction.playSoundFileNamed("SoundEffects/puff.m4a", waitForCompletion: false)
             return skPuffAction
-            
         }
     }
     
@@ -105,29 +197,20 @@ class AVAudio {
         return true
     }
     
-    func createAudio(type: SoundType) -> SKAudioNode{
-        switch type {
-        case .Coin:
-            let coinDir = "SoundEffects/getcoin.m4a"
-            let coinAudio = SKAudioNode(fileNamed: coinDir)
-            coinAudio.autoplayLooped = false
-            coinAudio.name = "coin_sound"
-            return coinAudio
-        case .Puff:
-            let puffDir = "SoundEffects/puff.m4a"
-            let puffAudio = SKAudioNode(fileNamed: puffDir)
-            puffAudio.autoplayLooped = false
-            puffAudio.name = "puff_sound"
-            return puffAudio
-        }
-        
-        }
+    func stop(){
+        bground_1_player.stop()
+    }
     }
 
 class GameInfo: GameInfoDelegate{
+//class GameInfo{
+    
+    deinit {
+        print ("GameInfo Class deinitiated!")
+    }
+    
     var counter:Int = 0 // only for debug - no purpose
     private var debugMode:Bool
-    private var isLoadSuccessfull:Bool
     
     weak private var mainScene:SKScene?
     private var currentLevel:Int
@@ -139,83 +222,81 @@ class GameInfo: GameInfoDelegate{
     private var gamestate:GameState
     
     var mainAudio:AVAudio
-    
     var account:AccountInfo
     var enemy:Enemy
     var boss:Enemy
-    var infobar:SKSpriteNode
+   // var infobar:SKSpriteNode
     
     
     init(){
-        
         debugMode = false
         mainAudio = AVAudio()
-        infobar = SKSpriteNode()
+      //  infobar = SKSpriteNode()
         currentLevel = 0
         currentGold = 0
         currentHighscore = 0
         account = AccountInfo()
         enemy = Enemy(type: .Regular)
         boss = Enemy(type: .Boss)
-        isLoadSuccessfull = false
         gamestate = .NoState
         
+        // delegates
         enemy.delegate = self
         boss.delegate = self
-        
     }
 
     func load(scene: SKScene) -> (Bool, String){
         
         mainScene = scene
-
+        
+        //test memory leak
         
         
-        // load
+        
+       // load
         loadDebugVersion()
         
+        // play background music
+        mainAudio.play(type: .Background_Start)
+        
         if !account.load(){return (false, "account error")}
-        if !enemy.load(){return (false, "enemy error")}
-        if !boss.load(){return (false, "boss error")}
+        
+         addChild(sknode: account.getCurrentToon().getNode())
         
         loadInfoBar()
         createWalls(leftXBound: 0, rightXBound:screenSize.width, width: 50, height: screenSize.height )
-        // add
-        addChild(sknode: account.getCurrentToon().getNode())
-        addChild(sknode: mainAudio.createAudio(type: .Coin))
-        addChild(sknode: mainAudio.createAudio(type: .Puff))
-        
-        // add action for Toon ( shoot )
+   
         account.getCurrentToon().getNode().run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
             self.addChild(sknode: self.account.getCurrentToon().getBullet().shoot())
             }, SKAction.wait(forDuration: 0.1)])))
         
-        isLoadSuccessfull = true
-        return (isLoadSuccessfull, "All Loaded")
+        return (true, "All Loaded")
     }
-    
+ 
     func loadDebugVersion(){
         
         if debugMode == false{
             return
         }
-        guard let toprightCorner = self.infobar.childNode(withName: "toprightCorner") as? SKSpriteNode else{
+        
+        guard let scene = mainScene else {
+            return
+        }
+        
+        guard let infobar = scene.childNode(withName: "infobar") as? SKSpriteNode else{
+            return
+        }
+        
+        guard let toprightCorner = infobar.childNode(withName: "toprightCorner") as? SKSpriteNode else{
             print ("ERROR 000: Check Update() from Class GameInfo")
             return
         }
         
-        /*guard let coinLabelText = toprightCorner.childNode(withName: "coinCounter") as? SKLabelNode else{
-            print ("ERROR 001: Check Update() from Class GameInfo")
-            return
-        }*/
-        
         infobar.color = .red
         toprightCorner.color = .green
         
-        
-        
     }
-    
+   
     
     func loadInfoBar(){
         
@@ -264,6 +345,7 @@ class GameInfo: GameInfoDelegate{
             return topright
         }
         
+        let infobar = SKSpriteNode()
         let width:CGFloat = screenSize.width
         let height:CGFloat = 100
         
@@ -277,6 +359,7 @@ class GameInfo: GameInfoDelegate{
         // adding gold
         infobar.addChild(createGoldLabel(parentWidth: width, parentHeight:height))
     }
+ 
     
     func createWalls(leftXBound:CGFloat, rightXBound:CGFloat, width:CGFloat, height:CGFloat){
         
@@ -299,7 +382,7 @@ class GameInfo: GameInfoDelegate{
         self.addChild(sknode: rightWall)
         
     }
-    
+ 
     func CallSpawnEnemy(scene: SKScene, totalWaves: Int){
         
         // update state
@@ -326,14 +409,21 @@ class GameInfo: GameInfoDelegate{
         // summon boss
         self.boss.spawnEnemy()
     }
+ 
+ 
     
     func update(){
-        guard let mainscene = mainScene else{
+       guard let mainscene = mainScene else{
             print ("ERROR A00: Check Update() from GameInfo")
             return
         }
         
-        guard let toprightCorner = self.infobar.childNode(withName: "toprightCorner") as? SKSpriteNode else{
+        guard let infobar = mainscene.childNode(withName: "infobar") else{
+            print ("ERROR A01: Check Update() from GameInfo")
+            return
+        }
+  
+        guard let toprightCorner = infobar.childNode(withName: "toprightCorner") as? SKSpriteNode else{
             print ("ERROR 000: Check Update() from Class GameInfo")
             return
         }
@@ -353,7 +443,6 @@ class GameInfo: GameInfoDelegate{
             CallSpawnEnemy(scene: mainscene, totalWaves: wavesForNextLevel)
         }
         coinLabelText.text = String(self.currentGold)
-        
     }
     
     func addCoin(amount:Int){
@@ -363,6 +452,8 @@ class GameInfo: GameInfoDelegate{
     func getCurrentGold() -> Int{
         return self.currentGold
     }
+    
+ 
     
     func addChild(sknode: SKNode){
       //  print("called addChild")
@@ -380,233 +471,6 @@ class GameInfo: GameInfoDelegate{
     
 }
 
-class AccountInfo{
-    
-    struct Bag{
-        var something:Int
-        
-        init(){
-            something = 0
-        }
-    }
-    
-    private var level:Int
-    private var currentToonIndex:Int
-    private var characters:[Toon]
-    private var gold:Int
-    private var experience:CGFloat
-    private var highscore:Int
-    var inventory:Bag
-    
-    init(){
-        level = 0
-        currentToonIndex = 0
-        inventory = Bag()
-        gold = 0
-        experience = 0.0
-        characters = [Toon(w: 180, h: 130)]
-        highscore = 0
-        characters[0].load()
-        
-    }
-    
-    func load() -> Bool{
-        
-        
-        
-        let pathToUserDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-        
-        let fullPathName = pathToUserDirectory.appendingPathComponent("userinfo.plist")
-        
-        guard let plist = NSDictionary(contentsOfFile: fullPathName) else{
-            print ("ERROR000: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let c = plist.value(forKey: "Coin") as? Int else{
-            print ("ERROR001: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let ct = plist.value(forKey: "CurrentToon") as? Int else{
-            print ("ERROR002: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let exp = plist.value(forKey: "Experience") as? CGFloat else{
-            print ("ERROR003: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let lv = plist.value(forKey: "Level") as? Int else{
-            print ("ERROR004: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let hs = plist.value(forKey: "Highscore") as? Int else{
-            print ("ERROR005: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        guard let toons = plist.value(forKey: "Toons") as? [Toon] else{
-            print ("ERROR006: Class AccountInfo - Method Load - Has problem")
-            return false
-        }
-        
-        self.level = lv
-        self.currentToonIndex = ct
-        self.gold = c
-        self.experience = exp
-        self.highscore = hs
-        
-        if (toons.count > 0){
-        self.characters = toons
-        }
-        
-        return true
-    }
-    
-    
-    func getCurrentToon() -> Toon{
-        return characters[currentToonIndex]
-    }
-    
-    
-    
-    
-    
-}
-
-
-
-class Highscore{
-    
-}
-
-
-class Toon{
-
-    private var width:CGFloat
-    private var height:CGFloat
-    private var node:SKSpriteNode
-    private var bullet:Projectile
-    
-    private var actions:[SKTexture]
-    
-    init(w:CGFloat, h:CGFloat){
-      
-        node = SKSpriteNode(imageNamed: "\(PLAYER_SPRITES_DIR)/Toon1/main.png")
-        width = w
-        height = h
-        node.color = SKColor.blue
-        node.size = CGSize(width: w, height: h)
-        node.position = CGPoint(x: 200, y: 100)
-        node.name = "toon"
-        
-        actions = [SKTexture(imageNamed: "\(PLAYER_SPRITES_DIR)/Toon1/action1"), SKTexture(imageNamed: "\(PLAYER_SPRITES_DIR)/Toon1/action2"), SKTexture(imageNamed: "\(PLAYER_SPRITES_DIR)/Toon1/action3"), SKTexture(imageNamed: "\(PLAYER_SPRITES_DIR)/Toon1/action4")]
-        
-        bullet = Projectile(posX: node.position.x, posY: node.position.y)
-    }
-    
-    func load(){
-        
-          node.run(SKAction.repeatForever(SKAction.animate(with: actions, timePerFrame: 0.05)))
-        
-        //node.physicsBody =  SKPhysicsBody(texture: node.texture!, size: node.size)
-        node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width/4, height: node.size.height/2))
-        node.physicsBody!.isDynamic = true // allow physic simulation to move it
-        node.physicsBody!.affectedByGravity = false
-        node.physicsBody!.allowsRotation = false // not allow it to rotate
-       // node.physicsBody!.collisionBitMask = PhysicsCategory.Wall
-        node.physicsBody!.collisionBitMask = 0
-        node.physicsBody!.categoryBitMask = PhysicsCategory.Player
-        node.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
-    }
-    
-    func getNode() -> SKSpriteNode{
-        return node
-    }
-    
-    func changeSize(w:CGFloat, h:CGFloat){
-        width = w
-        height = h
-    }
-    
-
-    func updateProjectile(){
-        //print ("new bullet position", node.position.x)
-        bullet.setPosX(x: node.position.x)
-     
-    }
-    
-    func getBullet() -> Projectile{
-        return bullet
-    }
-    
-    }
-
-
-struct Projectile {
-    var originX:CGFloat
-    var originY:CGFloat
-    var power:CGFloat
-    var spriteName = "bullet.png"
-    var name = "bullet"
-    var bulletType:ProjectileType
-    var size = CGSize(width: 30.0, height: 30.0)
-    
-    init (posX:CGFloat, posY:CGFloat){
-        originX = posX
-        originY = posY + 35
-        
-        // constant for now
-        
-        power = 25.0
-        bulletType = .type1
-    }
-    
-    func shoot() -> SKNode{
-        
-        let bullet = SKSpriteNode(imageNamed: spriteName)
-        bullet.userData = NSMutableDictionary()
-        bullet.name = name
-        bullet.position = CGPoint(x: originX, y: originY)
-        bullet.size = size
-        
-        bullet.power = self.power
-        bullet.physicsBody = SKPhysicsBody(texture: bullet.texture!, size: bullet.size)
-        bullet.physicsBody!.isDynamic = true
-        bullet.physicsBody!.affectedByGravity = false
-        bullet.physicsBody!.allowsRotation = false
-        
-        bullet.physicsBody!.categoryBitMask = PhysicsCategory.Projectile
-        bullet.physicsBody!.collisionBitMask = 0
-        bullet.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
-        bullet.run(SKAction.repeatForever(
-            SKAction.sequence([
-                SKAction.run({self.update(n: bullet)}),
-                SKAction.wait(forDuration: TimeInterval(0.01))])
-        ), withKey: "shooting")
-        
-    return bullet
-    }
-    mutating func setPosX(x:CGFloat){
-        originX = x
-    }
-    
-    mutating func setPosY(y:CGFloat){
-        originY = y + 35
-    }
-    
-    func update(n:SKSpriteNode){
-        n.run(SKAction.moveBy(x: 0, y: 6, duration: 0.01))
-        n.run(SKAction.scale(to: 5, duration: 0.48))
-        if n.position.y > 740.0{
-            n.removeAllActions()
-            n.removeFromParent()
-        }
-    }
-}
 
 
 
