@@ -13,6 +13,9 @@ import SpriteKit
 
 struct Enemy{
 
+  //  deinit {
+   //     print ("Enemy deinitiated")
+    //}
     enum EnemyType{
         case Boss
         case Regular
@@ -34,6 +37,7 @@ struct Enemy{
     private var currency:Currency?
     private var isAlive:Bool = true
     
+    private var velocity:CGVector
     
     var delegate:GameInfoDelegate?
     
@@ -49,6 +53,7 @@ struct Enemy{
             width = screenSize.width * 0.1691
             height = screenSize.height * 0.09511
             size = CGSize(width: width, height: height)
+            velocity = CGVector(dx: 0, dy: -300)
             maxhp = 100.0
             
             
@@ -63,6 +68,7 @@ struct Enemy{
             height = 130
             size = CGSize(width: width, height: height)
             maxhp = 1000.0
+            velocity = CGVector(dx: 0, dy: 0)
             currency  = Currency(type: .Coin)
             
             actionsStandBy = global.getTextures(animation: .Boss_1_Move_Animation)
@@ -76,9 +82,14 @@ struct Enemy{
             size = CGSize(width: width, height: height)
             maxhp = 100.0
             currency  = Currency(type: .Coin)
+            velocity = CGVector(dx: 0, dy: 0)
             print ("THIS SHOULD NOT BE RUN___ ")
         }
 }
+    
+    mutating func increaseHP(){
+        self.maxhp += 5
+    }
     
     func createEnemy(type: EnemyType) -> SKSpriteNode?{
         
@@ -165,10 +176,11 @@ struct Enemy{
         enemyModel.position = CGPoint(x: originX, y: originY)
         enemyModel.size = size
         enemyModel.physicsBody =  SKPhysicsBody(texture: (enemyModel.texture!), size: (enemyModel.size))
-        enemyModel.physicsBody!.isDynamic = false // allow physic simulation to move it
+        enemyModel.physicsBody!.isDynamic = true // allow physic simulation to move it
         enemyModel.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
+        enemyModel.physicsBody!.affectedByGravity = false
         enemyModel.physicsBody!.collisionBitMask = 0
-        
+        enemyModel.physicsBody!.velocity = self.velocity
         enemyHealthBar.isHidden = true
         
         enemyModel.addChild(enemyHealthBar)
@@ -217,7 +229,7 @@ struct Enemy{
                 }
                 enemy.position = CGPoint(x: i, y: originY)
                 enemy.hp = enemy.maxHp
-                enemy.run(SKAction.sequence([SKAction.moveTo(y: -100, duration: 3), SKAction.removeFromParent()]))
+                enemy.run(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.removeFromParent()]))
                 
                 delegate?.addChild(sknode: enemy)
             }
@@ -248,6 +260,9 @@ struct Enemy{
         
     }
     
+    mutating func increaseVelocityBy (amount:CGFloat){
+        self.velocity.dy += (-amount)
+    }
     
     func decreaseHP(ofTarget: SKSpriteNode, hitBy: SKSpriteNode){
         

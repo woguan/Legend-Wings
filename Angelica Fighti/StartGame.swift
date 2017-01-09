@@ -225,6 +225,27 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
         let enemy = gameinfo.enemy
         let boss = gameinfo.boss
         
+        /*NEW feature added. Remove this after testing*/
+        
+        if ( highNode.name == "bullet"){
+        if let effect = SKEmitterNode(fileNamed: "hitParticle"){
+            
+            effect.position = CGPoint(x: highNode.position.x, y: highNode.position.y)
+            
+            //effect.particleColor = .red
+            //effect.particleColorBlendFactor = 1.0
+            //effect.particleColorSequence = nil
+            self.addChild(effect)
+            
+            effect.run(SKAction.sequence([SKAction.wait(forDuration: 0.15), SKAction.removeFromParent()]))
+        }
+        else{
+            print ("Error loading the file hitParticle.sks")
+        }
+
+        }
+        /*END HERE*/
+        
         switch contactType{
             
         case .EnemyGotHit:
@@ -237,7 +258,23 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             
         case .HitByEnemy:
             
+            // particle effect testing
+            
+            let asd = SKEmitterNode()
+            asd.particleTexture = global.getMainTexture(main: .Gold)
+            //asd.particleColorBlendFactor = 0.5
+            asd.position = lowNode.position
+            asd.particleLifetime = 1
+            asd.particleBirthRate = 10
+            asd.numParticlesToEmit  = 30
+            asd.emissionAngleRange = 180
+            asd.particleScale = 0.2
+            asd.particleScaleSpeed = -0.2
+            asd.particleSpeed = 100
+            self.addChild(asd)
+            
             lowNode.removeAllActions()
+            lowNode.removeFromParent()
             highNode.removeAllActions()
             prepareToChangeScene()
 
@@ -265,24 +302,28 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             view?.removeGestureRecognizer(gesture)
         }
         
-        // remove all delegates
-        gameinfo.boss.delegate = nil
-        gameinfo.enemy.delegate = nil
-        
-        // remove all children and its actions
-        for childNode in self.children{
-            childNode.removeAllActions()
-        }
-        self.removeAllChildren()
-        self.removeAllActions()
-        
-        // stop background audio
-        self.gameinfo.mainAudio.stop()
         
         // switch scene
-        let scene = EndGame(size: self.size)
-        scene.collectedCoins = gameinfo.getCurrentGold()
-        view?.presentScene(scene)
+        self.physicsWorld.speed = 0.4
+        
+        self.run(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+            // remove all delegates
+            self.gameinfo.boss.delegate = nil
+            self.gameinfo.enemy.delegate = nil
+            
+            // remove all children and its actions
+            for childNode in self.children{
+                childNode.removeAllActions()
+            }
+            self.removeAllChildren()
+            self.removeAllActions()
+            
+            // stop background audio
+            self.gameinfo.mainAudio.stop()
+            let scene = EndGame(size: self.size)
+            scene.collectedCoins = self.gameinfo.getCurrentGold()
+            self.view?.presentScene(scene)
+            }]))
         
     }
     

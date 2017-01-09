@@ -195,8 +195,7 @@ struct AVAudio {
     private var bground_1_player:AVAudioPlayer
 
     init(){
-      
- 
+        
         let bground_1_player_dir = Bundle.main.url(forResource: "begin", withExtension: "m4a", subdirectory: "Musics")
         
         guard let bground_1 = try? AVAudioPlayer(contentsOf: bground_1_player_dir! as URL) else{
@@ -223,10 +222,11 @@ struct AVAudio {
     func getAction(type: SoundType) -> SKAction{
         switch type{
         case .Coin:
-            let skCoinAction = SKAction.playSoundFileNamed("SoundEffects/getcoin.m4a", waitForCompletion: false)
+            let skCoinAction = SKAction.playSoundFileNamed("SoundEffects/getcoin.m4a", waitForCompletion: true)
             return skCoinAction
         case .Puff:
-            let skPuffAction = SKAction.playSoundFileNamed("SoundEffects/puff.m4a", waitForCompletion: false)
+            
+            let skPuffAction = SKAction.playSoundFileNamed("SoundEffects/puff.m4a", waitForCompletion: true)
             return skPuffAction
         }
     }
@@ -259,17 +259,17 @@ class GameInfo: GameInfoDelegate{
     private var isBossEncounter:Bool = false
     private var gamestate:GameState
     
+    private var timePerWave:Double // time to call each wave
+    
     var mainAudio:AVAudio
     var account:AccountInfo
     var enemy:Enemy
     var boss:Enemy
-   // var infobar:SKSpriteNode
     
     
     init(){
         debugMode = false
         mainAudio = AVAudio()
-      //  infobar = SKSpriteNode()
         currentLevel = 0
         currentGold = 0
         currentHighscore = 0
@@ -277,6 +277,7 @@ class GameInfo: GameInfoDelegate{
         enemy = Enemy(type: .Regular)
         boss = Enemy(type: .Boss)
         gamestate = .NoState
+        timePerWave = 3.0 // 3.0 is default
         
         // delegates
         enemy.delegate = self
@@ -415,7 +416,7 @@ class GameInfo: GameInfoDelegate{
         
     }
  
-    func CallSpawnEnemy(scene: SKScene, totalWaves: Int){
+    func CallSpawnEnemy(scene: SKScene, totalWaves: Int, waveTime:Double){
         
         // update state
         updateGameState(state: .Spawning)
@@ -424,7 +425,7 @@ class GameInfo: GameInfoDelegate{
         let spawningActionSequence = SKAction.sequence([SKAction.run {
             self.enemy.spawnEnemy()
             self.wavesForNextLevel -= 1
-            }, SKAction.wait(forDuration: 3)])
+            }, SKAction.wait(forDuration: waveTime)])
         
         let repeatSpawning = SKAction.repeat(spawningActionSequence, count: totalWaves)
         
@@ -470,8 +471,18 @@ class GameInfo: GameInfoDelegate{
         if (gamestate == .NoState){
             // start enemy respawn
             wavesForNextLevel = randomInt(min: 5, max: 10)
+            enemy.increaseHP()
+            
+           // if timePerWave > 1.0 {
+           // timePerWave -= 0.1
+           // }
+            
+            // increase enemy speed
+            enemy.increaseVelocityBy(amount: 50.0)
+            
             print(wavesForNextLevel)
-            CallSpawnEnemy(scene: mainscene, totalWaves: wavesForNextLevel)
+            CallSpawnEnemy(scene: mainscene, totalWaves: wavesForNextLevel, waveTime: timePerWave)
+          //  CallSpawnEnemy(scene: mainscene, totalWaves: wavesForNextLevel, waveTime: 3)
         }
         coinLabelText.text = String(self.currentGold)
     }
