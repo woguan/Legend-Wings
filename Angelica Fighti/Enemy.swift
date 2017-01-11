@@ -13,9 +13,9 @@ import SpriteKit
 
 struct Enemy{
 
-  //  deinit {
+   // deinit {
    //     print ("Enemy deinitiated")
-    //}
+   // }
     enum EnemyType{
         case Boss
         case Regular
@@ -30,6 +30,7 @@ struct Enemy{
     private var enemyType:EnemyType
     private var actionsStandBy:[SKTexture] = []
     private var actionsDead:[SKTexture] = []
+    
     
     private var name = ""
     private var size:CGSize
@@ -188,7 +189,7 @@ struct Enemy{
         return enemyModel
     }
     
-    func spawnEnemy(){
+     func spawnEnemy(){
         
         switch enemyType {
         case .Boss:
@@ -219,7 +220,32 @@ struct Enemy{
                 imuneBox.removeFromParent()
                 }]))
             
+            // adding attack
+            enemy.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.5), SKAction.run {
+                let random = randomInt(min: 0, max: 100)
+                print (random)
+                if (random > 50){
+                let att = SKSpriteNode(texture: global.getAttackTexture(attack: .Boss1_type_1))
+                att.size = CGSize(width: 30, height: 30)
+                att.name = "Enemy_boss_1_attack"
+                att.physicsBody = SKPhysicsBody(circleOfRadius: 15)
+                att.physicsBody!.isDynamic = true
+                att.physicsBody!.affectedByGravity = true
+                att.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
+                att.physicsBody!.contactTestBitMask = PhysicsCategory.Player
+                att.physicsBody!.collisionBitMask = 0
+                
+                att.run(SKAction.sequence([SKAction.wait(forDuration: 3.5), SKAction.removeFromParent()]))
+                enemy.addChild(att)
+                
+                    let force = CGVector(dx: randomInt(min: -100, max: 100), dy: 0)
+                att.run(SKAction.applyForce(force, duration: 0.1))
+                }
+                
+                }])))
+         
             delegate?.addChild(sknode: enemy)
+            
         case .Regular:
             for i in stride(from: originX + 10, to: screenSize.width, by: originX + self.width/2){
                 
@@ -237,12 +263,6 @@ struct Enemy{
             break
         }
     }
-    
-  /*  func getNode() -> SKSpriteNode{
-        return enemyModel
-    }*/
-    
-    
     
     func update(sknode: SKSpriteNode){
     

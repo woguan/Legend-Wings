@@ -124,5 +124,9 @@ struct Projectile {
         originY = y + 35
     }
     
+    func printPosition(){
+        print ("This: ", originX, originY)
+    }
+    
 }
 

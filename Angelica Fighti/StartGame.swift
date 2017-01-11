@@ -12,6 +12,8 @@ import Foundation
 import SpriteKit
 import AVFoundation
 
+
+/* LEGACY VARIABLES... NOW USING ATLAS */
 let PLAYER_SPRITES_DIR = "Sprites/Player"
 let ENEMY_SPRITES_DIR = "Sprites/Enemy/Standard"
 let BOSS_SPRITES_DIR = "Sprites/Enemy/Boss"
@@ -19,6 +21,7 @@ let ITEMS_SPRITES_DIR = "Sprites/Items"
 
 let SOUND_EFFECT_PUFF = "SoundEffects/puff.m4a"
 let SOUND_EFFECT_COIN = "SoundEffects/getcoin.m4a"
+/* END OF LEGACY VARIABLES. REMOVE IT LATER */
 
 class StartGame:SKScene, SKPhysicsContactDelegate{
     
@@ -153,6 +156,8 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             }
             
             toon.updateProjectile()
+            
+    
         } else if recognizer.state == .ended {
             player.run(SKAction.rotate(toAngle: 0, duration: 0.1))
         }
@@ -249,7 +254,9 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
         switch contactType{
             
         case .EnemyGotHit:
+            if !lowNode.name!.contains("attack"){
             enemy.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            }
             destroy(sknode: highNode)
             
         case .BossGotHit:
@@ -260,18 +267,17 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             
             // particle effect testing
             
-            let asd = SKEmitterNode()
-            asd.particleTexture = global.getMainTexture(main: .Gold)
-            //asd.particleColorBlendFactor = 0.5
-            asd.position = lowNode.position
-            asd.particleLifetime = 1
-            asd.particleBirthRate = 10
-            asd.numParticlesToEmit  = 30
-            asd.emissionAngleRange = 180
-            asd.particleScale = 0.2
-            asd.particleScaleSpeed = -0.2
-            asd.particleSpeed = 100
-            self.addChild(asd)
+            let hitparticle = SKEmitterNode()
+            hitparticle.particleTexture = global.getMainTexture(main: .Gold)
+            hitparticle.position = lowNode.position
+            hitparticle.particleLifetime = 1
+            hitparticle.particleBirthRate = 10
+            hitparticle.numParticlesToEmit  = 30
+            hitparticle.emissionAngleRange = 180
+            hitparticle.particleScale = 0.2
+            hitparticle.particleScaleSpeed = -0.2
+            hitparticle.particleSpeed = 100
+            self.addChild(hitparticle)
             
             lowNode.removeAllActions()
             lowNode.removeFromParent()
@@ -301,8 +307,7 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
         for gesture in (view?.gestureRecognizers)!{
             view?.removeGestureRecognizer(gesture)
         }
-        
-        
+
         // switch scene
         self.physicsWorld.speed = 0.4
         

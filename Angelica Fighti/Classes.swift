@@ -77,7 +77,12 @@ class Global {
         case Enemy_7
     }
     
+    enum BossAttack{
+        case Boss1_type_1
+    }
+    
     private var boss_1_main:SKTexture
+    private var boss_1_attack_1:SKTexture
     private var boss_1_die_animation:[SKTexture] = []
     private var boss_1_movement_animation:[SKTexture] = []
     
@@ -100,8 +105,8 @@ class Global {
     init (){
         
         let atlas = SKTextureAtlas(named: "images")
-        
         boss_1_main = atlas.textureNamed("boss_1_main")
+        boss_1_attack_1 = atlas.textureNamed("enemy_attack_ball")
         gold_main = atlas.textureNamed("gold_main")
         player_toon1_main = atlas.textureNamed("toon_1_main")
         enemy_1_main = atlas.textureNamed("enemy_1_main")
@@ -174,6 +179,13 @@ class Global {
             return enemy_6_main
         case .Enemy_7:
             return enemy_7_main
+        }
+    }
+    
+    func getAttackTexture(attack: BossAttack) -> SKTexture{
+        switch (attack){
+        case .Boss1_type_1:
+            return boss_1_attack_1
         }
     }
 }
@@ -259,6 +271,7 @@ class GameInfo: GameInfoDelegate{
     private var isBossEncounter:Bool = false
     private var gamestate:GameState
     
+    
     private var timePerWave:Double // time to call each wave
     
     var mainAudio:AVAudio
@@ -266,7 +279,7 @@ class GameInfo: GameInfoDelegate{
     var enemy:Enemy
     var boss:Enemy
     
-    
+
     init(){
         debugMode = false
         mainAudio = AVAudio()
@@ -285,6 +298,7 @@ class GameInfo: GameInfoDelegate{
     }
 
     func load(scene: SKScene) -> (Bool, String){
+        
         
         mainScene = scene
     

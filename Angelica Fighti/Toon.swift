@@ -65,7 +65,7 @@ class Toon{
         bullet.setPosX(x: node.position.x)
         
     }
-    
+ 
     func getBullet() -> Projectile{
         return bullet
     }
