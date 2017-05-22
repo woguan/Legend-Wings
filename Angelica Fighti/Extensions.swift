@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import SpriteKit
+import UIKit
 
 extension SKNode{
     var power:CGFloat!{
@@ -83,6 +84,15 @@ extension SKNode{
     }
     
     
+}
+
+extension SKScene{
+        func removeUIViews(){
+            for view in (view?.subviews)! {
+                view.removeFromSuperview()
+            }
+            
+    }
 }
 
 /*RANDOM FUNCTIONS */

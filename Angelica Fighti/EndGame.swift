@@ -50,7 +50,8 @@ class EndGame: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let scene = StartGame(size: self.size)
+       // let scene = StartGame(size: self.size)
+     let scene = MainScene(size: self.size)
         self.view?.presentScene(scene)
     }
     

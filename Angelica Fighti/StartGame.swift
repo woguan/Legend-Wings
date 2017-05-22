@@ -12,7 +12,6 @@ import Foundation
 import SpriteKit
 import AVFoundation
 
-
 /* LEGACY VARIABLES... NOW USING ATLAS */
 let PLAYER_SPRITES_DIR = "Sprites/Player"
 let ENEMY_SPRITES_DIR = "Sprites/Enemy/Standard"
@@ -34,7 +33,6 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
     override func didMove(to view: SKView) {
         
         removeUIViews()
-        
         
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanFrom(recognizer:)))
         
@@ -59,10 +57,6 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
        // let toon = gameinfo.account.getCurrentToon()
         
     }
-     
- 
-    
-    
 
     func load(){
         
@@ -98,12 +92,16 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
         }
         
         gameinfo.account.getCurrentToon().getNode().run(SKAction.scale(by: 0.8, duration: 0.1))
-        
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(gameinfo.update), SKAction.wait(forDuration: 0.01)])))
+       
+        let action = SKAction.repeatForever(SKAction.sequence([SKAction.run(gameinfo.update), SKAction.wait(forDuration: 0.01)]))
+        gameinfo.start()
+     //   run(SKAction.sequence([SKAction.wait(forDuration: 5.0), action]))
+       run(action)
         
         
     }
     
+    /* Maybe create a new file to handle background. For future update*/
     func movingSky(){
         self.enumerateChildNodes(withName: "sky", using: ({(node, error ) in
             node.position.y -= 2
@@ -112,14 +110,6 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             }
             
         }))
-    }
- 
-    
-    func removeUIViews(){
-        for view in (view?.subviews)! {
-            view.removeFromSuperview()
-        }
-        
     }
     
   @objc func handlePanFrom(recognizer : UIPanGestureRecognizer) {
@@ -179,15 +169,15 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             higherNode = contact.bodyA.node as! SKSpriteNode?
             lowerNode = contact.bodyB.node as! SKSpriteNode?
         }
-        else{
+        else if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask{
             higherNode = contact.bodyB.node as! SKSpriteNode?
             lowerNode = contact.bodyA.node as! SKSpriteNode?
         }
-        
-        guard let h_node = higherNode else {
+        else{
             return
         }
-        guard let l_node = lowerNode else {
+        
+        guard let h_node = higherNode, let l_node = lowerNode else {
             return
         }
         
@@ -195,13 +185,14 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
          POSSIBLE CASES ( lowerNode vs HigherNode ):
          
          
-         PLAYER & ENEMY  =  HitByEnemy
-         PLAYER & COIN   =  GotCoin
-         ENEMY  & Projectile = EnemyGotHit
+         PLAYER & ENEMY  =  HitByEnemy  -> Description: Enemy hit the player
+         PLAYER & COIN   =  GotCoin     -> Description: Player got money
+         ENEMY  & Projectile = EnemyGotHit -> Description: Enemy hit By the player
          ALL    & IMUNE  =  Immune
          
          NOTE: None < Player < Enemy < Projectile < Currency < Wall < Imune
          
+         NOTE2: Enemy's projectile are considered as Enemy. Thus, need to ignore when projectile hit enemy attack
          */
         
         
@@ -209,12 +200,9 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
             contactType = .Immune
         }
    
-        else if l_node.name! == "Enemy_Regular_One" && h_node.name! == "bullet"{
+        else if (l_node.name! == "Enemy_Regular" || l_node.name! == "Enemy_Boss" ) && h_node.name! == "bullet"{
                 contactType = .EnemyGotHit
             }
-        else if l_node.name! == "Enemy_Boss" && h_node.name == "bullet"{
-            contactType = .BossGotHit
-        }
         else if l_node.name! == "toon" && h_node.name! == "coin"{
             contactType = .PlayerGetCoin
         }
@@ -222,45 +210,34 @@ class StartGame:SKScene, SKPhysicsContactDelegate{
         else if l_node.name! == "toon" && h_node.name!.contains("Enemy"){
             contactType = .HitByEnemy
         }
+        else if l_node.name!.contains("Enemy") && l_node.name!.contains("Attack") && h_node.name == "bullet"{
+            // Handle case where bullet hit enemy's attack
+            return
+        }
         
         contactUpdate(lowNode: l_node, highNode: h_node, contactType: contactType)
     }
 
     func contactUpdate(lowNode: SKSpriteNode, highNode: SKSpriteNode, contactType:ContactType){
-        let enemy = gameinfo.enemy
+        let regular = gameinfo.enemy
         let boss = gameinfo.boss
-        
-        /*NEW feature added. Remove this after testing*/
-        
-        if ( highNode.name == "bullet"){
-        if let effect = SKEmitterNode(fileNamed: "hitParticle"){
-            
-            effect.position = CGPoint(x: highNode.position.x, y: highNode.position.y)
-            
-            //effect.particleColor = .red
-            //effect.particleColorBlendFactor = 1.0
-            //effect.particleColorSequence = nil
-            self.addChild(effect)
-            
-            effect.run(SKAction.sequence([SKAction.wait(forDuration: 0.15), SKAction.removeFromParent()]))
-        }
-        else{
-            print ("Error loading the file hitParticle.sks")
-        }
-
-        }
-        /*END HERE*/
         
         switch contactType{
             
         case .EnemyGotHit:
-            if !lowNode.name!.contains("attack"){
-            enemy.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            // FX when enemy is hit
+            let effect = gameinfo.account.getCurrentToon().getBullet().generateTouchedEnemyEmmiterNode(x: highNode.position.x, y: highNode.position.y)
+            self.addChild(effect)
+            // update enemy
+            if lowNode.name!.contains("Regular"){
+                regular.decreaseHP(ofTarget: lowNode, hitBy: highNode)
             }
-            destroy(sknode: highNode)
-            
-        case .BossGotHit:
-            boss.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            else if lowNode.name!.contains("Boss"){
+                boss.decreaseHP(ofTarget: lowNode, hitBy: highNode)
+            }
+            else{
+                print("WARNING: Should not reach here. Check contactUpdate in StartGame.swift")
+            }
             destroy(sknode: highNode)
             
         case .HitByEnemy:

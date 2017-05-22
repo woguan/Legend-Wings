@@ -7,19 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C2520C51EC6AC0A00A03400 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2520C41EC6AC0A00A03400 /* MainScene.swift */; };
+		0C2520C71ECB63E200A03400 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2520C61ECB63E200A03400 /* HUD.swift */; };
+		0CB5F6ED1EC03D5200D30610 /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0CB5F6EC1EC03D5200D30610 /* particle.png */; };
+		0CEA36031EC2B5BE00AEA381 /* BGM in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA36001EC2B5BE00AEA381 /* BGM */; };
+		0CEA36041EC2B5BE00AEA381 /* images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA36011EC2B5BE00AEA381 /* images.atlas */; };
+		0CEA36051EC2B5BE00AEA381 /* SoundEffects in Resources */ = {isa = PBXBuildFile; fileRef = 0CEA36021EC2B5BE00AEA381 /* SoundEffects */; };
 		F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */; };
 		F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */; };
-		F112A7021E12227E00A5DEE9 /* coin.png in Resources */ = {isa = PBXBuildFile; fileRef = F112A7011E12227E00A5DEE9 /* coin.png */; };
 		F112A7041E1295A000A5DEE9 /* backgrounds in Resources */ = {isa = PBXBuildFile; fileRef = F112A7031E1295A000A5DEE9 /* backgrounds */; };
-		F112A7061E145A3C00A5DEE9 /* Sprites in Resources */ = {isa = PBXBuildFile; fileRef = F112A7051E145A3B00A5DEE9 /* Sprites */; };
 		F112A7081E16702600A5DEE9 /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7071E16702500A5DEE9 /* Structs.swift */; };
 		F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7091E16705300A5DEE9 /* Extensions.swift */; };
-		F12F6E631E2415330083F3B3 /* hitParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = F12F6E621E2415330083F3B3 /* hitParticle.sks */; };
-		F12F6E651E243B1F0083F3B3 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = F12F6E641E243B1F0083F3B3 /* spark.png */; };
 		F142C7E21E18A19B00A62E7B /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = F142C7E11E18A19B00A62E7B /* Enemy.swift */; };
-		F14621F81E19E75000D36A37 /* standard_animation_dead.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */; };
-		F14621FC1E19F69F00D36A37 /* images.atlas in Resources */ = {isa = PBXBuildFile; fileRef = F14621FB1E19F69F00D36A37 /* images.atlas */; };
-		F14621FE1E1AF88400D36A37 /* Musics in Resources */ = {isa = PBXBuildFile; fileRef = F14621FD1E1AF88400D36A37 /* Musics */; };
 		F14622001E1CD57500D36A37 /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14621FF1E1CD57500D36A37 /* AccountInfo.swift */; };
 		F14622021E1CD5DB00D36A37 /* Toon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F14622011E1CD5DB00D36A37 /* Toon.swift */; };
 		F16A64601E0C96A000BC8255 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A645F1E0C96A000BC8255 /* AppDelegate.swift */; };
@@ -30,26 +29,21 @@
 		F16A64791E0CA31700BC8255 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F16A64771E0CA31700BC8255 /* Main.storyboard */; };
 		F16A647B1E0CB74000BC8255 /* Classes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16A647A1E0CB74000BC8255 /* Classes.swift */; };
 		F16A647D1E0CD1BB00BC8255 /* bullet.png in Resources */ = {isa = PBXBuildFile; fileRef = F16A647C1E0CD1BB00BC8255 /* bullet.png */; };
-		F1771DD11E17C7D200B8C6DA /* SoundEffects in Resources */ = {isa = PBXBuildFile; fileRef = F1771DD01E17C7D200B8C6DA /* SoundEffects */; };
-		F1F3F7F91E0D3791000F39DD /* playerImage.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F3F7F81E0D3791000F39DD /* playerImage.png */; };
-		F1F3F7FC1E0D3C6B000F39DD /* enemyOne.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F3F7FA1E0D3C6B000F39DD /* enemyOne.png */; };
-		F1F3F7FD1E0D3C6B000F39DD /* enemyTwo.png in Resources */ = {isa = PBXBuildFile; fileRef = F1F3F7FB1E0D3C6B000F39DD /* enemyTwo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0C2520C41EC6AC0A00A03400 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
+		0C2520C61ECB63E200A03400 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		0CB5F6EC1EC03D5200D30610 /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
+		0CEA36001EC2B5BE00AEA381 /* BGM */ = {isa = PBXFileReference; lastKnownFileType = folder; path = BGM; sourceTree = "<group>"; };
+		0CEA36011EC2B5BE00AEA381 /* images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = images.atlas; sourceTree = "<group>"; };
+		0CEA36021EC2B5BE00AEA381 /* SoundEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SoundEffects; sourceTree = "<group>"; };
 		F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = userinfo.plist; path = ../userinfo.plist; sourceTree = "<group>"; };
-		F112A7011E12227E00A5DEE9 /* coin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coin.png; sourceTree = "<group>"; };
 		F112A7031E1295A000A5DEE9 /* backgrounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = backgrounds; sourceTree = "<group>"; };
-		F112A7051E145A3B00A5DEE9 /* Sprites */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sprites; sourceTree = "<group>"; };
 		F112A7071E16702500A5DEE9 /* Structs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		F112A7091E16705300A5DEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F12F6E621E2415330083F3B3 /* hitParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = hitParticle.sks; sourceTree = "<group>"; };
-		F12F6E641E243B1F0083F3B3 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		F142C7E11E18A19B00A62E7B /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
-		F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = standard_animation_dead.atlas; path = Sprites/Enemy/Standard/standard_animation_dead.atlas; sourceTree = "<group>"; };
-		F14621FB1E19F69F00D36A37 /* images.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = images.atlas; sourceTree = "<group>"; };
-		F14621FD1E1AF88400D36A37 /* Musics */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Musics; sourceTree = "<group>"; };
 		F14621FF1E1CD57500D36A37 /* AccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		F14622011E1CD5DB00D36A37 /* Toon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toon.swift; sourceTree = "<group>"; };
 		F16A645C1E0C96A000BC8255 /* Angelica Fighti.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Angelica Fighti.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,10 +56,6 @@
 		F16A64781E0CA31700BC8255 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F16A647A1E0CB74000BC8255 /* Classes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classes.swift; sourceTree = "<group>"; };
 		F16A647C1E0CD1BB00BC8255 /* bullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet.png; sourceTree = "<group>"; };
-		F1771DD01E17C7D200B8C6DA /* SoundEffects */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SoundEffects; sourceTree = "<group>"; };
-		F1F3F7F81E0D3791000F39DD /* playerImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playerImage.png; sourceTree = "<group>"; };
-		F1F3F7FA1E0D3C6B000F39DD /* enemyOne.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyOne.png; sourceTree = "<group>"; };
-		F1F3F7FB1E0D3C6B000F39DD /* enemyTwo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemyTwo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,10 +69,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0CEA35F51EC2B56F00AEA381 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0CEA36001EC2B5BE00AEA381 /* BGM */,
+				0CEA36011EC2B5BE00AEA381 /* images.atlas */,
+				0CEA36021EC2B5BE00AEA381 /* SoundEffects */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		F16A64531E0C969F00BC8255 = {
 			isa = PBXGroup;
 			children = (
-				F12F6E621E2415330083F3B3 /* hitParticle.sks */,
 				F16A645E1E0C96A000BC8255 /* Angelica Fighti */,
 				F16A645D1E0C96A000BC8255 /* Products */,
 			);
@@ -99,22 +98,16 @@
 		F16A645E1E0C96A000BC8255 /* Angelica Fighti */ = {
 			isa = PBXGroup;
 			children = (
-				F12F6E641E243B1F0083F3B3 /* spark.png */,
-				F14621FD1E1AF88400D36A37 /* Musics */,
-				F14621FB1E19F69F00D36A37 /* images.atlas */,
-				F14621F71E19E75000D36A37 /* standard_animation_dead.atlas */,
-				F1771DD01E17C7D200B8C6DA /* SoundEffects */,
-				F112A7051E145A3B00A5DEE9 /* Sprites */,
+				0CEA35F51EC2B56F00AEA381 /* Resources */,
+				0CB5F6EC1EC03D5200D30610 /* particle.png */,
 				F112A7031E1295A000A5DEE9 /* backgrounds */,
-				F112A7011E12227E00A5DEE9 /* coin.png */,
 				F16A647C1E0CD1BB00BC8255 /* bullet.png */,
-				F1F3F7FA1E0D3C6B000F39DD /* enemyOne.png */,
-				F1F3F7FB1E0D3C6B000F39DD /* enemyTwo.png */,
 				F16A64771E0CA31700BC8255 /* Main.storyboard */,
-				F1F3F7F81E0D3791000F39DD /* playerImage.png */,
 				F16A645F1E0C96A000BC8255 /* AppDelegate.swift */,
 				F16A64611E0C96A000BC8255 /* ViewController.swift */,
+				0C2520C41EC6AC0A00A03400 /* MainScene.swift */,
 				F16A64711E0C97BF00BC8255 /* StartGame.swift */,
+				0C2520C61ECB63E200A03400 /* HUD.swift */,
 				F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */,
 				F16A647A1E0CB74000BC8255 /* Classes.swift */,
 				F14621FF1E1CD57500D36A37 /* AccountInfo.swift */,
@@ -157,7 +150,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Wong;
 				TargetAttributes = {
 					F16A645B1E0C96A000BC8255 = {
@@ -191,22 +184,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				F16A646A1E0C96A000BC8255 /* LaunchScreen.storyboard in Resources */,
-				F1F3F7FD1E0D3C6B000F39DD /* enemyTwo.png in Resources */,
-				F1F3F7F91E0D3791000F39DD /* playerImage.png in Resources */,
+				0CEA36031EC2B5BE00AEA381 /* BGM in Resources */,
 				F16A64671E0C96A000BC8255 /* Assets.xcassets in Resources */,
-				F112A7061E145A3C00A5DEE9 /* Sprites in Resources */,
-				F14621FE1E1AF88400D36A37 /* Musics in Resources */,
-				F14621F81E19E75000D36A37 /* standard_animation_dead.atlas in Resources */,
+				0CB5F6ED1EC03D5200D30610 /* particle.png in Resources */,
+				0CEA36041EC2B5BE00AEA381 /* images.atlas in Resources */,
+				0CEA36051EC2B5BE00AEA381 /* SoundEffects in Resources */,
 				F112A7041E1295A000A5DEE9 /* backgrounds in Resources */,
-				F14621FC1E19F69F00D36A37 /* images.atlas in Resources */,
-				F112A7021E12227E00A5DEE9 /* coin.png in Resources */,
-				F1F3F7FC1E0D3C6B000F39DD /* enemyOne.png in Resources */,
-				F12F6E631E2415330083F3B3 /* hitParticle.sks in Resources */,
 				F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */,
-				F1771DD11E17C7D200B8C6DA /* SoundEffects in Resources */,
 				F16A647D1E0CD1BB00BC8255 /* bullet.png in Resources */,
 				F16A64791E0CA31700BC8255 /* Main.storyboard in Resources */,
-				F12F6E651E243B1F0083F3B3 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F112A7081E16702600A5DEE9 /* Structs.swift in Sources */,
+				0C2520C51EC6AC0A00A03400 /* MainScene.swift in Sources */,
 				F16A64621E0C96A000BC8255 /* ViewController.swift in Sources */,
 				F16A64721E0C97BF00BC8255 /* StartGame.swift in Sources */,
 				F14622021E1CD5DB00D36A37 /* Toon.swift in Sources */,
@@ -225,6 +212,7 @@
 				F142C7E21E18A19B00A62E7B /* Enemy.swift in Sources */,
 				F16A64601E0C96A000BC8255 /* AppDelegate.swift in Sources */,
 				F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */,
+				0C2520C71ECB63E200A03400 /* HUD.swift in Sources */,
 				F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */,
 				F14622001E1CD57500D36A37 /* AccountInfo.swift in Sources */,
 			);
@@ -270,12 +258,15 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 96342UP57T;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -292,7 +283,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -319,12 +310,15 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 96342UP57T;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -335,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -347,11 +341,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 96342UP57T;
 				INFOPLIST_FILE = "Angelica Fighti/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "WongFamily.Angelica-Fighti";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -360,11 +357,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 96342UP57T;
 				INFOPLIST_FILE = "Angelica Fighti/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "WongFamily.Angelica-Fighti";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -379,7 +379,7 @@
 				F16A646D1E0C96A000BC8255 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		F16A646E1E0C96A000BC8255 /* Build configuration list for PBXNativeTarget "Angelica Fighti" */ = {
 			isa = XCConfigurationList;
@@ -388,7 +388,7 @@
 				F16A64701E0C96A000BC8255 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

@@ -33,7 +33,7 @@ class Toon{
         node.size = CGSize(width: width, height: height)
         node.position = CGPoint(x: 200, y: 100)
         node.name = "toon"
-        actions = global.getTextures(animation: .Player_Toon_1_Animation)
+        actions = global.getTextures(textures: .Player_Toon_1_Animation)
         bullet = Projectile(posX: node.position.x, posY: node.position.y)
     }
     

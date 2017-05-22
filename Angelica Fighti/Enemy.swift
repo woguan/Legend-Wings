@@ -48,7 +48,7 @@ struct Enemy{
         
         switch(enemyType){
         case .Regular:
-            name = "Enemy_Regular_One"
+            name = "Enemy_Regular"
             originX = screenSize.width/10
             originY = screenSize.height
             width = screenSize.width * 0.1691
@@ -59,7 +59,8 @@ struct Enemy{
             
             
             currency  = Currency(type: .Coin, avaudio: delegate?.mainAudio)
-            actionsDead = global.getTextures(animation: .Puff_Animation)
+            actionsDead = global.getTextures(textures: .Puff_Animation)
+           // print("Enemy.Swift - LOOK_001: \(actionsDead.count)")
             
         case .Boss:
             name = "Enemy_Boss"
@@ -72,8 +73,8 @@ struct Enemy{
             velocity = CGVector(dx: 0, dy: 0)
             currency  = Currency(type: .Coin)
             
-            actionsStandBy = global.getTextures(animation: .Boss_1_Move_Animation)
-            actionsDead = global.getTextures(animation: .Boss_1_Dead_Animation)
+            actionsStandBy = global.getTextures(textures: .Boss_1_Move_Animation)
+            actionsDead = global.getTextures(textures: .Boss_1_Dead_Animation)
             
         default:
             originX = 55
@@ -176,7 +177,16 @@ struct Enemy{
         enemyModel.name = name
         enemyModel.position = CGPoint(x: originX, y: originY)
         enemyModel.size = size
-        enemyModel.physicsBody =  SKPhysicsBody(texture: (enemyModel.texture!), size: (enemyModel.size))
+      //  print("ENEMY.SWIFT - LOADING: \(enemyModel.texture!)")
+        //enemyModel.physicsBody =  SKPhysicsBody(texture: enemyModel.texture!, size: enemyModel.size)
+        enemyModel.physicsBody = SKPhysicsBody(rectangleOf: enemyModel.size)
+        if enemyModel.physicsBody == nil{
+            print("I NEED TO DEBUG")
+            print("mode: \(enemyModel.texture!)")
+            print("size: \(enemyModel.size)")
+            enemyModel.physicsBody =  SKPhysicsBody(circleOfRadius: 10.0)
+        }
+        
         enemyModel.physicsBody!.isDynamic = true // allow physic simulation to move it
         enemyModel.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
         enemyModel.physicsBody!.affectedByGravity = false
@@ -223,11 +233,11 @@ struct Enemy{
             // adding attack
             enemy.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.5), SKAction.run {
                 let random = randomInt(min: 0, max: 100)
-                print (random)
+               // print (random)
                 if (random > 50){
                 let att = SKSpriteNode(texture: global.getAttackTexture(attack: .Boss1_type_1))
                 att.size = CGSize(width: 30, height: 30)
-                att.name = "Enemy_boss_1_attack"
+                att.name = "Enemy_Boss_1_Attack"
                 att.physicsBody = SKPhysicsBody(circleOfRadius: 15)
                 att.physicsBody!.isDynamic = true
                 att.physicsBody!.affectedByGravity = true
@@ -331,7 +341,7 @@ struct Enemy{
         //print (rewardCount)
         
         for _ in 0..<rewardCount{
-            let reward = currency?.createCoin(posX: sknode.position.x, posY: sknode.position.y, createPhysicalBody: true, animation: true)
+            let reward = currency?.createCoin(posX: sknode.position.x, posY: sknode.position.y, width: 30, height: 30, createPhysicalBody: true, animation: true)
            
            
             let impulse = CGVector(dx: random(min: -25, max: 25), dy: random(min:10, max:35))
@@ -349,6 +359,7 @@ struct Enemy{
         
         sknode.removeAllActions()
         
+       // print("Enemy.Swift - LOOK THE SIZE OF ACTIONDEAD: \(actionsDead.count)")
         switch (enemyType){
         case .Boss:
             // print ("DISPLAY ANIMATION")
@@ -356,7 +367,7 @@ struct Enemy{
             sknode.run( SKAction.sequence([SKAction.animate(with: actionsDead, timePerFrame: 0.11),SKAction.run {
                 sknode.removeFromParent()
                 // update gameinfo state
-                self.delegate?.updateGameState(state: .NoState)
+                self.delegate?.updateGameState(state: .WaitingState)
                 }]))
         case .Regular:
             sknode.physicsBody?.categoryBitMask = PhysicsCategory.None
