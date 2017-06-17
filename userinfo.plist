@@ -13,6 +13,92 @@
 	<key>Highscore</key>
 	<integer>0</integer>
 	<key>Toons</key>
-	<array/>
+	<dict>
+		<key>ModelToons</key>
+		<dict>
+			<key>Purchased</key>
+			<false/>
+			<key>Description</key>
+			<array>
+				<string>She was born in the wilds and</string>
+				<string>raised by dragons. When dragons</string>
+				<string>fly with her, they earn 2x XP!</string>
+			</array>
+			<key>Level</key>
+			<integer>1</integer>
+			<key>Experience</key>
+			<integer>0</integer>
+			<key>BulletLevel</key>
+			<integer>1</integer>
+		</dict>
+		<key>Alpha</key>
+		<dict>
+			<key>Purchased</key>
+			<true/>
+			<key>Description</key>
+			<array>
+				<string>She was born in the wilds and</string>
+				<string>raised by dragons. When dragons</string>
+				<string>fly with her, they earn 2x XP!</string>
+			</array>
+			<key>Level</key>
+			<integer>1</integer>
+			<key>Experience</key>
+			<integer>0</integer>
+			<key>BulletLevel</key>
+			<integer>1</integer>
+		</dict>
+		<key>Beta</key>
+		<dict>
+			<key>Purchased</key>
+			<false/>
+			<key>Description</key>
+			<array>
+				<string>Renowned, explorer, inventor, and</string>
+				<string>scientis, she is 2x faster</string>
+				<string>completing Quests!</string>
+			</array>
+			<key>Level</key>
+			<integer>1</integer>
+			<key>Experience</key>
+			<integer>0</integer>
+			<key>BulletLevel</key>
+			<integer>1</integer>
+		</dict>
+		<key>Celta</key>
+		<dict>
+			<key>Purchased</key>
+			<false/>
+			<key>Description</key>
+			<array>
+				<string>A mysterious loner, with a dark</string>
+				<string>and haunting past, some say she</string>
+				<string>acts as if she has 2 lives...</string>
+			</array>
+			<key>Level</key>
+			<integer>1</integer>
+			<key>Experience</key>
+			<integer>0</integer>
+			<key>BulletLevel</key>
+			<integer>1</integer>
+		</dict>
+		<key>Delta</key>
+		<dict>
+			<key>Purchased</key>
+			<false/>
+			<key>Description</key>
+			<array>
+				<string>A master Alchemist and Mage of</string>
+				<string>the Third Order, she earns 2x</string>
+				<string>Coins. Cha-Ching!</string>
+			</array>
+			<key>Level</key>
+			<integer>1</integer>
+			<key>Experience</key>
+			<integer>0</integer>
+			<key>BulletLevel</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
 </dict>
 </plist>

@@ -11,63 +11,119 @@ import SpriteKit
 
 class Toon{
     
+    enum Character:String{
+        case Alpha = "Alpha"
+        case Beta = "Beta"
+        case Celta = "Celta"
+        case Delta = "Delta"
+        case Felta = "Felta"
+        case Gelta = "Gelta"
+    }
     deinit {
         print ("Toon class has been deinitiated.")
     }
     
+   // private var description:[String]
     private var width:CGFloat
     private var height:CGFloat
+    private var size:CGSize
     private var node:SKSpriteNode
     private var bullet:Projectile
-    
-    private var actions:[SKTexture]
+    private var description:[String] = []
+    private var experience:CGFloat = 0
+    private var level:Int = 0
+    private var charType:Character
     
 
     
-    init(w:CGFloat, h:CGFloat){
-        width = w
-        height = h
+    init(char:Character){
         
-        node = SKSpriteNode(texture: global.getMainTexture(main: .Player_Toon_1))
-       // node.color = SKColor.blue
-        node.size = CGSize(width: width, height: height)
-        node.position = CGPoint(x: 200, y: 100)
+        // Create PNG with height = 130 For good quality
+        var localMainTexture:SKTexture!
+        var localWingTexture:SKTexture!
+        switch char {
+        case .Alpha:
+            localMainTexture = global.getMainTexture(main: .Character_Alpha)
+            localWingTexture = global.getMainTexture(main: .Character_Alpha_Wing)
+        case .Beta:
+            localMainTexture = global.getMainTexture(main: .Character_Beta)
+            localWingTexture = global.getMainTexture(main: .Character_Beta_Wing)
+        case .Celta:
+            localMainTexture = global.getMainTexture(main: .Character_Celta)
+            localWingTexture = global.getMainTexture(main: .Character_Celta_Wing)
+        case .Delta:
+            localMainTexture = global.getMainTexture(main: .Character_Delta)
+            localWingTexture = global.getMainTexture(main: .Character_Delta_Wing)
+        default:
+            // default - Warning
+            localMainTexture = global.getMainTexture(main: .Character_Alpha)
+            localWingTexture = global.getMainTexture(main: .Character_Alpha_Wing)
+        }
+        
+        self.charType = char
+        self.size = localMainTexture.size()
+        self.width = size.width //65 //
+        self.height = size.height //130 //
+
+        node = SKSpriteNode(texture: localMainTexture)
         node.name = "toon"
-        actions = global.getTextures(textures: .Player_Toon_1_Animation)
+        node.position = CGPoint(x: screenSize.width/2, y: 100)
+        node.size = CGSize(width: width, height: height)
+        node.run(SKAction.scale(to: 0.7, duration: 0.0))
+        
         bullet = Projectile(posX: node.position.x, posY: node.position.y)
+        
+        let l_wing = SKSpriteNode()
+        l_wing.texture = localWingTexture
+        l_wing.size = localWingTexture.size()
+        l_wing.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        l_wing.position = CGPoint(x: -2.0, y: 20.0)
+        l_wing.run(SKAction.repeatForever(SKAction.sequence([SKAction.resize(toWidth: 40, duration: 0.3), SKAction.resize(toWidth: 77, duration: 0.15)])))
+        
+        node.addChild(l_wing)
+        
+        let r_wing = SKSpriteNode()
+        r_wing.texture = localWingTexture
+        r_wing.size = localWingTexture.size()
+        r_wing.anchorPoint = CGPoint(x: 1.0, y: 0.5)
+        r_wing.position = CGPoint(x:2.0, y: 20.0)
+        r_wing.xScale = -1.0
+        r_wing.run(SKAction.repeatForever(SKAction.sequence([SKAction.resize(toWidth: 40, duration: 0.3), SKAction.resize(toWidth: 77, duration: 0.15)])))
+        
+        node.addChild(r_wing)
     }
     
-    func load(){
+    internal func load(infoDict:NSDictionary){
         
-        node.run(SKAction.repeatForever(SKAction.animate(with: actions, timePerFrame: 0.05)))
+        //Level lv: Int, Experience exp: CGFloat, Description description:[String]
+        self.level = infoDict.value(forKey: "Level") as! Int
+        self.experience = infoDict.value(forKey: "Experience") as! CGFloat
+        self.description = infoDict.value(forKey: "Description") as! [String]
+        
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width/4, height: node.size.height/2))
         node.physicsBody!.isDynamic = true // allow physic simulation to move it
         node.physicsBody!.affectedByGravity = false
         node.physicsBody!.allowsRotation = false // not allow it to rotate
-        // node.physicsBody!.collisionBitMask = PhysicsCategory.Wall
         node.physicsBody!.collisionBitMask = 0
         node.physicsBody!.categoryBitMask = PhysicsCategory.Player
         node.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
     }
     
-    func getNode() -> SKSpriteNode{
+    internal func getNode() -> SKSpriteNode{
         return node
     }
-  /*  
-    func changeSize(w:CGFloat, h:CGFloat){
-        width = w
-        height = h
-    }
-    */
-    
-    func updateProjectile(){
-        //print ("new bullet position", node.position.x)
+
+    internal func updateProjectile(){
         bullet.setPosX(x: node.position.x)
         
     }
  
-    func getBullet() -> Projectile{
+    internal func getBullet() -> Projectile{
         return bullet
+    }
+    
+    internal func getToonDescription() -> [String]{
+        return description
     }
     
 }

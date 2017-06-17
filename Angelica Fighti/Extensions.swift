@@ -11,6 +11,38 @@ import AVFoundation
 import SpriteKit
 import UIKit
 
+
+
+protocol ProjectileDelegate{
+    
+    func add(sknode: SKNode)
+}
+
+enum GameState{
+    case Spawning  // state which waves are incoming
+    case BossEncounter // boss encounter
+    case WaitingState // Need an state
+    case NoState
+    case Start
+}
+
+enum ProjectileType{
+    case type1
+    case type2
+    case type3
+    
+}
+
+enum ContactType{
+    case HitByEnemy
+    case EnemyGotHit
+    case PlayerGetCoin
+    case Immune
+    case None
+}
+
+
+
 extension SKNode{
     var power:CGFloat!{
         get {
@@ -87,11 +119,23 @@ extension SKNode{
 }
 
 extension SKScene{
-        func removeUIViews(){
+    func removeUIViews(){
             for view in (view?.subviews)! {
                 view.removeFromSuperview()
             }
             
+    }
+    
+    func recursiveRemovingSKActions(sknodes:[SKNode]){
+        
+        for childNode in sknodes{
+            childNode.removeAllActions()
+            if childNode.children.count > 0 {
+                recursiveRemovingSKActions(sknodes: childNode.children)
+            }
+            
+        }
+        
     }
 }
 

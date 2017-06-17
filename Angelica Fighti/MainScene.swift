@@ -16,6 +16,12 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         print("MainScene is being deInitialized. REMOVE THIS FUNCTION WHEN IT IS SENDING TO APPSTORE");
     }
     
+    enum Scene{
+        case MainScene
+        case EndScene
+        case Character_Menu
+    }
+    
     var gameinfo = GameInfo()
     var isPlayerTouched:Bool = false
     
@@ -44,132 +50,134 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         print (screenSize)
         
         let bg = SKSpriteNode()
-        bg.texture = global.getMainTexture(main: .Main_Menu_Background_1)
-        bg.position = CGPoint(x: screenSize.width/2, y: screenSize.height/2)
-        bg.size = CGSize(width: screenSize.width, height: screenSize.height)
-        bg.zPosition = -10
-        bg.name = Global.Main.Main_Menu_Background_1.rawValue
+            bg.texture = global.getMainTexture(main: .Main_Menu_Background_1)
+            bg.position = CGPoint(x: screenSize.width/2, y: screenSize.height/2)
+            bg.size = CGSize(width: screenSize.width, height: screenSize.height)
+            bg.zPosition = -10
+            bg.name = Global.Main.Main_Menu_Background_1.rawValue
         self.addChild(bg)
         
         let cloud = SKSpriteNode()
-        cloud.texture = global.getMainTexture(main: .Main_Menu_Background_2)
-        
-        cloud.position = CGPoint(x: screenSize.width/2, y: screenSize.height*0.40)
-        cloud.size = CGSize(width: screenSize.width, height: screenSize.height*3/4)
-        cloud.zPosition = -9
-        cloud.name = Global.Main.Main_Menu_Background_2.rawValue
+            cloud.texture = global.getMainTexture(main: .Main_Menu_Background_2)
+            cloud.position = CGPoint(x: screenSize.width/2, y: screenSize.height*0.40)
+            cloud.size = CGSize(width: screenSize.width, height: screenSize.height*3/4)
+            cloud.zPosition = -9
+            cloud.name = Global.Main.Main_Menu_Background_2.rawValue
         self.addChild(cloud)
         
         let cloud2 = SKSpriteNode()
-        cloud2.texture = global.getMainTexture(main: .Main_Menu_Background_3)
-        cloud2.position = CGPoint(x: -20 + screenSize.width/2, y: 0)
-        cloud2.size = CGSize(width: screenSize.width + 100, height: screenSize.height/2)
-        cloud2.zPosition = -8
-        cloud2.name = Global.Main.Main_Menu_Background_3.rawValue
+            cloud2.texture = global.getMainTexture(main: .Main_Menu_Background_3)
+            cloud2.position = CGPoint(x: -20 + screenSize.width/2, y: 0)
+            cloud2.size = CGSize(width: screenSize.width + 100, height: screenSize.height/2)
+            cloud2.zPosition = -8
+            cloud2.name = Global.Main.Main_Menu_Background_3.rawValue
         self.addChild(cloud2)
         
         let root = SKSpriteNode()
-        root.color = UIColor.clear
-        root.name = "main_menu_middle_root"
-        root.size = CGSize(width: screenSize.width, height: screenSize.height*0.7)
-        root.position = CGPoint(x: screenSize.width/2, y: screenSize.height*0.55)
-        root.zPosition = -7
+            root.color = .clear
+            root.name = "main_menu_middle_root"
+            root.size = CGSize(width: screenSize.width, height: screenSize.height*0.7)
+            root.position = CGPoint(x: screenSize.width/2, y: screenSize.height*0.55)
+            root.zPosition = -7
         self.addChild(root)
         // note... anchor of root is 0.5, 0.5
         
         let bd_one = SKSpriteNode()
-        bd_one.anchorPoint = CGPoint(x: 0.5, y: 1)
-        bd_one.texture = global.getMainTexture(main: .Main_Menu_Building_1)
-        bd_one.position = CGPoint(x: 0, y: root.size.height/2)
-        bd_one.size = CGSize(width: screenSize.width/2, height: screenSize.height/2)
-        bd_one.name = "main_menu_building_1"
+            bd_one.anchorPoint = CGPoint(x: 0.5, y: 1)
+            bd_one.texture = global.getMainTexture(main: .Main_Menu_Building_1)
+            bd_one.position = CGPoint(x: 0, y: root.size.height/2)
+            bd_one.size = CGSize(width: screenSize.width/2, height: screenSize.height/2)
+            bd_one.name = "main_menu_building_1"
         root.addChild(bd_one)
         
         let bd_one_shade = SKSpriteNode()
-        bd_one_shade.anchorPoint = CGPoint(x: 0.5, y: 1)
-        bd_one_shade.texture = global.getMainTexture(main: .Main_Menu_Building_1_Additional)
-        bd_one_shade.position = CGPoint(x: 0, y: -25)
-        bd_one_shade.size = CGSize(width: screenSize.width/2, height: screenSize.height/2)
-        bd_one_shade.name = "main_menu_building_1_Additional"
+            bd_one_shade.anchorPoint = CGPoint(x: 0.5, y: 1)
+            bd_one_shade.texture = global.getMainTexture(main: .Main_Menu_Building_1_Additional)
+            bd_one_shade.position = CGPoint(x: 0, y: -25)
+            bd_one_shade.size = CGSize(width: screenSize.width/2, height: screenSize.height/2)
+            bd_one_shade.name = "main_menu_building_1_Additional"
         bd_one.addChild(bd_one_shade)
         
         let bd_two = SKSpriteNode()
-        bd_two.anchorPoint = CGPoint(x: 0.5, y: 1)
-        bd_two.texture = global.getMainTexture(main: .Main_Menu_Building_2)
-        bd_two.position = CGPoint(x: bd_one.size.width/3, y: bd_one.position.y - bd_one.size.height/2)
-        bd_two.size = CGSize(width: screenSize.width/3, height: screenSize.height/3)
-        bd_two.name = "main_menu_building_2"
+            bd_two.anchorPoint = CGPoint(x: 0.5, y: 1)
+            bd_two.texture = global.getMainTexture(main: .Main_Menu_Building_2)
+            bd_two.position = CGPoint(x: bd_one.size.width/3, y: bd_one.position.y - bd_one.size.height/2)
+            bd_two.size = CGSize(width: screenSize.width/3, height: screenSize.height/3)
+            bd_two.name = "main_menu_building_2"
         root.addChild(bd_two)
         
         let bd_three = SKSpriteNode()
-        bd_three.anchorPoint = CGPoint(x: 0.5, y: 1)
-        bd_three.texture = global.getMainTexture(main: .Main_Menu_Building_3)
-        bd_three.position = CGPoint(x: -bd_one.size.width/3, y: bd_one.position.y - bd_one.size.height/2)
-        bd_three.size = CGSize(width: screenSize.width/3, height: screenSize.height/3.5)
-        bd_three.name = "main_menu_building_3"
+            bd_three.anchorPoint = CGPoint(x: 0.5, y: 1)
+            bd_three.texture = global.getMainTexture(main: .Main_Menu_Building_3)
+            bd_three.position = CGPoint(x: -bd_one.size.width/3, y: bd_one.position.y - bd_one.size.height/2)
+            bd_three.size = CGSize(width: screenSize.width/3, height: screenSize.height/3.5)
+            bd_three.name = "main_menu_building_3"
         root.addChild(bd_three)
         
-        let bd_one_button = createUIButton(offsetPosX: bd_one.position.x, offsetPosY: bd_one.position.y - bd_one.size.height/2 + 10)
-        root.addChild(bd_one_button)
-        let bd_two_button = createUIButton(offsetPosX: bd_two.position.x, offsetPosY: bd_two.position.y - bd_two.size.height/2 - 15)
-        root.addChild(bd_two_button)
-        let bd_three_button = createUIButton(offsetPosX: bd_three.position.x, offsetPosY: bd_three.position.y - bd_three.size.height/2 - 50)
-        root.addChild(bd_three_button)
+        let bd_one_button = createUIButton(bname: "character_building_button", offsetPosX: bd_one.position.x, offsetPosY: bd_one.position.y - bd_one.size.height/2 + 10)
+            root.addChild(bd_one_button)
+        let bd_two_button = createUIButton(bname: "building_2_button", offsetPosX: bd_two.position.x, offsetPosY: bd_two.position.y - bd_two.size.height/2 - 15)
+            root.addChild(bd_two_button)
+        let bd_three_button = createUIButton(bname: "building_3_button", offsetPosX: bd_three.position.x, offsetPosY: bd_three.position.y - bd_three.size.height/2 - 50)
+            root.addChild(bd_three_button)
         
+        
+        let LONGESTSTRCOUNT:CGFloat = 11
         // Button Labels
         let bd_one_label = SKLabelNode()
-        bd_one_label.text = "CHARACTERS"
-        bd_one_label.fontName = "GillSans-Bold"
-        bd_one_label.fontSize = 10.0
-        bd_one_label.position = CGPoint(x: 0, y: -5 - bd_one_button.size.height/2)
-        bd_one_button.addChild(bd_one_label)
+            bd_one_label.text = "CHARACTERS"
+            bd_one_label.fontName = "GillSans-Bold"
+            bd_one_label.fontSize = bd_one_button.size.width/LONGESTSTRCOUNT
+            bd_one_label.position = CGPoint(x: 0, y: -5 - bd_one_button.size.height/2)
+            bd_one_button.addChild(bd_one_label)
         
         
         // SIDEKICK
         let bd_two_label = SKLabelNode()
-        bd_two_label.text = "SIDEKICKS"
-        bd_two_label.fontName = "GillSans-Bold"
-        bd_two_label.fontSize = 10.0
-        bd_two_label.position = CGPoint(x: 0, y: -5 - bd_two_button.size.height/2)
-        bd_two_button.addChild(bd_two_label)
+            bd_two_label.text = "SIDEKICKS"
+            bd_two_label.fontName = "GillSans-Bold"
+            bd_two_label.fontSize =  bd_two_button.size.width/LONGESTSTRCOUNT
+            bd_two_label.position = CGPoint(x: 0, y: -5 - bd_two_button.size.height/2)
+            bd_two_button.addChild(bd_two_label)
+     
         // LEADERBOARD
         let bd_three_label = SKLabelNode()
-        bd_three_label.text = "LEADERBOARD"
-        bd_three_label.fontName = "GillSans-Bold"
-        bd_three_label.fontSize = 10.0
-        bd_three_label.position = CGPoint(x: 0, y: -5 - bd_three_button.size.height/2)
-        bd_three_button.addChild(bd_three_label)
+            bd_three_label.text = "LEADERBOARD"
+            bd_three_label.fontName = "GillSans-Bold"
+            bd_three_label.fontSize = bd_three_button.size.width/LONGESTSTRCOUNT
+            bd_three_label.position = CGPoint(x: 0, y: -5 - bd_three_button.size.height/2)
+            bd_three_button.addChild(bd_three_label)
         
         //DRAG TO MOVE
         let dragtomove = SKSpriteNode()
-        dragtomove.size = CGSize(width: screenSize.width/2, height: screenSize.height/32)
-        dragtomove.position = CGPoint(x: 0, y: -screenSize.height/4)
-        dragtomove.texture = global.getMainTexture(main: .Main_Menu_Drag_To_Start)
-        dragtomove.name = "drag_to_move"
-        root.addChild(dragtomove)
+            dragtomove.size = CGSize(width: screenSize.width/2, height: screenSize.height/32)
+            dragtomove.position = CGPoint(x: 0, y: -screenSize.height/4)
+            dragtomove.texture = global.getMainTexture(main: .Main_Menu_Drag_To_Start)
+            dragtomove.name = "drag_to_move"
+            root.addChild(dragtomove)
         
         // Drag arrow Left
         let arrowLeft = SKSpriteNode()
-        arrowLeft.size = CGSize(width: dragtomove.size.height, height: dragtomove.size.height*1.2)
-        arrowLeft.position = CGPoint(x: dragtomove.position.x - dragtomove.size.width/2 - 20, y: dragtomove.position.y)
-        arrowLeft.texture = global.getMainTexture(main: .Main_Menu_Arrow)
-        arrowLeft.name = "main_menu_arrow_left"
-        arrowLeft.zRotation = CGFloat(Double.pi)
-        root.addChild(arrowLeft)
+            arrowLeft.size = CGSize(width: dragtomove.size.height, height: dragtomove.size.height*1.2)
+            arrowLeft.position = CGPoint(x: dragtomove.position.x - dragtomove.size.width/2 - 20, y: dragtomove.position.y)
+            arrowLeft.texture = global.getMainTexture(main: .Main_Menu_Arrow)
+            arrowLeft.name = "main_menu_arrow_left"
+            arrowLeft.zRotation = CGFloat(Double.pi)
+            root.addChild(arrowLeft)
         
         // Drag arrow Right
         let arrowRight = SKSpriteNode()
-        arrowRight.size = CGSize(width: dragtomove.size.height, height: dragtomove.size.height*1.2)
-        arrowRight.position = CGPoint(x: dragtomove.position.x + dragtomove.size.width/2 + 20, y: dragtomove.position.y)
-        arrowRight.texture = global.getMainTexture(main: .Main_Menu_Arrow)
-        arrowRight.name = "main_menu_arrow_right"
-        root.addChild(arrowRight)
+            arrowRight.size = CGSize(width: dragtomove.size.height, height: dragtomove.size.height*1.2)
+            arrowRight.position = CGPoint(x: dragtomove.position.x + dragtomove.size.width/2 + 20, y: dragtomove.position.y)
+            arrowRight.texture = global.getMainTexture(main: .Main_Menu_Arrow)
+            arrowRight.name = "main_menu_arrow_right"
+            root.addChild(arrowRight)
         
         // Actions to sprites
         let buildMove = SKAction.repeatForever(SKAction.sequence([SKAction.moveBy(x: 0, y: -5, duration: 2.3), SKAction.moveBy(x: 0, y: 5, duration: 1.8)]))
-        bd_one.run(buildMove)
-        bd_two.run(buildMove)
-        bd_three.run(buildMove)
+            bd_one.run(buildMove)
+            bd_two.run(buildMove)
+            bd_three.run(buildMove)
         
         cloud2.run(SKAction.repeatForever(SKAction.sequence([SKAction.moveBy(x: 0, y: 15, duration: 3), SKAction.moveBy(x: 0, y: -15, duration: 3)])))
         
@@ -181,7 +189,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         
     }
     
-    func loadgameinfo(){
+   private func loadgameinfo(){
         // Check if any error from loading gameinfo
         let check = gameinfo.load(scene: self)
         
@@ -190,53 +198,65 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             return
         }
         
-        // resize main character
-        gameinfo.account.getCurrentToon().getNode().run(SKAction.scale(by: 0.8, duration: 0.1))
-        
-        let action = SKAction.repeatForever(SKAction.sequence([SKAction.run(gameinfo.update), SKAction.wait(forDuration: 0.01)]))
-        
-        self.run(action)
+        // Add Character
+        self.addChild(gameinfo.getCurrentToonNode())
 
     }
     
-    func createUIButton(offsetPosX dx:CGFloat, offsetPosY dy:CGFloat) -> SKSpriteNode{
-        
-        
+   private func createUIButton(bname: String, offsetPosX dx:CGFloat, offsetPosY dy:CGFloat) -> SKSpriteNode{
         let button = SKSpriteNode()
-        button.anchorPoint = CGPoint(x: 0.5, y: 1)
-        button.texture = global.getMainTexture(main: .PurpleButton)
-        button.position = CGPoint(x: dx, y: dy)
-        button.size = CGSize(width: screenSize.width/4, height: screenSize.height/16)
-        //button.zPosition = -5
+            button.anchorPoint = CGPoint(x: 0.5, y: 1)
+            button.texture = global.getMainTexture(main: .PurpleButton)
+            button.position = CGPoint(x: dx, y: dy)
+            button.size = CGSize(width: screenSize.width/4, height: screenSize.height/16)
+            button.name = bname
         return button
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var pos:CGPoint!
+        for touch in touches{
+            pos = touch.location(in: self)
+        }
+        
+        if isPlayerTouched{
+            // If player has swiped, it will not trigger this function
+            return
+        }
+        let childs = self.nodes(at: pos)
+        for c in childs{
+            if c.name == "character_building_button"{
+                prepareToChangeScene(scene: .Character_Menu)
+            }
+        }
     }
     
     @objc func handlePanFrom(recognizer : UIPanGestureRecognizer) {
         
-        let toon = self.gameinfo.account.getCurrentToon()
-        let player = toon.getNode()
+        let toon = gameinfo.getCurrentToon()
+        let player = gameinfo.getCurrentToonNode()
         
         if !isPlayerTouched{
             isPlayerTouched = true
-            self.gameinfo.start()
+            gameinfo.changeGameState(.Start)
         }
         
         if recognizer.state == .began {
-            // print ("GESTURE PAN started")
-            // var touchLocation = recognizer.location(in: self.view)
-            // touchLocation = self.convertPoint(fromView: touchLocation)
             
         } else if recognizer.state == .changed {
             let locomotion = recognizer.translation(in: recognizer.view)
-            player.position.x = ceil(toon.getNode().position.x) + ceil((locomotion.x * 1.8))
+            player.position.x = player.position.x + locomotion.x*2.0
+           // print(locomotion.x)
+                
+                //ceil((locomotion.x * 1.8))
             
             //  print (toon.getNode().position)
             recognizer.setTranslation(CGPoint(x: 0,y: 0), in: self.view)
-            if (player.position.x < 50 ){
-                player.position.x = 50
+            if (player.position.x < 0 ){
+                player.position.x = 0
             }
-            else if (toon.getNode().position.x > 374){
-                player.position.x = 374
+            else if (player.position.x > screenSize.width){
+                player.position.x = screenSize.width
             }
             
             if (locomotion.x < -1){
@@ -263,10 +283,6 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         }
     }
 
-    
-    // from start game
-    
-    
     func didBegin(_ contact: SKPhysicsContact) {
         
         var contactType:ContactType = .None
@@ -327,14 +343,14 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     }
     
     func contactUpdate(lowNode: SKSpriteNode, highNode: SKSpriteNode, contactType:ContactType){
-        let regular = gameinfo.enemy
+        let regular = gameinfo.regular_enemies
         let boss = gameinfo.boss
         
         switch contactType{
             
         case .EnemyGotHit:
             // FX when enemy is hit
-            let effect = gameinfo.account.getCurrentToon().getBullet().generateTouchedEnemyEmmiterNode(x: highNode.position.x, y: highNode.position.y)
+            let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: highNode.position.x, y: highNode.position.y)
             self.addChild(effect)
             // update enemy
             if lowNode.name!.contains("Regular"){
@@ -366,7 +382,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             lowNode.removeAllActions()
             lowNode.removeFromParent()
             highNode.removeAllActions()
-            prepareToChangeScene()
+            prepareToChangeScene(scene: .EndScene)
             
         case .Immune:
             destroy(sknode: lowNode)
@@ -381,49 +397,47 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         }
     }
     
-    func recursiveRemovingSKActions(sknodes:[SKNode]){
-        
-        for childNode in sknodes{
-            childNode.removeAllActions()
-            if childNode.children.count > 0 {
-                recursiveRemovingSKActions(sknodes: childNode.children)
-            }
-            
-        }
-        
-    }
     func destroy(sknode: SKSpriteNode){
         sknode.removeAllActions()
         sknode.removeFromParent()
     }
     
-    func prepareToChangeScene(){
+    func prepareToChangeScene(scene:Scene){
         // remove all gestures
         for gesture in (view?.gestureRecognizers)!{
             view?.removeGestureRecognizer(gesture)
         }
         
-        // switch scene
-        self.physicsWorld.speed = 0.4
-        
-        self.run(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
-            // remove all delegates
-            self.gameinfo.boss.delegate = nil
-            self.gameinfo.enemy.delegate = nil
+        switch scene {
+        case .EndScene:
+            self.physicsWorld.speed = 0.4
             
+            self.run(SKAction.sequence([SKAction.wait(forDuration: 4), SKAction.run {
+            self.gameinfo.prepareToChangeScene()
+            self.recursiveRemovingSKActions(sknodes: self.children)
+            self.removeAllChildren()
+            self.removeAllActions()
+                
+            let scene = EndGame(size: self.size)
+                scene.collectedCoins = self.gameinfo.getCurrentGold()
+                self.view?.presentScene(scene)
+                }]))
+        case .Character_Menu:
+            
+            self.gameinfo.prepareToChangeScene()
             self.recursiveRemovingSKActions(sknodes: self.children)
             self.removeAllChildren()
             self.removeAllActions()
             
-            // stop background audio
-            self.gameinfo.mainAudio.stop()
-            let scene = EndGame(size: self.size)
-            scene.collectedCoins = self.gameinfo.getCurrentGold()
-            self.view?.presentScene(scene)
-            }]))
+            let newScene = CharacterMenuScene(size: self.size)
+            self.view?.presentScene(newScene)
+        default:
+            print("Should not reach here. PrepareToChangeScene from MainScene")
+        }
+        // switch scene
+        
         
     }
 
-    
     
 }
