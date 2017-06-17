@@ -87,12 +87,6 @@ class ViewController: UIViewController {
         return img
     }()
     
-    
-    
-    //
-    
-    
-    
     // get user storage directory
     let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
     

@@ -192,15 +192,6 @@ class Global {
         self.fireball_enemy_collection[.Smoke] = []
     }
     
-    // Replace with notification
-    internal func getTotalFiles() -> Int{
-        return totalFilesToLoad
-    }
-    
-    internal func getTotalLoaded() -> Int{
-        return currentFilesLoaded
-    }
-    
     func prioirityLoad(){
         
         if isSetUp {
@@ -223,8 +214,6 @@ class Global {
         let atlas = SKTextureAtlas(named: "mainmenu")
         atlas.preload {
             
-            self.boss_1_main = atlas.textureNamed("boss-1-main")
-            self.boss_1_attack_1 = atlas.textureNamed("enemy_attack_ball")
             self.purple_button = atlas.textureNamed("PurpleButton")
             
             for texture in atlas.textureNames{
@@ -277,7 +266,11 @@ class Global {
     
     private func enemyPreload(){
         let atlas = SKTextureAtlas(named: "Enemy")
+        
         atlas.preload {
+            self.boss_1_main = atlas.textureNamed("boss-1-main")
+            self.boss_1_attack_1 = atlas.textureNamed("enemy_attack_ball")
+            
             for texture in atlas.textureNames{
                 if texture.contains("enemy") && texture.contains("main"){
                     self.enemy_main_collection.append(atlas.textureNamed("enemy_\(self.enemy_main_collection.count+1)_main"))
@@ -334,9 +327,11 @@ class Global {
     private func itemsPreload(){
         
         let atlas = SKTextureAtlas(named: "Items")
-            bullet = atlas.textureNamed("bulletLater")
-            gold_main = atlas.textureNamed("gold_main")
+        
         atlas.preload {
+            self.bullet = atlas.textureNamed("bulletLater")
+            self.gold_main = atlas.textureNamed("gold_main")
+            
             for texture in atlas.textureNames{
                 if texture.contains("gold_action"){
                     self.gold_animation.append(atlas.textureNamed("gold_action\(self.gold_animation.count + 1)"))
@@ -564,10 +559,6 @@ class Global {
         case .Boss1_type_1:
             return boss_1_attack_1
         }
-    }
-    
-    internal func getFXTexture(){
-        print("HI") // Maybe not required since we will use SKS files
     }
     
 }

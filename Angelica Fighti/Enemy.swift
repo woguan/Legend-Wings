@@ -259,7 +259,7 @@ class EnemyModel: NSObject{
                 
                 let animation = SKAction.repeatForever(SKAction.sequence([SKAction.animate(with: facetextures, timePerFrame: 0.05)]))
                 let sknode = SKSpriteNode()
-                sknode.size = CGSize(width: screenSize.width/5 * 0.9, height: 110)
+                sknode.size = CGSize(width: screenSize.width/5 * 0.9, height: screenSize.height/6.51)
                 sknode.anchorPoint = CGPoint(x: 0.5, y: 0)
                 sknode.position.y = -screenSize.height/4.74/2
                 sknode.run(animation)
@@ -321,8 +321,6 @@ class EnemyModel: NSObject{
                 emitnode!.zPosition = -1
                 auranode.addChild(emitnode!)
             
-            
-            
                 auranode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: screenSize.width/8, height: screenSize.width/4), center: CGPoint(x: 0, y: -10))
                 auranode.physicsBody!.isDynamic = true
                 auranode.physicsBody!.affectedByGravity = false
@@ -363,7 +361,6 @@ class EnemyModel: NSObject{
             for enemy in node.children {
                 
                 let x = randomInt(min: 1, max: 7)
-                print("called: ", x)
                 let enemySK = enemy as! SKSpriteNode
                 if x == 1{
                     modifyHP(sknode: enemySK, multiplier: 1.0, newTexture: global.getMainTexture(main: .Enemy_1))
