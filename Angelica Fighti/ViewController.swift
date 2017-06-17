@@ -52,6 +52,12 @@ class ViewController: UIViewController {
     
     // Loading Scene Variables
     
+    let rootview:UIImageView = {
+        let view = UIImageView(image: UIImage(named: "initial_main_bg"))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     let bview:UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -337,28 +343,29 @@ class ViewController: UIViewController {
         clientData = newPlist
     }
     
-    
     private func loadingScene(){
         // x, y, width, height
+        
+        view.addSubview(rootview)
         view.addSubview(bview)
+        bview.addSubview(imgView)
+        bview.addSubview(loadLabel)
+        loadLabel.addSubview(labelNumber)
+        
+        rootview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        rootview.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        rootview.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        rootview.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        
         bview.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         bview.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5).isActive = true
         bview.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10).isActive = true
         bview.heightAnchor.constraint(equalToConstant: screenSize.height/2).isActive = true
         
-        
-        
-        
-        bview.addSubview(imgView)
         imgView.centerXAnchor.constraint(equalTo: bview.centerXAnchor).isActive = true
         imgView.topAnchor.constraint(equalTo: bview.topAnchor).isActive = true
         imgView.widthAnchor.constraint(equalTo: bview.widthAnchor).isActive = true
         imgView.heightAnchor.constraint(equalToConstant: screenSize.height/3.5).isActive = true
-        
-        
-        bview.addSubview(loadLabel)
-        loadLabel.addSubview(labelNumber)
-        
         
         loadLabel.centerXAnchor.constraint(equalTo: bview.centerXAnchor, constant: -50).isActive = true
         loadLabel.topAnchor.constraint(equalTo: imgView.bottomAnchor, constant: 50).isActive = true
