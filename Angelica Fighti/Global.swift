@@ -211,11 +211,16 @@ class Global {
         
         isSetUp = true // Make sure this function is called only once.
         
-        // Order: mainMenuPreload -> mapPreload -> enemyPreload -> playerPreload -> itemsPreload
-        // -> hudPreload -> characterScenePreload  || total: 7
-        
-        mainMenuPreload()
-        
+        // Order:  mapPreload -> enemyPreload -> playerPreload -> itemsPreload
+        // -> hudPreload -> characterScenePreload  mainMenuPreload ->|| total: 7
+
+        self.mapPreload()
+        self.enemyPreload()
+        self.playerPreload()
+        self.itemsPreload()
+        self.hudPreload()
+        self.characterScenePreload()
+        self.mainMenuPreload()
     }
     
     
@@ -223,7 +228,6 @@ class Global {
         
         let atlas = SKTextureAtlas(named: "mainmenu")
         atlas.preload {
-            
             self.purple_button = atlas.textureNamed("PurpleButton")
             
             for texture in atlas.textureNames{
@@ -253,14 +257,14 @@ class Global {
             }
             
             self.checkmark()
-            self.mapPreload()
-            
         }
         
+        print("exit preload")
         
     }
     
     private func mapPreload(){
+        print("not called")
         let atlas = SKTextureAtlas(named: "Map")
         atlas.preload {
             for texture in atlas.textureNames{
@@ -268,10 +272,9 @@ class Global {
                     self.map[.Ragnarok]!.append(atlas.textureNamed("map1_\(self.map[.Ragnarok]!.count + 1)"))
                 }
             }
-            
-            self.checkmark()
-            self.enemyPreload()
+                self.checkmark()
         }
+        
     }
     
     private func enemyPreload(){
@@ -314,9 +317,7 @@ class Global {
                 }
                 
             }
-            
-            self.checkmark()
-            self.playerPreload()
+                self.checkmark()
         }
     }
     
@@ -330,9 +331,7 @@ class Global {
                     self.character_sprite.append(dt)
                 }
             }
-            
-            self.checkmark()
-            self.itemsPreload()
+                self.checkmark()
         }
     }
     
@@ -349,9 +348,7 @@ class Global {
                     self.gold_animation.append(atlas.textureNamed("gold_action\(self.gold_animation.count + 1)"))
                 }
             }
-            
-            self.checkmark()
-            self.hudPreload()
+                self.checkmark()
         }
         
     }
@@ -366,8 +363,9 @@ class Global {
                     self.gold_hud.append(atlas.textureNamed("hud_gold_\(self.gold_hud.count)"))
                 }
             }
-            self.checkmark()
-            self.characterScenePreload()
+            
+                self.checkmark()
+         
         }
     }
     
@@ -380,13 +378,13 @@ class Global {
                     self.character_menu_collection.append(atlas.textureNamed("character_menu_\(self.character_menu_collection.count + 1)"))
                 }
             }
-            
-            self.checkmark()
+                self.checkmark()
         }
     }
     
     private func checkmark(){
         
+        print("before current: ", currentFilesLoaded)
         let nc = NotificationCenter.default
         
         // Checkmark
@@ -394,12 +392,19 @@ class Global {
         
         let left:Int = Int((CGFloat(currentFilesLoaded)/CGFloat(totalFilesToLoad)) * 100.0)
         
-        nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
+        DispatchQueue.main.async {
+            nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
+        }
         
+        
+        print("current: ", currentFilesLoaded)
         // Send Notification if all loaded
         if currentFilesLoaded == totalFilesToLoad {
             let nfname = Notification.Name("PreloadNotification")
-            nc.post(name: nfname, object: nil, userInfo: nil)
+            
+            DispatchQueue.main.async {
+                nc.post(name: nfname, object: nil, userInfo: nil)
+            }
         }
         
         

@@ -296,7 +296,7 @@ class ViewController: UIViewController {
     }
     
    private func mainmenu(){
-        print ("Client Plist Data: ", clientData)
+       // print ("Client Plist Data: ", clientData)
         global.prioirityLoad()
     }
     
