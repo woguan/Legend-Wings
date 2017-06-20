@@ -25,6 +25,8 @@ class Global {
         print ("Global is deinitiated")
     }
     
+    static let sharedInstance = Global()
+    
     enum Animation{
         case Boss_1_Dead_Animation
         case Boss_1_Move_Animation
@@ -176,7 +178,7 @@ class Global {
     private var totalFilesToLoad:Int = 7
     private var currentFilesLoaded:Int = 0
     
-    init (){
+    private init (){
         
         self.map[.Ragnarok] = []
         
@@ -580,4 +582,4 @@ class Global {
     
 }
 
-let global:Global = Global() // Using this Singleton to access all textures
+let global:Global = Global.sharedInstance // Using this Singleton to access all textures
