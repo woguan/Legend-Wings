@@ -41,6 +41,7 @@
 		0C363DE01EF4AAC500CAE82F /* testFX.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DDF1EF4AAC500CAE82F /* testFX.png */; };
 		0C363DE21EF4AB3900CAE82F /* particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DE11EF4AB3900CAE82F /* particle.png */; };
 		0C363DE81EF4BE9100CAE82F /* initial_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */; };
+		0C363DEA1EF6C81800CAE82F /* test.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DE91EF6C81800CAE82F /* test.sks */; };
 		F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */; };
 		F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */; };
 		F112A7081E16702600A5DEE9 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7071E16702500A5DEE9 /* PhysicsCategory.swift */; };
@@ -87,6 +88,7 @@
 		0C363DDF1EF4AAC500CAE82F /* testFX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = testFX.png; sourceTree = "<group>"; };
 		0C363DE11EF4AB3900CAE82F /* particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = particle.png; sourceTree = "<group>"; };
 		0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initial_main_bg.png; sourceTree = "<group>"; };
+		0C363DE91EF6C81800CAE82F /* test.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = test.sks; sourceTree = "<group>"; };
 		F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = userinfo.plist; path = ../userinfo.plist; sourceTree = "<group>"; };
 		F112A7071E16702500A5DEE9 /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				0C363DDB1EF4AA7800CAE82F /* bulling.sks */,
+				0C363DE91EF6C81800CAE82F /* test.sks */,
 				0C363DDC1EF4AA7800CAE82F /* trail.sks */,
 			);
 			path = SKS;
@@ -335,6 +338,7 @@
 				0C363DD21EF4502C00CAE82F /* Logo.png in Resources */,
 				0C363DC81EF4502C00CAE82F /* mainmenu.atlas in Resources */,
 				0C363DE81EF4BE9100CAE82F /* initial_main_bg.png in Resources */,
+				0C363DEA1EF6C81800CAE82F /* test.sks in Resources */,
 				F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */,
 				0C363DCD1EF4502C00CAE82F /* fx_3.png in Resources */,
 				0C363DC21EF4502C00CAE82F /* begin.m4a in Resources */,

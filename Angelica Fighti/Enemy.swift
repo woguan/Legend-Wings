@@ -316,7 +316,7 @@ class EnemyModel: NSObject{
             let facenode = getFace()
                 facenode.zPosition = 1
                 auranode.addChild(facenode)
-    
+
             let emitnode = SKEmitterNode(fileNamed: "trail.sks")
                 emitnode!.zPosition = -1
                 auranode.addChild(emitnode!)

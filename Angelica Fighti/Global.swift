@@ -132,20 +132,20 @@ class Global {
     private enum MapType{
         case Ragnarok
     }
-    /*  --> For future implementation
-     enum TypeBoss{
-     case mainTexture
-     case attackTexture
-     case dieAnimation
-     case moveAnimation
-     }
-     private var boss_1 = [TypeBoss:Any]()*/
     
-    // Temporary variables to hold Boss textures
-    private var boss_1_main:SKTexture!
-    private var boss_1_attack_1:SKTexture!
-    private var boss_1_die_animation:[SKTexture] = []
-    private var boss_1_movement_animation:[SKTexture] = []
+    enum ClassicBoss{
+        case Bomber
+    }
+    enum ClassicBossTexture{
+        case mainTexture
+        case attackTexture
+        case dieAnimation
+        case moveAnimation
+    }
+    
+    enum Boss{
+        case Pinky
+    }
     
     // Temporary variables to hold textures -> Find a better approach
     private var gold_main:SKTexture!
@@ -153,6 +153,8 @@ class Global {
     private var bullet:SKTexture!
     
     // Enemies
+    private var boss = [Boss:[SKTexture]]()
+    private var classicBoss = [ClassicBoss:[ClassicBossTexture:[SKTexture]]]()
     private var fireball_enemy_collection = [FireballType:[SKTexture]]()
     private var puff_regular_animation:[SKTexture] = []
     private var enemy_main_collection = [SKTexture]()
@@ -190,6 +192,14 @@ class Global {
         self.fireball_enemy_collection[.Aura] = []
         self.fireball_enemy_collection[.Tracker] = []
         self.fireball_enemy_collection[.Smoke] = []
+        
+        self.classicBoss[.Bomber] = [:]
+        self.classicBoss[.Bomber]![.attackTexture] = []
+        self.classicBoss[.Bomber]![.dieAnimation] = []
+        self.classicBoss[.Bomber]![.mainTexture] = []
+        self.classicBoss[.Bomber]![.moveAnimation] = []
+        
+        self.boss[.Pinky] = []
     }
     
     func prioirityLoad(){
@@ -268,8 +278,8 @@ class Global {
         let atlas = SKTextureAtlas(named: "Enemy")
         
         atlas.preload {
-            self.boss_1_main = atlas.textureNamed("boss-1-main")
-            self.boss_1_attack_1 = atlas.textureNamed("enemy_attack_ball")
+            self.classicBoss[.Bomber]![.mainTexture]!.append(atlas.textureNamed("boss-1-main"))
+            self.classicBoss[.Bomber]![.attackTexture]!.append(atlas.textureNamed("enemy_attack_ball"))
             
             for texture in atlas.textureNames{
                 if texture.contains("enemy") && texture.contains("main"){
@@ -277,11 +287,13 @@ class Global {
                 }
                     
                 else if texture.contains("boss_1_movement"){
-                    self.boss_1_movement_animation.append(atlas.textureNamed("boss_1_movement\(self.boss_1_movement_animation.count + 1)"))
+                    let csize = self.classicBoss[.Bomber]![.moveAnimation]!.count
+                    self.classicBoss[.Bomber]![.moveAnimation]!.append(atlas.textureNamed("boss_1_movement\(csize + 1)"))
                 }
                     
                 else if texture.contains("boss_1_die"){
-                    self.boss_1_die_animation.append(atlas.textureNamed("boss_1_die\(self.boss_1_die_animation.count + 1)"))
+                    let csize = self.classicBoss[.Bomber]![.dieAnimation]!.count
+                    self.classicBoss[.Bomber]![.dieAnimation]!.append(atlas.textureNamed("boss_1_die\(csize + 1)"))
                 }
                 else if texture.contains("enemy_fireball_"){
                     if texture.contains("aura"){
@@ -346,7 +358,7 @@ class Global {
     
     private func hudPreload(){
         let atlas = SKTextureAtlas(named: "HUD")
-    
+        
         atlas.preload {
             
             for texture in atlas.textureNames{
@@ -374,21 +386,21 @@ class Global {
     }
     
     private func checkmark(){
-       
-            let nc = NotificationCenter.default
-            
-            // Checkmark
-            currentFilesLoaded += 1 // Increase Loaded File
-            
-            let left:Int = Int((CGFloat(currentFilesLoaded)/CGFloat(totalFilesToLoad)) * 100.0)
-            
-            nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
-            
-            // Send Notification if all loaded
-            if currentFilesLoaded == totalFilesToLoad {
-                let nfname = Notification.Name("PreloadNotification")
-                nc.post(name: nfname, object: nil, userInfo: nil)
-            }
+        
+        let nc = NotificationCenter.default
+        
+        // Checkmark
+        currentFilesLoaded += 1 // Increase Loaded File
+        
+        let left:Int = Int((CGFloat(currentFilesLoaded)/CGFloat(totalFilesToLoad)) * 100.0)
+        
+        nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
+        
+        // Send Notification if all loaded
+        if currentFilesLoaded == totalFilesToLoad {
+            let nfname = Notification.Name("PreloadNotification")
+            nc.post(name: nfname, object: nil, userInfo: nil)
+        }
         
         
     }
@@ -414,9 +426,9 @@ class Global {
     internal func getTextures(textures:Animation) -> [SKTexture]{
         switch textures{
         case .Boss_1_Dead_Animation:
-            return boss_1_die_animation
+            return classicBoss[.Bomber]![.dieAnimation]!
         case .Boss_1_Move_Animation:
-            return boss_1_movement_animation
+            return self.classicBoss[.Bomber]![.moveAnimation]!
         case .Gold_Animation:
             return gold_animation
         case .Puff_Animation:
@@ -528,7 +540,7 @@ class Global {
             
         // Rest
         case .Boss_1:
-            return boss_1_main
+            return classicBoss[.Bomber]![.mainTexture]![0]
         case .Gold:
             return gold_main
         case .Enemy_1:
@@ -557,7 +569,7 @@ class Global {
     internal func getAttackTexture(attack: BossAttack) -> SKTexture{
         switch (attack){
         case .Boss1_type_1:
-            return boss_1_attack_1
+            return classicBoss[.Bomber]![.attackTexture]![0]
         }
     }
     
