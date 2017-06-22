@@ -12,10 +12,12 @@
   - [] Add Pinky Boss Actions
 - [] Add Labels in Character Selection
 - [] Add particle effects when selecting character
-- [] "Fix" the top bar which displays account progress
+- [] "Fix" and find a better logic for the top bar which displays account progress
 
 ## Main Accomplishments:
 - [✔️] Preload Textures
+  - [✔️] Added progress bar
+  - [✔️] Divided Atlas into smaller atlas
 - [✔️] Coin System
 - [✔️] Character Selection
   - [✔️] Alpha
@@ -25,4 +27,6 @@
 - [✔️] Added Backup Logic
 - [✔️] Added Progress Track
 - [✔️] Added Singleton Global to access all Sprites
+- [✔️] Removed Main.storyboard for faster build time
+
   
