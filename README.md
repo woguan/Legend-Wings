@@ -14,6 +14,15 @@
 - [] Add particle effects when selecting character
 - [] "Fix" the top bar which displays account progress
 
-## Accomplishments:
-- [x] Coin System
-- [x] Character Selection
+## Main Accomplishments:
+- [✔️] Preload Textures
+- [✔️] Coin System
+- [✔️] Character Selection
+  -[✔️] Alpha
+  -[✔️] Beta
+  -[✔️] Celta
+  -[✔️] Delta
+-[✔️] Added Backup Logic
+-[✔️] Added Progress Track
+-[✔️] Added Singleton Global to access all Sprites
+  
