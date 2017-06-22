@@ -23,7 +23,7 @@
   - [] Imune Item
   - [] Increare Fire Power
   - [] Double Shoot
-- [] Add Companions (Each side has a small minion to assist you) - Sidekicks!
+- [] Add Companions System (Each side has a small minion to assist you) - Sidekicks!
 - [] Add Unit Test
 
 ## Known Bugs:
