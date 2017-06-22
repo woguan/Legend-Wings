@@ -9,7 +9,7 @@
 ## Notes:
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
 - I have only iPhone 7 Plus, so I do not know how well it works for other devices. But It should be okay.
-- I'm doing this alone, and my main focus is working on "Pinky" boss. Yea, it takes time to get the sprites done.
+- Currently working on "Pinky" boss. Yea, it takes time to get the sprites done.
   
 ## New TODO list:
 - [] Add Pinky Boss in-game
