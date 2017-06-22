@@ -13,6 +13,7 @@
 - [] Add Labels in Character Selection
 - [] Add particle effects when selecting character
 - [] "Fix" and find a better logic for the top bar which displays account progress
+- [] Re-implement logic to increase enemies' HP and Velocity over time. 
 
 ## Main Accomplishments:
 - [✔️] Preload Textures
