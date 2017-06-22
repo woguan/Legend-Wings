@@ -22,7 +22,7 @@
   - [✔️] Beta
   - [✔️] Celta
   - [✔️] Delta
--[✔️] Added Backup Logic
--[✔️] Added Progress Track
--[✔️] Added Singleton Global to access all Sprites
+- [✔️] Added Backup Logic
+- [✔️] Added Progress Track
+- [✔️] Added Singleton Global to access all Sprites
   
