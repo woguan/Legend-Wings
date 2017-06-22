@@ -1,4 +1,4 @@
-# Project Legend Wing - *EverWing Mini Clone*
+# iOS Swift Project - Legend Wing - *EverWing Mini Clone*
 
 **EverWing** is a popular action game. Survive as much you can, earn gold, and upgrade/purchase new characters.
 
