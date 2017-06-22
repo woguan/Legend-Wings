@@ -21,6 +21,12 @@
 - [] Re-implement logic to increase enemies' HP and Velocity over time. 
 - [] Add Unit Test
 
+## Known Bugs:
+- The top bar is not a bug. I'm just thinking a good approach for displaying them
+- It looks like that for smaller devices such as iPhone 5, the monsters are dying quickly.
+- HUD displays are not "pretty". I think it's a bit challenging for creating a HUD from sknodes. Thus, in near future, I will replace them with custom OTF/TTF files. I'm still looking for a good software to generate them.
+
+
 ## Main Accomplishments:
 - [✔️] Added for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
 - [✔️] Preload Textures
