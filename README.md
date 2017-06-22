@@ -7,6 +7,7 @@
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 
 ## Notes:
+- Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
 - I have only iPhone 7 Plus, so I do not know how well it works for other devices. But It should be okay.
 - Currently working on "Pinky" boss. Yea, it takes time to get the sprites done.
