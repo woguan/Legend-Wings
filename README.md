@@ -1,3 +1,8 @@
+# Project Legend Wing - *EverWing Mini Clone
+
+**EverWing** is a popular action game. Survive as much you can, earn gold, and upgrade/purchase new characters.
+
+## Videos:
 **Loading Scene**
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' />
