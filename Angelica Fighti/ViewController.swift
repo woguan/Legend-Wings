@@ -302,7 +302,7 @@ class ViewController: UIViewController {
     
    private func preloadDone(notification:Notification){
     
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             let scene = MainScene(size: self.view.bounds.size)
             scene.scaleMode = .aspectFill
             let skview = self.view as! SKView
@@ -383,7 +383,7 @@ class ViewController: UIViewController {
     private func progressTrack(notification:Notification){
         let percentage = notification.userInfo?["Left"]
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.labelNumber.text =  String(percentage as! Int) + "%"
         }
     }
