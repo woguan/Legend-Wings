@@ -19,6 +19,11 @@
 - [] Add particle effects when selecting character
 - [] "Fix" and find a better logic for the top bar which displays account progress
 - [] Re-implement logic to increase enemies' HP and Velocity over time. 
+- [] Add Power-Ups
+  - [] Imune Item
+  - [] Increare Fire Power
+  - [] Double Shoot
+- [] Add Companions (Each side has a small minion to assist you) - Sidekicks!
 - [] Add Unit Test
 
 ## Known Bugs:
