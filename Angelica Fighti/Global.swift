@@ -90,6 +90,23 @@ class Global {
         // Bosses
         case Boss_1 = "boss_1"
         
+        case Boss_Pinky_Body
+        case Boss_Pinky_Bone
+        case Boss_Pinky_Skull
+        case Boss_Pinky_Left_Ear
+        case Boss_Pinky_Right_Ear
+        case Boss_Pinky_Left_EyeBrow
+        case Boss_Pinky_Right_EyeBrow
+        case Boss_Pinky_Left_Damaged_Eye
+        case Boss_Pinky_Right_Damaged_Eye
+        case Boss_Pinky_Left_Eye
+        case Boss_Pinky_Right_Eye
+        case Boss_Pinky_Left_Wing
+        case Boss_Pinky_Right_Wing
+        case Boss_Pinky_Left_Flipped_Wing
+        case Boss_Pinky_Right_Flipped_Wing
+        case Boss_Pinky_Left_Middle_Wing
+        case Boss_Pinky_Right_Middle_Wing
         
         // Rest
         case Gold
@@ -177,8 +194,11 @@ class Global {
     
     private var totalFilesToLoad:Int = 7
     private var currentFilesLoaded:Int = 0
+    private var serialQueue:DispatchQueue
     
     private init (){
+        
+        serialQueue = DispatchQueue(label: "SerialLoadQueue")
         
         self.map[.Ragnarok] = []
         
@@ -215,7 +235,7 @@ class Global {
         
         // Order:  mapPreload -> enemyPreload -> playerPreload -> itemsPreload
         // -> hudPreload -> characterScenePreload  mainMenuPreload ->|| total: 7
-
+        
         self.mapPreload()
         self.enemyPreload()
         self.playerPreload()
@@ -261,12 +281,9 @@ class Global {
             self.checkmark()
         }
         
-        print("exit preload")
-        
     }
     
     private func mapPreload(){
-        print("not called")
         let atlas = SKTextureAtlas(named: "Map")
         atlas.preload {
             for texture in atlas.textureNames{
@@ -274,7 +291,7 @@ class Global {
                     self.map[.Ragnarok]!.append(atlas.textureNamed("map1_\(self.map[.Ragnarok]!.count + 1)"))
                 }
             }
-                self.checkmark()
+            self.checkmark()
         }
         
     }
@@ -317,9 +334,11 @@ class Global {
                 else if texture.contains("puff_regular"){
                     self.puff_regular_animation.append(atlas.textureNamed("puff_regular\(self.puff_regular_animation.count + 1)"))
                 }
-                
+                else if texture.contains("boss_2_sprite"){
+                    self.boss[.Pinky]!.append(atlas.textureNamed("boss_2_sprite\(self.boss[.Pinky]!.count + 1)"))
+                }
             }
-                self.checkmark()
+            self.checkmark()
         }
     }
     
@@ -333,7 +352,7 @@ class Global {
                     self.character_sprite.append(dt)
                 }
             }
-                self.checkmark()
+            self.checkmark()
         }
     }
     
@@ -350,7 +369,7 @@ class Global {
                     self.gold_animation.append(atlas.textureNamed("gold_action\(self.gold_animation.count + 1)"))
                 }
             }
-                self.checkmark()
+            self.checkmark()
         }
         
     }
@@ -366,8 +385,8 @@ class Global {
                 }
             }
             
-                self.checkmark()
-         
+            self.checkmark()
+            
         }
     }
     
@@ -380,35 +399,37 @@ class Global {
                     self.character_menu_collection.append(atlas.textureNamed("character_menu_\(self.character_menu_collection.count + 1)"))
                 }
             }
-                self.checkmark()
+            self.checkmark()
         }
     }
     
     private func checkmark(){
         
-        print("before current: ", currentFilesLoaded)
-        let nc = NotificationCenter.default
-        
-        // Checkmark
-        currentFilesLoaded += 1 // Increase Loaded File
-        
-        let left:Int = Int((CGFloat(currentFilesLoaded)/CGFloat(totalFilesToLoad)) * 100.0)
-        
-        DispatchQueue.main.async {
-            nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
-        }
-        
-        
-        print("current: ", currentFilesLoaded)
-        // Send Notification if all loaded
-        if currentFilesLoaded == totalFilesToLoad {
-            let nfname = Notification.Name("PreloadNotification")
+        self.serialQueue.async {
+            
+            print("before current: ", self.currentFilesLoaded)
+            let nc = NotificationCenter.default
+            
+            // Checkmark
+            self.currentFilesLoaded += 1 // Increase Loaded File
+            
+            let left:Int = Int((CGFloat(self.currentFilesLoaded)/CGFloat(self.totalFilesToLoad)) * 100.0)
             
             DispatchQueue.main.async {
-                nc.post(name: nfname, object: nil, userInfo: nil)
+                nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
+            }
+            
+            
+            print("current: ", self.currentFilesLoaded)
+            // Send Notification if all loaded
+            if self.currentFilesLoaded == self.totalFilesToLoad {
+                let nfname = Notification.Name("PreloadNotification")
+                
+                DispatchQueue.main.async {
+                    nc.post(name: nfname, object: nil, userInfo: nil)
+                }
             }
         }
-        
         
     }
     
@@ -545,9 +566,46 @@ class Global {
         case .Character_Menu_GroundEffect:
             return self.character_menu_collection[15]
             
-        // Rest
+            
+        // Boss
         case .Boss_1:
             return classicBoss[.Bomber]![.mainTexture]![0]
+        case .Boss_Pinky_Body:
+            return self.boss[.Pinky]![0]
+        case .Boss_Pinky_Bone:
+            return self.boss[.Pinky]![1]
+        case .Boss_Pinky_Skull:
+            return self.boss[.Pinky]![2]
+        case .Boss_Pinky_Right_Ear:
+            return self.boss[.Pinky]![3]
+        case .Boss_Pinky_Left_Ear:
+            return self.boss[.Pinky]![4]
+        case .Boss_Pinky_Left_EyeBrow:
+            return self.boss[.Pinky]![5]
+        case .Boss_Pinky_Right_EyeBrow:
+            return self.boss[.Pinky]![6]
+        case .Boss_Pinky_Right_Damaged_Eye:
+            return self.boss[.Pinky]![8]
+        case .Boss_Pinky_Left_Damaged_Eye:
+            return self.boss[.Pinky]![7]
+        case .Boss_Pinky_Left_Eye:
+            return self.boss[.Pinky]![9]
+        case .Boss_Pinky_Right_Eye:
+            return self.boss[.Pinky]![10]
+        case .Boss_Pinky_Left_Wing:
+            return self.boss[.Pinky]![11]
+        case .Boss_Pinky_Right_Wing:
+            return self.boss[.Pinky]![12]
+        case .Boss_Pinky_Left_Flipped_Wing:
+            return self.boss[.Pinky]![13]
+        case .Boss_Pinky_Right_Flipped_Wing:
+            return self.boss[.Pinky]![14]
+        case .Boss_Pinky_Left_Middle_Wing:
+            return self.boss[.Pinky]![15]
+        case .Boss_Pinky_Right_Middle_Wing:
+            return self.boss[.Pinky]![16]
+            
+        // Rest
         case .Gold:
             return gold_main
         case .Enemy_1:
