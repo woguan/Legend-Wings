@@ -15,6 +15,7 @@ protocol GameInfoDelegate{
     var mainAudio:AVAudio {get}
     func addChild(_ sknode: SKNode)
     func changeGameState(_ state: GameState)
+    func getCurrentToonNode() -> SKSpriteNode
     
 }
 
@@ -70,10 +71,7 @@ class GameInfo: GameInfoDelegate{
         regular_enemies.delegate = self
         boss.delegate = self
         fireball_enemy.delegate = self
-        // Initialize
-        regular_enemies.setUP()
-        boss.setUP()
-        fireball_enemy.setUP()
+
     }
     
     func load(scene: SKScene) -> (Bool, String){
@@ -84,7 +82,6 @@ class GameInfo: GameInfoDelegate{
         
         // play background music
         mainAudio.play(type: .Background_Start)
-        
         if !account.load(){
             return (false, "account error")
         }
@@ -308,6 +305,7 @@ class GameInfo: GameInfoDelegate{
             self.regular_enemies.spawn(scene: scene)
         }), SKAction.wait(forDuration: 3)])
         
+        //totalWaves
         let spawnAction = SKAction.repeat(action, count: totalWaves)
         let endAction = SKAction.run(didFinishSpawningEnemy)
         
@@ -356,12 +354,9 @@ class GameInfo: GameInfoDelegate{
     //  This function is called every second.
     @objc func running(){
         let random = randomInt(min: 0, max: 100)
-        
-        
         // Fireball
-        if random < 10 {
+        if random < 90 {
             print("Fireball called with random: ", random)
-            fireball_enemy.setPosition(position: account.getCurrentToon().getNode().position)
             fireball_enemy.spawn(scene: mainScene!)
         }
         

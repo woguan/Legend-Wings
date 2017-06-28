@@ -117,6 +117,7 @@ class ViewController: UIViewController {
         nc.addObserver(forName: progressNotification, object: nil, queue: nil, using:progressTrack)
         
         loadingScene() // Progress Scene
+        
         load()
     }
     

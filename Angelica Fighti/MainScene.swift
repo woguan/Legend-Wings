@@ -34,7 +34,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         self.view?.addGestureRecognizer(gestureRecognizer)
         
         // For Debug Use only
-        view.showsPhysics = false
+        view.showsPhysics = true
         
         // Setting up delegate for Physics World & Set up gravity
         physicsWorld.contactDelegate = self
@@ -191,6 +191,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     
    private func loadgameinfo(){
         // Check if any error from loading gameinfo
+    
         let check = gameinfo.load(scene: self)
         
         if(!check.0){

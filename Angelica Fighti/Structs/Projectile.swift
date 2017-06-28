@@ -45,7 +45,7 @@ struct Projectile {
         bulletnode!.physicsBody!.velocity = CGVector(dx: 0, dy: 1300)
         bulletnode!.physicsBody!.categoryBitMask = PhysicsCategory.Projectile
         bulletnode!.physicsBody!.collisionBitMask = 0
-        bulletnode!.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
+        bulletnode!.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy | PhysicsCategory.Imune
     }
     
     func shoot() -> SKSpriteNode{
