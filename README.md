@@ -20,9 +20,9 @@
 - [] Re-implement logic to increase enemies' HP and Velocity over time. 
 - [] Add Power-Ups
   - [] Imune Item
-  - [] Increare Fire Power
+  - [] Increase Fire Power
   - [] Double Shoot
-- [] Add Companions System (Each side has a small minion to assist you) - Sidekicks!
+- [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
 - [] Add Unit Test
 
 ## Known Bugs:
