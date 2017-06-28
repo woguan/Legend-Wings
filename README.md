@@ -10,10 +10,9 @@
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
 - I have only iPhone 7 Plus, so I do not know how well it works for other devices. But It should be okay.
-- Currently working on "Pinky" boss. Yea, it takes time to get the sprites done.
-  
+
 ## New TODO list:
-- [] Add Pinky Boss in-game
+- [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
   - [✔️] Add Pinky Boss Sprites
   - [✔️] Add Pinky Boss Actions
 - [] Add Labels in Character Selection
