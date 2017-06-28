@@ -9,7 +9,6 @@
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- I have only iPhone 7 Plus, so I do not know how well it works for other devices. But It should be okay.
 
 ## New TODO list:
 - [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
