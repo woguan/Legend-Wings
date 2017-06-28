@@ -15,7 +15,7 @@
 ## New TODO list:
 - [] Add Pinky Boss in-game
   - [✔️] Add Pinky Boss Sprites
-  - [] Add Pinky Boss Actions
+  - [✔️] Add Pinky Boss Actions
 - [] Add Labels in Character Selection
 - [] Add particle effects when selecting character
 - [] "Fix" and find a better logic for the top bar which displays account progress
