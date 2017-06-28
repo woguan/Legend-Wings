@@ -16,5 +16,5 @@ struct PhysicsCategory {
     static let Projectile : UInt32 = 1 << 3
     static let Currency : UInt32 = 1 << 4
     static let Wall: UInt32 = 1 << 5
-    static let Imune       : UInt32 = 1 << 8
+    static let Imune       : UInt32 = 1 << 7
 }

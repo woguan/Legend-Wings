@@ -296,7 +296,7 @@ class GameInfo: GameInfoDelegate{
         
         return (true, "No errors")
     }
-    private func spawnEnemies(scene: SKScene, totalWaves: Int, waveTime:Double){
+    private func spawnEnemies(scene: SKScene, totalWaves: Int){
         
         //update state
         self.changeGameState(.Spawning)
@@ -306,7 +306,7 @@ class GameInfo: GameInfoDelegate{
         }), SKAction.wait(forDuration: 3)])
         
         //totalWaves
-        let spawnAction = SKAction.repeat(action, count: totalWaves)
+        let spawnAction = SKAction.repeat(action, count: 1)
         let endAction = SKAction.run(didFinishSpawningEnemy)
         
         scene.run(SKAction.sequence([spawnAction, endAction]))
@@ -355,7 +355,7 @@ class GameInfo: GameInfoDelegate{
     @objc func running(){
         let random = randomInt(min: 0, max: 100)
         // Fireball
-        if random < 90 {
+        if random < 10 {
             print("Fireball called with random: ", random)
             fireball_enemy.spawn(scene: mainScene!)
         }
@@ -444,8 +444,11 @@ class GameInfo: GameInfoDelegate{
             // increase enemy speed
             regular_enemies.increaseVelocityBy(amount: 50.0)
             print(" Waves for next Boss: \(wavesForNextLevel)")
-            spawnEnemies(scene: mainscene, totalWaves: wavesForNextLevel, waveTime: timePerWave) // timePerWave need change
-        
+            
+            mainScene!.run(SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.run {
+                self.spawnEnemies(scene: mainscene, totalWaves: self.wavesForNextLevel)
+                }]))
+            
         case .Spawning:
             // use this place to activate timer. Run a function called Running() 
             print("Spawning")

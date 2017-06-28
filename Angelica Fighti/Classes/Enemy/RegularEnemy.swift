@@ -21,7 +21,7 @@ class RegularEnemy:SKSpriteNode{
     
     let minionSize = CGSize(width: screenSize.width*0.95/5, height: screenSize.width*0.95/5)
     
-    convenience init(target:SKSpriteNode){
+    convenience init(baseHp:CGFloat){
         self.init()
 
         name = "Enemy_Regular_Box"
@@ -29,8 +29,8 @@ class RegularEnemy:SKSpriteNode{
         size = CGSize(width: screenSize.width, height: screenSize.width*0.95/5)
        
         userData = NSMutableDictionary()
-        self.hp = 100.0
-        self.maxHp = 100.0
+        self.hp = baseHp
+        self.maxHp = baseHp
         
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
         
@@ -63,7 +63,8 @@ class RegularEnemy:SKSpriteNode{
         enemy_regular_node.physicsBody!.affectedByGravity = false
         enemy_regular_node.physicsBody!.collisionBitMask = 0
         enemy_regular_node.physicsBody!.velocity = self.velocity
-
+        enemy_regular_node.addHealthBar()
+        
         for i in 0..<3{
             
             if i == 0 {
@@ -118,13 +119,6 @@ class RegularEnemy:SKSpriteNode{
             }
         }
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
-    }
-    
-    internal func setHealthBar(healthBar: SKSpriteNode){
-        for minion in self.children{
-            let hbar = healthBar.copy() as! SKSpriteNode
-            minion.addChild(hbar)
-        }
     }
     
     internal func defeated(sknode:SKSpriteNode){

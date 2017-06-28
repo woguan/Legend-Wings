@@ -34,7 +34,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         self.view?.addGestureRecognizer(gestureRecognizer)
         
         // For Debug Use only
-        view.showsPhysics = true
+        view.showsPhysics = false
         
         // Setting up delegate for Physics World & Set up gravity
         physicsWorld.contactDelegate = self
@@ -285,7 +285,6 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     }
 
     func didBegin(_ contact: SKPhysicsContact) {
-        
         var contactType:ContactType = .None
         var higherNode:SKSpriteNode?
         var lowerNode:SKSpriteNode?
@@ -319,7 +318,6 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
          
          NOTE2: Enemy's projectile are considered as Enemy. Thus, need to ignore when projectile hit enemy attack
          */
-        
         
         if (h_node.physicsBody?.categoryBitMask == PhysicsCategory.Imune){
             contactType = .Immune
@@ -399,6 +397,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     }
     
     func destroy(sknode: SKSpriteNode){
+        
         sknode.removeAllActions()
         sknode.removeFromParent()
     }

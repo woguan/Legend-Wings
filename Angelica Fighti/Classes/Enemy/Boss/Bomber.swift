@@ -36,6 +36,9 @@ class Bomber:SKSpriteNode{
     }
     
     private func initialSetup(){
+        // adding healthbar
+        self.addHealthBar()
+        
         // Set up Animation of Boss
         self.run(SKAction.repeatForever(SKAction.animate(with: actionsStandBy, timePerFrame: 0.77)))
         // Set initial alpha
@@ -49,27 +52,16 @@ class Bomber:SKSpriteNode{
         self.run(SKAction.repeatForever(SKAction.animate(with: actionsStandBy, timePerFrame: 0.77)))
         
         self.run(SKAction.sequence([SKAction.fadeIn(withDuration: 2.5), SKAction.run {
-            self.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
+                self.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
+                self.startAttack()
             }]))
         
-    }
-    
-    
-    
-    private func loadPhysic(){
-        let imuneBox = SKSpriteNode()
-        imuneBox.size = self.size
-        imuneBox.name = "imuneBox"
-        imuneBox.physicsBody = SKPhysicsBody(rectangleOf: self.size)
-        imuneBox.physicsBody!.categoryBitMask = PhysicsCategory.Imune
-        imuneBox.physicsBody!.isDynamic = false
-        self.addChild(imuneBox)
     }
     
     private func startAttack(){
         self.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 0.5), SKAction.run {
             let random = randomInt(min: 0, max: 100)
-            if (random > 50){
+            if (random > 80){
                 let att = SKSpriteNode(texture: global.getAttackTexture(attack: .Boss1_type_1))
                 att.size = CGSize(width: 30, height: 30)
                 att.name = "Enemy_Boss_1_Attack"

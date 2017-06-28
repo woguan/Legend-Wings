@@ -23,19 +23,22 @@ class EnemyModel: NSObject{
         case Special
     }
     
-    enum Boss{
+    enum BossType{
+        case None
         case Pinky
         case Bomber
     }
     
-    // For Regular Enemies
-    private var enemy_box_array:[SKSpriteNode] = []
     
     // Shared Variables
     private var enemyType:EnemyType
     private var enemyModel:SKSpriteNode!
     private var currency:Currency?
+    private var bossType:BossType
+    
     private var velocity:CGVector = CGVector.zero
+    
+    
     
     var delegate:GameInfoDelegate?
     
@@ -43,54 +46,42 @@ class EnemyModel: NSObject{
         currency = Currency(type: .Coin)
         enemyType = type
         enemyModel = SKSpriteNode()
+        bossType = .None
+        
+        if enemyType == .Boss{
+            let r = randomInt(min: 0, max: 100)
+            if r < 50{
+                bossType = .Bomber
+            }
+            else{
+                bossType = .Pinky
+            }
+        }
         super.init()
-    }
-    
-    private func createHealthBar(width w: CGFloat, height h: CGFloat) -> SKSpriteNode{
-        
-        let shape = CGRect(x: 0, y: -5, width: w, height: h)
-        let border = SKShapeNode(rect: shape, cornerRadius: 5)
-        border.glowWidth = 1.5
-        border.strokeColor = .black
-        border.name = "hpBorder"
-        border.lineWidth = 1.5
-        
-        let bar = SKSpriteNode()
-        bar.anchorPoint.x = -0.01
-        bar.name = "hpBar"
-        bar.size = CGSize(width: w*0.98, height: h*0.8)
-        bar.color = .green
-        bar.zPosition = -0.1
-        bar.position.x = -(bar.size.width/2)
-        bar.position.y = -enemyModel.size.height/2 - 10
-        bar.addChild(border)
-        bar.isHidden = true
-        
-        return bar
     }
     
     internal func spawn(scene :SKScene){
         
         switch enemyType {
         case .Regular:
-            enemyModel = RegularEnemy(target: (delegate?.getCurrentToonNode())!)
-            let mainReg = enemyModel as! RegularEnemy
-            let w = mainReg.minionSize.width
-            let enemyHealthBar = createHealthBar(width: w * 0.9, height: 10)
-            mainReg.setHealthBar(healthBar: enemyHealthBar)
-            scene.addChild(enemyModel!)
+            enemyModel = RegularEnemy(baseHp: 100.0)
+    
         case .Boss:
-            enemyModel = Bomber(hp: 1000)
-            let enemyHealthBar = createHealthBar(width: enemyModel.size.width * 0.9, height: 10)
-            enemyModel.addChild(enemyHealthBar)
-            scene.addChild(enemyModel!)
-            return
+            if bossType == .Bomber{
+                enemyModel = Bomber(hp: 1000)
+            }
+            else if bossType == .Pinky{
+                enemyModel = Pinky(hp: 1000.0, lives: 2, isClone: false)
+            }
+            
         case .Fireball:
             enemyModel = Fireball(target: (delegate?.getCurrentToonNode())!)
-            scene.addChild(enemyModel!)
+
         default:
             break
         }
+        
+        scene.addChild(enemyModel!)
     }
     
     internal func increaseHP(){
@@ -167,7 +158,6 @@ class EnemyModel: NSObject{
             
             let reward = currency?.createCoin(posX: posX, posY: posY, width: 30, height: 30, createPhysicalBody: true, animation: true)
             
-            
             let impulse = CGVector(dx: random(min: -25, max: 25), dy: random(min:10, max:35))
             
             reward?.run(SKAction.sequence([SKAction.applyForce(impulse , duration: 0.2), SKAction.wait(forDuration: 2), SKAction.removeFromParent()]))
@@ -180,14 +170,27 @@ class EnemyModel: NSObject{
                 print("ERROR ON CLASS ENEMY. Check Method Explosion. ")
             }
         }
-        
-        sknode.removeAllActions()
 
+        sknode.removeAllActions()
+        
         switch (enemyType){
         case .Boss:
-            self.delegate?.changeGameState(.WaitingState)
-            let mainBoss = enemyModel as! Bomber
-            mainBoss.defeated()
+            if bossType == .Bomber{
+                
+                let mainBoss = enemyModel as! Bomber
+                mainBoss.defeated()
+                self.delegate?.changeGameState(.WaitingState)
+            }
+            else if bossType == .Pinky{
+                let minion = sknode.parent! as! Pinky
+                minion.multiply()
+                
+                let mainBoss = enemyModel as! Pinky
+                
+                if mainBoss.isDefeated(){
+                    self.delegate?.changeGameState(.WaitingState)
+                }
+            }
             
         case .Regular:
             let mainReg = enemyModel as! RegularEnemy
@@ -196,9 +199,7 @@ class EnemyModel: NSObject{
         default:
             sknode.removeFromParent()
         }
-        
-        
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {

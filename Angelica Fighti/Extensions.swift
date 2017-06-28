@@ -118,6 +118,34 @@ extension SKNode{
     
 }
 
+extension SKSpriteNode{
+    func addHealthBar(){
+        let w:CGFloat = size.width * 0.9
+        let h:CGFloat = 10.0
+        
+        let shape = CGRect(x: 0, y: -5, width: w, height: h)
+        let border = SKShapeNode(rect: shape, cornerRadius: 5)
+        border.glowWidth = 1.5
+        border.strokeColor = .black
+        border.name = "hpBorder"
+        border.lineWidth = 1.5
+        
+        let bar = SKSpriteNode()
+        bar.anchorPoint.x = -0.01
+        bar.name = "hpBar"
+        bar.size = CGSize(width: w*0.98, height: h*0.8)
+        bar.color = .green
+        bar.zPosition = -0.1
+        bar.position.x = -(bar.size.width/2)
+        bar.position.y = -size.height/2 - 10
+        bar.addChild(border)
+        bar.isHidden = true
+        
+        self.addChild(bar)
+    }
+}
+
+
 extension SKScene{
     func removeUIViews(){
             for view in (view?.subviews)! {

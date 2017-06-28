@@ -11,19 +11,32 @@ import SpriteKit
 
 class Pinky:SKSpriteNode{
     
+    enum PinkyType:String{
+        case Original = "Pinky_Original"
+        case Clone = "Pinky_Clone"
+    }
+    
+    enum MoveStyle{
+        case Left
+        case Right
+        case Random
+    }
     // fileprivate
-    let body = SKSpriteNode()
-    let leftEar = SKSpriteNode()
-    let rightEar = SKSpriteNode()
-    let leftEye = SKSpriteNode()
-    let rightEye = SKSpriteNode()
-    let leftEyebrow = SKSpriteNode()
-    let rightEyebrow = SKSpriteNode()
-    let leftWing = SKSpriteNode()
-    let rightWing = SKSpriteNode()
-    let root = SKSpriteNode()
+    fileprivate let body = SKSpriteNode()
+    fileprivate let leftEar = SKSpriteNode()
+    fileprivate let rightEar = SKSpriteNode()
+    fileprivate let leftEye = SKSpriteNode()
+    fileprivate let rightEye = SKSpriteNode()
+    fileprivate let leftEyebrow = SKSpriteNode()
+    fileprivate let rightEyebrow = SKSpriteNode()
+    fileprivate let leftWing = SKSpriteNode()
+    fileprivate let rightWing = SKSpriteNode()
+    fileprivate let root = SKSpriteNode()
     
     fileprivate var life:Int = 0
+    
+    // For Original Pinky
+    fileprivate var remaining = 0
     
     var leftWingText = [SKTexture]()
     var rightWingText = [SKTexture]()
@@ -31,11 +44,14 @@ class Pinky:SKSpriteNode{
     
     convenience init(hp:CGFloat, lives:Int, isClone:Bool){
         self.init()
+        
         self.userData = NSMutableDictionary()
         self.hp = hp
         self.maxHp = hp
         
-        self.name = isClone ? "mainClonePinky" : "mainPinky"
+        self.remaining = isClone ? 0 : Int(pow(2, Double(lives+1)))-1
+        
+        self.name = isClone ? PinkyType.Clone.rawValue : PinkyType.Original.rawValue
         life = lives
         size = CGSize(width: 157, height: 170)
         
@@ -50,7 +66,7 @@ class Pinky:SKSpriteNode{
         root.size = CGSize(width: 157, height: 170)
         root.hp = hp
         root.maxHp = hp
-        root.name = "root"
+        root.name = "Enemy_Boss"
         root.position = CGPoint(x: screenSize.size.width/2, y: screenSize.size.height - size.height/2 - leftEar.size.height/2)
         self.addChild(root)
         
@@ -135,17 +151,23 @@ class Pinky:SKSpriteNode{
         root.physicsBody!.allowsRotation = false
         root.physicsBody!.linearDamping = 0
         
+        root.addHealthBar()
         setInitialAction()
         
     }
     
     private func setInitialAction(){
-        root.run(SKAction.fadeIn(withDuration: 4))
+        
+        let delay:Double = (self.name == "Pinky_Clone") ? 2.0 : 4.0
+        
+        root.run(SKAction.fadeIn(withDuration: delay))
         setAnimation()
         
-        self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run {
+        self.run(SKAction.sequence([SKAction.wait(forDuration: delay), SKAction.run {
             self.root.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
-            self.move()
+            if self.name == PinkyType.Original.rawValue{
+                self.move(dir: .Random)
+            }
             }]))
     }
     
@@ -183,12 +205,28 @@ class Pinky:SKSpriteNode{
         
     }
     
-    private func move(){
-        let vector = CGVector(dx: random(min: -30, max: 30), dy: random(min: -2.0, max: -0.5))
-        root.run(SKAction.applyImpulse(vector, duration: 0.1))
+    private func move(dir: MoveStyle){
+        let leftVec = CGVector(dx: random(min: -45, max: -25), dy: random(min: -2.5, max: -0.5))
+        let rightVec = CGVector(dx: random(min: 25, max: 45), dy: random(min: -2.5, max: -0.5))
         
-        // whenever it moves, it has change to attack
-        root.run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
+        switch dir {
+        case .Left:
+            root.run(SKAction.applyImpulse(leftVec, duration: 0.1))
+        case .Right:
+            root.run(SKAction.applyImpulse(rightVec, duration: 0.1))
+        case .Random:
+            let r = randomInt(min: 0, max: 100)
+            if r < 50{
+                root.run(SKAction.applyImpulse(leftVec, duration: 0.1))
+            }
+            else{
+                root.run(SKAction.applyImpulse(rightVec, duration: 0.1))
+            }
+        }
+        
+        
+        // whenever it moves, it has chance to attack after 2.5 sec
+        root.run(SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.repeatForever(SKAction.sequence([SKAction.run {
             let r = randomInt(min: 0, max: 100)
             if r <= 8{
                 self.attack()
@@ -196,7 +234,26 @@ class Pinky:SKSpriteNode{
             else if self.root.position.y < screenSize.height/3{
                 
             }
-            }, SKAction.wait(forDuration: 2)])))
+            }, SKAction.wait(forDuration: 2)]))]))
+    }
+    
+    private func getRoot() -> SKSpriteNode{
+        return root
+    }
+    
+    // Call this function whenever one instance of Pinky is defeated
+    internal func isDefeated() -> Bool{
+        // Make sure only original can call this function
+        if name == PinkyType.Clone.rawValue{
+            return false
+        }
+        remaining -= 1
+        if remaining <= 0 {
+            self.removeFromParent()
+            return true
+        }
+        
+        return false
     }
     
     internal func attack(){
@@ -216,11 +273,13 @@ class Pinky:SKSpriteNode{
         let moveUp = SKAction.moveTo(y: screenSize.height - self.root.size.height/2 - self.leftEar.size.height/2 - self.position.y, duration: 2)
         let groupAction = SKAction.group([moveUp, SKAction.run(setAnimation)])
         
-        root.run(SKAction.sequence([SKAction.wait(forDuration: 0.1), moveDown, groupAction, SKAction.run(move)]))
+        root.run(SKAction.sequence([SKAction.wait(forDuration: 0.1), moveDown, groupAction, SKAction.run({self.move(dir: .Random)})]))
         
     }
     
     func multiply(){
+        root.physicsBody!.contactTestBitMask = PhysicsCategory.None
+        
         
         if self.life == 0 {
             self.root.removeFromParent()
@@ -232,15 +291,15 @@ class Pinky:SKSpriteNode{
         
         let cloneOne = Pinky(hp: self.maxHp * 0.8, lives: life, isClone: true)
         let cloneTwo = Pinky(hp: self.maxHp * 0.8, lives: life, isClone: true)
-        
-        
-        guard let rootOne = cloneOne.childNode(withName: "root"),
-            let rootTwo = cloneTwo.childNode(withName: "root") else{
-                return
-        }
+
+        let rootOne = cloneOne.getRoot()
+        let rootTwo = cloneTwo.getRoot()
         
         rootOne.position = self.root.position
         rootTwo.position = self.root.position
+        
+        rootOne.addHealthBar()
+        rootTwo.addHealthBar()
         
         rootOne.run(SKAction.scale(by: 0.2 * CGFloat(life) + 0.4, duration: 0))
         rootTwo.run(SKAction.scale(by: 0.2 * CGFloat(life) + 0.4, duration: 0))
@@ -248,11 +307,7 @@ class Pinky:SKSpriteNode{
         self.addChild(cloneOne)
         self.addChild(cloneTwo)
         
-        root.physicsBody!.contactTestBitMask = PhysicsCategory.Imune
-        
-        let scaleX = SKAction.scaleX(to: 0.7, duration: 0.3)
-        let scaleS = SKAction.scale(by: 0.7, duration: 0.3)
-        let scaleAction = SKAction.group([scaleX, scaleS])
+        let scaleAction = SKAction.scaleX(by: 1.0, y: 0.7, duration: 0.3)
         
         let leye = root.childNode(withName: Global.Main.Boss_Pinky_Left_Eye.rawValue) as! SKSpriteNode
         let reye = root.childNode(withName: Global.Main.Boss_Pinky_Right_Eye.rawValue) as! SKSpriteNode
@@ -260,11 +315,13 @@ class Pinky:SKSpriteNode{
         reye.texture = global.getMainTexture(main: .Boss_Pinky_Right_Damaged_Eye)
         
         
+        // THIS FUNCTION IS NEEDED
+        root.run(SKAction.sequence([scaleAction, SKAction.removeFromParent()]))
         
-        root.run(SKAction.sequence([scaleAction, SKAction.removeFromParent(), SKAction.run {
-            rootOne.physicsBody!.velocity = CGVector(dx: 25, dy: -0.5)
-            rootTwo.physicsBody!.velocity = CGVector(dx: -25, dy: -0.5)
-            }]))
+        cloneOne.move(dir: .Left)
+        cloneTwo.move(dir: .Right)
+       // rootOne.physicsBody!.velocity = CGVector(dx: 55, dy: random(min: -2.0, max: -0.5))
+       // rootTwo.physicsBody!.velocity = CGVector(dx: -55, dy: random(min: -2.0, max: -0.5))
         
     }
     
@@ -283,7 +340,7 @@ class Pinky:SKSpriteNode{
         rightEar.run(SKAction.rotate(toAngle: 0.0, duration: 0.25))
         leftWing.run(SKAction.rotate(toAngle: 0.0, duration: 0.25))
         rightWing.run(SKAction.rotate(toAngle: 0.0, duration: 0.25))
-        root.physicsBody?.velocity = CGVector.zero
+        root.physicsBody!.velocity = CGVector.zero
         
     }
     

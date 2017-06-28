@@ -62,7 +62,6 @@ class Fireball:SKSpriteNode {
         }
         
         // Enemymodel
-        //self.size = CGSize(width: screenSize.width/5, height: screenSize.width/5)
         self.position.y = screenSize.height - self.size.height
         self.color = .clear
         
