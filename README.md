@@ -2,11 +2,11 @@
 
 **EverWing** is a popular action game. Survive as much you can, earn gold, and upgrade/purchase new characters.
 
-## Videos - date: 06/20/2017:
+## Videos - Date Recorded: 06/20/2017:
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
-Note: Videos are often outdated. Starting to upload new videos for each major update.
+PS: Videos are often outdated. Run on your device to check out new stuff!
 
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
