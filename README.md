@@ -9,17 +9,14 @@
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Learning Bitmap Font - 06/28/2017
+- Todo list is the feature which I'm working now OR about to start it.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
-## New TODO list:
-- [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
-  - [✔️] Add Pinky Boss Sprites
-  - [✔️] Add Pinky Boss Actions
-- [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
-- [✔️] Add particle effects when selecting character - <b>06/29/2017</b>
+## TODO list:
+
 - [] "Fix" and find a better logic for the top bar which displays account progress
-- [] Re-implement logic to increase enemies' HP and Velocity over time. 
+- [] Re-implement logic to increase enemies' HP and Velocity over time 
+- [] Add customized font ttf for Gold Label with OpenGL shader
 
 ## Future Implementations:
 - [] Add upgradable bullets for characters:
@@ -30,7 +27,6 @@
 - [] Add Purchase Function
 - [] Add Upgrade Bullet Function
 - [] Display current level of bullet and its image on Character Scene
-- [] Add customized font ttf for Gold Label with OpenGL shader
 - [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
 - [] Add Power-Ups
   - [] Imune Item
@@ -38,7 +34,7 @@
   - [] Double Shoot
 - [] Add Unit Test
 
-## Known Bugs:
+## Discovered Bugs:
 - The top bar is not a bug. I'm just thinking a good approach for displaying them
 - It looks like that for smaller devices such as iPhone 5, the monsters are dying quickly.
 - HUD displays are not "pretty". I think it's a bit challenging for creating a HUD from sknodes. Thus, in near future, I will replace them with custom OTF/TTF files. I'm still looking for a good software to generate them.
@@ -60,5 +56,11 @@
 - [✔️] Added Singleton Global to access all Sprites
 - [✔️] Adding shader to fonts (OpenGL)
 - [✔️] Removed Main.storyboard for faster build time
+- [✔️] Added Bomber Boss in-game
+- [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
+  - [✔️] Add Pinky Boss Sprites
+  - [✔️] Add Pinky Boss Actions
+- [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
+- [✔️] Add particle effects when selecting character - <b>06/29/2017</b>
 
   
