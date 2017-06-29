@@ -9,6 +9,7 @@
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
+- Learning Bitmap Font - 06/28/2017
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## New TODO list:
