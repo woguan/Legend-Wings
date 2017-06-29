@@ -23,6 +23,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 ## Future Implementations:
 - [] Add upgradable bullets for characters:
   - [] Alpha
+    - [] Test
   - [] Beta
   - [] Celta
   - [] Delta
