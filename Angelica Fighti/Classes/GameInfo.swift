@@ -306,7 +306,7 @@ class GameInfo: GameInfoDelegate{
         }), SKAction.wait(forDuration: 3)])
         
         //totalWaves
-        let spawnAction = SKAction.repeat(action, count: 1)
+        let spawnAction = SKAction.repeat(action, count: totalWaves)
         let endAction = SKAction.run(didFinishSpawningEnemy)
         
         scene.run(SKAction.sequence([spawnAction, endAction]))
@@ -498,6 +498,14 @@ class GameInfo: GameInfoDelegate{
     }
     internal func getDescriptionOfToonByIndex(index id:Int) -> [String]{
         return self.account.getToonDescriptionByIndex(index: id)
+    }
+    
+    internal func getNameOfToonByIndex(index id:Int) -> String{
+        return self.account.getNameOfToonByIndex(index: id)
+    }
+    
+    internal func getTitleOfToonByIndex(index id:Int) -> String{
+        return self.account.getTitleOfToonByIndex(index: id)
     }
     
     // Maybe change this later to something like:

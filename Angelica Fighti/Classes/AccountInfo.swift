@@ -95,7 +95,12 @@ class AccountInfo{
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
         return characters[index].getToonDescription()
     }
-    
+    internal func getNameOfToonByIndex(index: Int) -> String{
+        return characters[index].getToonName()
+    }
+    internal func getTitleOfToonByIndex(index: Int) -> String{
+        return characters[index].getToonTitle()
+    }
     internal func prepareToChangeScene(){
         characters.removeAll()
 }

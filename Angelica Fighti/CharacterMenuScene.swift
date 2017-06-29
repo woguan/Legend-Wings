@@ -71,6 +71,13 @@ class CharacterMenuScene:SKScene{
         let title = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_TitleMenu))
             title.position.y = screenSize.width/2*1.3
             title.size = CGSize(width: screenSize.width*0.6, height: screenSize.height*0.1)
+        
+        let titleLabel = SKLabelNode(fontNamed: "Family Guy")
+            titleLabel.text = "EVERWING ACADEMY"
+            titleLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
+            titleLabel.fontSize = screenSize.width/28
+            title.addChild(titleLabel)
+        
         self.addChild(title)
         
         // BackArrow
@@ -132,8 +139,24 @@ class CharacterMenuScene:SKScene{
         // Character Name
         let char_name_box = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_CharacterNameBar))
             char_name_box.size = CGSize(width: screenSize.width*0.6, height: screenSize.height*0.1)
+            char_name_box.name = "char_name_box"
             char_name_box.position.y = msgBox.size.height/2
             msgBox.addChild(char_name_box)
+        let nameBoxLabel = SKLabelNode(fontNamed: "Qebab Shadow FFP")
+            nameBoxLabel.name = "nameBoxLabel"
+            nameBoxLabel.text = "ALPHA"
+            nameBoxLabel.fontSize = char_name_box.size.width/10
+            //nameBoxLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
+            nameBoxLabel.fontColor = .black
+            char_name_box.addChild(nameBoxLabel)
+        let titleBoxLabel = SKLabelNode(fontNamed: "Qebab Shadow FFP")
+            titleBoxLabel.name = "titleBoxLabel"
+            titleBoxLabel.text = "GUARDIAN OF DRAGONS"
+            titleBoxLabel.position.y -= char_name_box.size.height/4
+            titleBoxLabel.fontSize = char_name_box.size.width/19
+            //titleBoxLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
+            titleBoxLabel.fontColor = .black
+            char_name_box.addChild(titleBoxLabel)
         
         // MessageBox left Root
         let leftRoot = SKSpriteNode()
@@ -236,6 +259,11 @@ class CharacterMenuScene:SKScene{
             msgGreenButton.position.y = -txtBox.size.height
             msgGreenButton.position.x = rightRoot.size.width/2
             rightRoot.addChild(msgGreenButton)
+        let gbuttonLabel = SKLabelNode(fontNamed: "Family Guy")
+            gbuttonLabel.position.y += msgGreenButton.size.height/2 - 3
+            gbuttonLabel.fontSize = msgGreenButton.size.width/7
+            gbuttonLabel.text = "Selected"
+            msgGreenButton.addChild(gbuttonLabel)
         
         // Blue Button
         let msgBlueButton = SKSpriteNode()
@@ -248,6 +276,11 @@ class CharacterMenuScene:SKScene{
             msgBlueButton.position.x = rightRoot.size.width/2
             msgBlueButton.isHidden = true
             rightRoot.addChild(msgBlueButton)
+        let bbuttonLabel = SKLabelNode(fontNamed: "Family Guy")
+            bbuttonLabel.position.y += msgBlueButton.size.height/2 - 3
+            bbuttonLabel.fontSize = msgBlueButton.size.width/7
+            bbuttonLabel.text = "Equip"
+            msgBlueButton.addChild(bbuttonLabel)
         
         update(Case: .UpdateTexture) // update toon texture
     }
@@ -336,6 +369,9 @@ class CharacterMenuScene:SKScene{
     
     private func updateToonUI(toon:CurrToon){
         let msgbox = self.childNode(withName: Global.Main.Character_Menu_MessageBox.rawValue)!
+        let charBoxName = msgbox.childNode(withName: "char_name_box")!
+        let nameBoxLabel = charBoxName.childNode(withName: "nameBoxLabel") as! SKLabelNode
+        let titleBoxLabel = charBoxName.childNode(withName: "titleBoxLabel") as! SKLabelNode
         let msgboxRightRoot = msgbox.childNode(withName: "character_menu_rightRoot")!
         let textbox = msgboxRightRoot.childNode(withName: "character_menu_text_box")
         let fbox = textbox?.childNode(withName: "character_menu_firstlinebox")
@@ -361,6 +397,10 @@ class CharacterMenuScene:SKScene{
             flabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[0]
             slabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[1]
             tlabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[2]
+        
+        // Update Name & Title
+            nameBoxLabel.text = gameinfo.getNameOfToonByIndex(index: toon.rawValue)
+            titleBoxLabel.text = gameinfo.getTitleOfToonByIndex(index: toon.rawValue)
     }
     private func nextArrow(currToon:CurrToon){
         currToonIndex = currToon.rawValue + 1

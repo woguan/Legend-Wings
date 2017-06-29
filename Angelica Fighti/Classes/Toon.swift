@@ -33,6 +33,8 @@ class Toon{
     private var experience:CGFloat = 0
     private var level:Int = 0
     private var charType:Character
+    private var charName:String = "None"
+    private var title:String = "None"
     
 
     
@@ -99,6 +101,8 @@ class Toon{
         self.level = infoDict.value(forKey: "Level") as! Int
         self.experience = infoDict.value(forKey: "Experience") as! CGFloat
         self.description = infoDict.value(forKey: "Description") as! [String]
+        self.title = infoDict.value(forKey: "Title") as! String
+        self.charName = infoDict.value(forKey: "Name") as! String
         
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width/4, height: node.size.height/2))
         node.physicsBody!.isDynamic = true // allow physic simulation to move it
@@ -126,4 +130,12 @@ class Toon{
         return description
     }
     
+    internal func getToonName() -> String{
+        //return charType.rawValue
+        return charName
+    }
+    
+    internal func getToonTitle() -> String{
+        return title
+    }
 }

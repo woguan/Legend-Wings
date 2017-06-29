@@ -18,6 +18,10 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
+			<key>Name</key>
+			<string>None</string>
+			<key>Title</key>
+			<string>None</string>
 			<key>Description</key>
 			<array>
 				<string>She was born in the wilds and</string>
@@ -35,6 +39,10 @@
 		<dict>
 			<key>Purchased</key>
 			<true/>
+			<key>Name</key>
+			<string>ALPHA</string>
+			<key>Title</key>
+			<string>GUARDIAN OF DRAGONS</string>
 			<key>Description</key>
 			<array>
 				<string>She was born in the wilds and</string>
@@ -52,6 +60,10 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
+			<key>Name</key>
+			<string>BETA</string>
+			<key>Title</key>
+			<string>GUARDIAN OF ADVENTURE</string>
 			<key>Description</key>
 			<array>
 				<string>Renowned, explorer, inventor, and</string>
@@ -69,6 +81,10 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
+			<key>Name</key>
+			<string>CELTA</string>
+			<key>Title</key>
+			<string>GUARDIAN OF TWILIGHT</string>
 			<key>Description</key>
 			<array>
 				<string>A mysterious loner, with a dark</string>
@@ -86,6 +102,10 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
+			<key>Name</key>
+			<string>DELTA</string>
+			<key>Title</key>
+			<string>GUARDIAN OF FORTUNE</string>
 			<key>Description</key>
 			<array>
 				<string>A master Alchemist and Mage of</string>

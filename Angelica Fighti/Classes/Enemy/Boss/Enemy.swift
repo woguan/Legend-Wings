@@ -48,15 +48,6 @@ class EnemyModel: NSObject{
         enemyModel = SKSpriteNode()
         bossType = .None
         
-        if enemyType == .Boss{
-            let r = randomInt(min: 0, max: 100)
-            if r < 50{
-                bossType = .Bomber
-            }
-            else{
-                bossType = .Pinky
-            }
-        }
         super.init()
     }
     
@@ -67,12 +58,15 @@ class EnemyModel: NSObject{
             enemyModel = RegularEnemy(baseHp: 100.0)
     
         case .Boss:
-            if bossType == .Bomber{
-                enemyModel = Bomber(hp: 1000)
-            }
-            else if bossType == .Pinky{
-                enemyModel = Pinky(hp: 1000.0, lives: 2, isClone: false)
-            }
+            let r = randomInt(min: 0, max: 100)
+                if r < 50{
+                    bossType = .Bomber
+                    enemyModel = Bomber(hp: 1000)
+                }
+                else{
+                    bossType = .Pinky
+                    enemyModel = Pinky(hp: 1000.0, lives: 2, isClone: false)
+                }
             
         case .Fireball:
             enemyModel = Fireball(target: (delegate?.getCurrentToonNode())!)
