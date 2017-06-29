@@ -17,14 +17,25 @@
   - [✔️] Add Pinky Boss Sprites
   - [✔️] Add Pinky Boss Actions
 - [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
-- [] Add particle effects when selecting character
+- [✔️] Add particle effects when selecting character - <b>06/29/2017</b>
 - [] "Fix" and find a better logic for the top bar which displays account progress
 - [] Re-implement logic to increase enemies' HP and Velocity over time. 
+
+## Future Implementations:
+- [] Add upgradable bullets for characters:
+  - [] Alpha
+  - [] Beta
+  - [] Celta
+  - [] Delta
+- [] Add Purchase Function
+- [] Add Upgrade Bullet Function
+- [] Display current level of bullet and its image on Character Scene
+- [] Add customized font ttf for Gold Label with OpenGL shader
+- [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
 - [] Add Power-Ups
   - [] Imune Item
   - [] Increase Fire Power
   - [] Double Shoot
-- [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
 - [] Add Unit Test
 
 ## Known Bugs:
