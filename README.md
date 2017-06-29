@@ -14,7 +14,7 @@
 - [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
   - [✔️] Add Pinky Boss Sprites
   - [✔️] Add Pinky Boss Actions
-- [] Add Labels in Character Selection
+- [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
 - [] Add particle effects when selecting character
 - [] "Fix" and find a better logic for the top bar which displays account progress
 - [] Re-implement logic to increase enemies' HP and Velocity over time. 
