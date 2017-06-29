@@ -21,12 +21,12 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - [] Add customized font ttf for Gold Label with OpenGL shader
 
 ## Future Implementations:
-- [] Add upgradable bullets for characters:
-  - [] Alpha
-    - [] Test
-  - [] Beta
-  - [] Celta
-  - [] Delta
+- [] Add new bullets for characters:
+   - [] Add Alpha Bullet Sprites
+   - [] Add Beta Bullet Sprites
+   - [] Add Celta Bullet Sprites
+   - [] Add Delta Bullet Sprites
+   - [] Add Class to create custom bullet sprite
 - [] Add Purchase Function
 - [] Add Upgrade Bullet Function
 - [] Display current level of bullet and its image on Character Scene
