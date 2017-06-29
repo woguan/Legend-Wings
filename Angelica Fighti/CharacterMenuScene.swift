@@ -76,7 +76,7 @@ class CharacterMenuScene:SKScene{
             titleLabel.text = "EVERWING ACADEMY"
             titleLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
             titleLabel.fontSize = screenSize.width/28
-            title.addChild(titleLabel)
+            title.addChild(titleLabel.shadowNode())
         
         self.addChild(title)
         
@@ -114,7 +114,8 @@ class CharacterMenuScene:SKScene{
         // Selected Char
         let selected = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_GlowingEffect))
             selected.name = Global.Main.Character_Menu_GlowingEffect.rawValue
-            selected.position.y = -45
+            selected.position.y = -48
+            selected.alpha = 0.7
         self.addChild(selected)
         
         // Ground Effect
@@ -122,7 +123,6 @@ class CharacterMenuScene:SKScene{
         let scaleY = SKAction.scaleY(to: -0.4, duration: 0)
         let scaleX = SKAction.scaleX(to: 1.8, duration: 0)
         let distort = SKAction.sequence([scaleX, scaleY])
-      
             gEffect.name = Global.Main.Character_Menu_GroundEffect.rawValue
             gEffect.position.y = -130
             gEffect.run(distort)
@@ -361,7 +361,7 @@ class CharacterMenuScene:SKScene{
             self.childNode(withName: Global.Main.Character_Menu_GroundEffect.rawValue)!.isHidden = false
             msgboxRightRoot.childNode(withName: Global.Main.Character_Menu_BlueButton.rawValue)!.isHidden = true
             msgboxRightRoot.childNode(withName: Global.Main.Character_Menu_GreenButton.rawValue)!.isHidden = false
-        
+            selectedCharAnimation()
         case .UpdateTexture:
             updateToonUI(toon: toon!)
         }
@@ -422,5 +422,48 @@ class CharacterMenuScene:SKScene{
         update(Case: .ToonChanged)
     }
     
-   
+    private func selectedCharAnimation(){
+        let yPos:CGFloat = -charNode.size.height/3
+        
+        let removeChildAction = SKAction.sequence([SKAction.wait(forDuration: 2.0), SKAction.removeFromParent()])
+        let effect1 = SKEmitterNode(fileNamed: "selectedChar-One.sks")
+        effect1?.position.y = yPos
+        effect1?.position.x = -50
+        effect1?.run(removeChildAction)
+        effect1?.zPosition = -1.0
+        addChild(effect1!)
+        
+        let effect2 = SKEmitterNode(fileNamed: "selectedChar-One.sks")
+        effect2?.position.y = yPos
+        effect2?.position.x = 50
+        effect2?.run(removeChildAction)
+        effect2?.zPosition = -1.0
+        effect2?.emissionAngle = 0.698132 // Double.pi/180 * 40
+        effect2?.xAcceleration = -550
+        addChild(effect2!)
+        
+        let effect3 = SKEmitterNode(fileNamed: "selectedChar-Two.sks")
+        effect3?.position.y = yPos
+        effect3?.run(removeChildAction)
+        effect3?.zPosition = 0.0
+        addChild(effect3!)
+        
+        let effect4 = SKEmitterNode(fileNamed: "selectedChar-Three.sks")
+        effect4?.position.y = yPos
+        effect4?.position.x = -30
+        effect4?.run(removeChildAction)
+        effect4?.zPosition = 1.0
+        addChild(effect4!)
+        
+        let effect5 = SKEmitterNode(fileNamed: "selectedChar-Three.sks")
+        effect5?.position.y = yPos
+        effect5?.position.x = 30
+        effect5?.run(removeChildAction)
+        effect5?.zPosition = 1.0
+        effect5?.emissionAngle = CGFloat(Double.pi/180 * 80)
+        effect5?.xAcceleration = -400
+        addChild(effect5!)
+        
+    }
+    
 }

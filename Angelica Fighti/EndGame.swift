@@ -47,10 +47,6 @@ class EndGame: SKScene {
         label.text = String(newCoinAmount)
         self.addChild(label)
         
-        
-       // let scene = MainScene(size: self.size)
-       // self.view?.presentScene(scene)
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

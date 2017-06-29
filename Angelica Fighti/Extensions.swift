@@ -167,6 +167,19 @@ extension SKScene{
     }
 }
 
+extension SKLabelNode{
+    func shadowNode() -> SKEffectNode{
+        
+        let myShader = SKShader(fileNamed: "gradientMonoTone")
+        
+        let effectNode = SKEffectNode()
+        effectNode.shader = myShader
+        effectNode.shouldEnableEffects = true
+        effectNode.addChild(self)
+        return effectNode
+    }
+}
+
 /*RANDOM FUNCTIONS */
 
 func random() -> CGFloat {
