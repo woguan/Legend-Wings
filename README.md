@@ -47,6 +47,7 @@
 - [✔️] Added Backup Logic
 - [✔️] Added Progress Track
 - [✔️] Added Singleton Global to access all Sprites
+- [✔️] Adding shader to fonts (OpenGL)
 - [✔️] Removed Main.storyboard for faster build time
 
   
