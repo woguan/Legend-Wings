@@ -168,7 +168,7 @@ extension SKScene{
 }
 
 extension SKLabelNode{
-    func shadowNode() -> SKEffectNode{
+    func shadowNode(nodeName:String) -> SKEffectNode{
         
         let myShader = SKShader(fileNamed: "gradientMonoTone")
         
@@ -176,6 +176,7 @@ extension SKLabelNode{
         effectNode.shader = myShader
         effectNode.shouldEnableEffects = true
         effectNode.addChild(self)
+        effectNode.name = nodeName
         return effectNode
     }
 }

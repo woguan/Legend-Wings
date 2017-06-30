@@ -74,9 +74,9 @@ class CharacterMenuScene:SKScene{
         
         let titleLabel = SKLabelNode(fontNamed: "Family Guy")
             titleLabel.text = "EVERWING ACADEMY"
-            titleLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
+            titleLabel.fontColor = SKColor(red: 254/255, green: 189/255, blue: 62/255, alpha: 1)
             titleLabel.fontSize = screenSize.width/28
-            title.addChild(titleLabel.shadowNode())
+            title.addChild(titleLabel.shadowNode(nodeName: "titleEffectNodeLabel"))
         
         self.addChild(title)
         
@@ -122,7 +122,7 @@ class CharacterMenuScene:SKScene{
         let gEffect = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_GroundEffect))
         let scaleY = SKAction.scaleY(to: -0.4, duration: 0)
         let scaleX = SKAction.scaleX(to: 1.8, duration: 0)
-        let distort = SKAction.sequence([scaleX, scaleY])
+        let distort = SKAction.group([scaleX, scaleY])
             gEffect.name = Global.Main.Character_Menu_GroundEffect.rawValue
             gEffect.position.y = -130
             gEffect.run(distort)
@@ -142,21 +142,19 @@ class CharacterMenuScene:SKScene{
             char_name_box.name = "char_name_box"
             char_name_box.position.y = msgBox.size.height/2
             msgBox.addChild(char_name_box)
-        let nameBoxLabel = SKLabelNode(fontNamed: "Qebab Shadow FFP")
+        let nameBoxLabel = SKLabelNode(fontNamed: "Cartwheel")
             nameBoxLabel.name = "nameBoxLabel"
             nameBoxLabel.text = "ALPHA"
             nameBoxLabel.fontSize = char_name_box.size.width/10
-            //nameBoxLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
-            nameBoxLabel.fontColor = .black
-            char_name_box.addChild(nameBoxLabel)
-        let titleBoxLabel = SKLabelNode(fontNamed: "Qebab Shadow FFP")
+            nameBoxLabel.fontColor = SKColor(red: 254/255, green: 189/255, blue: 62/255, alpha: 1)
+            char_name_box.addChild(nameBoxLabel.shadowNode(nodeName: "nameBoxLabel"))
+        let titleBoxLabel = SKLabelNode(fontNamed: "Cartwheel")
             titleBoxLabel.name = "titleBoxLabel"
             titleBoxLabel.text = "GUARDIAN OF DRAGONS"
             titleBoxLabel.position.y -= char_name_box.size.height/4
-            titleBoxLabel.fontSize = char_name_box.size.width/19
-            //titleBoxLabel.fontColor = SKColor(red: 255/255, green: 146/255, blue: 35/255, alpha: 1)
-            titleBoxLabel.fontColor = .black
-            char_name_box.addChild(titleBoxLabel)
+            titleBoxLabel.fontSize = char_name_box.size.width/14
+            titleBoxLabel.fontColor = SKColor(red: 254/255, green: 189/255, blue: 62/255, alpha: 1)
+            char_name_box.addChild(titleBoxLabel.shadowNode(nodeName: "titleBoxLabel"))
         
         // MessageBox left Root
         let leftRoot = SKSpriteNode()
@@ -259,9 +257,9 @@ class CharacterMenuScene:SKScene{
             msgGreenButton.position.y = -txtBox.size.height
             msgGreenButton.position.x = rightRoot.size.width/2
             rightRoot.addChild(msgGreenButton)
-        let gbuttonLabel = SKLabelNode(fontNamed: "Family Guy")
-            gbuttonLabel.position.y += msgGreenButton.size.height/2 - 3
-            gbuttonLabel.fontSize = msgGreenButton.size.width/7
+        let gbuttonLabel = SKLabelNode(fontNamed: "Cartwheel")
+            gbuttonLabel.position.y += msgGreenButton.size.height*0.377
+            gbuttonLabel.fontSize = msgGreenButton.size.width/5
             gbuttonLabel.text = "Selected"
             msgGreenButton.addChild(gbuttonLabel)
         
@@ -276,9 +274,9 @@ class CharacterMenuScene:SKScene{
             msgBlueButton.position.x = rightRoot.size.width/2
             msgBlueButton.isHidden = true
             rightRoot.addChild(msgBlueButton)
-        let bbuttonLabel = SKLabelNode(fontNamed: "Family Guy")
-            bbuttonLabel.position.y += msgBlueButton.size.height/2 - 3
-            bbuttonLabel.fontSize = msgBlueButton.size.width/7
+        let bbuttonLabel = SKLabelNode(fontNamed: "Cartwheel")
+            bbuttonLabel.position.y += msgBlueButton.size.height*0.377
+            bbuttonLabel.fontSize = msgBlueButton.size.width/5
             bbuttonLabel.text = "Equip"
             msgBlueButton.addChild(bbuttonLabel)
         
@@ -370,8 +368,10 @@ class CharacterMenuScene:SKScene{
     private func updateToonUI(toon:CurrToon){
         let msgbox = self.childNode(withName: Global.Main.Character_Menu_MessageBox.rawValue)!
         let charBoxName = msgbox.childNode(withName: "char_name_box")!
-        let nameBoxLabel = charBoxName.childNode(withName: "nameBoxLabel") as! SKLabelNode
-        let titleBoxLabel = charBoxName.childNode(withName: "titleBoxLabel") as! SKLabelNode
+        let nameBoxLabelEffect = charBoxName.childNode(withName: "nameBoxLabel") as! SKEffectNode
+        let nameBoxLabel = nameBoxLabelEffect.childNode(withName: "nameBoxLabel") as! SKLabelNode
+        let titleBoxLabelEffect = charBoxName.childNode(withName: "titleBoxLabel") as! SKEffectNode
+        let titleBoxLabel = titleBoxLabelEffect.childNode(withName: "titleBoxLabel") as! SKLabelNode
         let msgboxRightRoot = msgbox.childNode(withName: "character_menu_rightRoot")!
         let textbox = msgboxRightRoot.childNode(withName: "character_menu_text_box")
         let fbox = textbox?.childNode(withName: "character_menu_firstlinebox")

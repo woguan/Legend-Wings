@@ -350,6 +350,8 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         case .EnemyGotHit:
             // FX when enemy is hit
             let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: highNode.position.x, y: highNode.position.y)
+            //let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: 0, y: -lowNode.size.height/2)
+            //effect.targetNode = lowNode
             self.addChild(effect)
             // update enemy
             if lowNode.name!.contains("Regular"){

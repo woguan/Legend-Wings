@@ -63,7 +63,7 @@ struct Projectile {
         let effect = SKEmitterNode(fileNamed: "bulling.sks")
         effect!.position = CGPoint(x: posX, y: posY)
         
-        effect!.run(SKAction.sequence([SKAction.wait(forDuration: TimeInterval(effect!.particleLifetime)), SKAction.removeFromParent()]))
+        effect!.run(SKAction.sequence([SKAction.wait(forDuration: Double(effect!.particleLifetime)), SKAction.removeFromParent()]))
         return effect!
     }
     
