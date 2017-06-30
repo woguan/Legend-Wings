@@ -21,6 +21,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - [] Add customized font ttf for Gold Label with OpenGL shader
 
 ## Future Implementations:
+- [] Add new regular monsters
 - [] Add new bullets for characters:
    - [] Add Alpha Bullet Sprites
    - [] Add Beta Bullet Sprites
