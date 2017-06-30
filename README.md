@@ -44,22 +44,22 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - Characters are too big in smaller devices. This is known issue due for using "fixed" size. It will be fixed later on.
 
 ## Main Accomplishments:
-- [✔️] Added for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
+- [✔️] Add support for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
 - [✔️] Preload Textures
-  - [✔️] Added progress bar
-  - [✔️] Divided Atlas into smaller atlas
+  - [✔️] Add progress bar
+  - [✔️] Divide Atlas into smaller atlas
 - [✔️] Coin System
 - [✔️] Character Selection
   - [✔️] Alpha
   - [✔️] Beta
   - [✔️] Celta
   - [✔️] Delta
-- [✔️] Added Backup Logic
-- [✔️] Added Progress Track
-- [✔️] Added Singleton Global to access all Sprites
-- [✔️] Adding shader to fonts (OpenGL)
-- [✔️] Removed Main.storyboard for faster build time
-- [✔️] Added Bomber Boss in-game
+- [✔️] Add Backup Logic
+- [✔️] Add Progress Track
+- [✔️] Add Singleton Global to access all Sprites
+- [✔️] Add shader to fonts (OpenGL)
+- [✔️] Remove Main.storyboard for faster build time
+- [✔️] Add Bomber Boss in-game
 - [✔️] Add Pinky Boss in-game - <b>06/28/2017</b>
   - [✔️] Add Pinky Boss Sprites
   - [✔️] Add Pinky Boss Actions
