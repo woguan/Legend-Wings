@@ -36,6 +36,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
   - [] Imune Item
   - [] Increase Fire Power
   - [] Double Shoot
+- [] Add Game Over Scene
 - [] Add Unit Test
 
 ## Discovered Bugs:
