@@ -16,9 +16,11 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 
 ## TODO list:
 
-- [] "Fix" and find a better logic for the top bar which displays account progress
+- [*] "Fix" and find a better logic for the top bar which displays account progress
 - [] Re-implement logic to increase enemies' HP and Velocity over time 
-- [] Add customized font ttf for Gold Label with OpenGL shader
+- [✔️] Add customized font ttf for Gold Label with OpenGL shader
+
+[*] = Working [✔️] = Done
 
 ## Future Implementations:
 - [] Add new regular monsters
