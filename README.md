@@ -24,36 +24,36 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 
 ## Future Implementations:
 - ### One step before going to TODO List (Order does not matter):
-- [] Add new bullets for characters:
-   - [] Add Alpha Bullet Sprites
-   - [] Add Beta Bullet Sprites
-   - [] Add Celta Bullet Sprites
-   - [] Add Delta Bullet Sprites
-   - [] Add Class to create custom bullet sprite
-- [] Add Bullet Power Logic
-- [] Add Upgrade Bullet Function
-- [] Display current level of bullet and its image on Character Scene
+   - [] Add new bullets for characters:
+    - [] Add Alpha Bullet Sprites
+    - [] Add Beta Bullet Sprites
+    - [] Add Celta Bullet Sprites
+    - [] Add Delta Bullet Sprites
+    - [] Add Class to create custom bullet sprite
+   - [] Add Bullet Power Logic
+   - [] Add Upgrade Bullet Function
+   - [] Display current level of bullet and its image on Character Scene
 
 - ### High Priority (Order does not matter):
-- [] Add Power-Ups
-   - [] Imune Item
-   - [] Increase Fire Power
-   - [] Double Shoot
-- [] Add new regular monsters
-- [] Add new Boss
+   - [] Add Power-Ups
+    - [] Imune Item
+    - [] Increase Fire Power
+    - [] Double Shoot
+   - [] Add new regular monsters
+   - [] Add new Boss
 
-### Low Priority (Order does not matter):
-- [] Add Level&Exp System for Account
-   - [] Customized UI Progress Bar
-   - [] Show level on the Badge
-   - [] Show Current Percentage on the Badge
-- [] Add Purchase Character Function
-- [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
-- [] Add better effect for character's death
-- [] Add sound when Fireball is incoming
-- [] Pinky constant speed
-- [] Add Game Over Scene
-- [] Add Unit Test
+- ### Low Priority (Order does not matter):
+   - [] Add Level&Exp System for Account
+      - [] Customized UI Progress Bar
+      - [] Show level on the Badge
+      - [] Show Current Percentage on the Badge
+   - [] Add Purchase Character Function
+   - [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
+   - [] Add better effect for character's death
+   - [] Add sound when Fireball is incoming
+   - [] Pinky constant speed
+   - [] Add Game Over Scene
+   - [] Add Unit Test
 
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
