@@ -23,7 +23,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
-### One step before going to TODO List (Order does not matter):
+-- ### One step before going to TODO List (Order does not matter):
 - [] Add new bullets for characters:
    - [] Add Alpha Bullet Sprites
    - [] Add Beta Bullet Sprites
