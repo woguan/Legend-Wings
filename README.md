@@ -40,13 +40,13 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
    - [] Increase Fire Power
    - [] Double Shoot
 - [] Add new regular monsters
+- [] Add new Boss
 
 ### Low Priority (Order does not matter):
 - [] Add Level&Exp System for Account
    - [] Customized UI Progress Bar
    - [] Show level on the Badge
    - [] Show Current Percentage on the Badge
-- [] Add new Boss
 - [] Add Purchase Character Function
 - [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
 - [] Add better effect for character's death
