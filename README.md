@@ -23,9 +23,9 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
-# One step before going to TODO List (Order does not matter):
+### One step before going to TODO List (Order does not matter):
 
-# High Priority (Order does not matter):
+### High Priority (Order does not matter):
 - [] Add Power-Ups
   - [] Imune Item
   - [] Increase Fire Power
@@ -36,7 +36,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
    - [] Add Celta Bullet Sprites
    - [] Add Delta Bullet Sprites
    - [] Add Class to create custom bullet sprite
-# Low Priority (Order does not matter):
+### Low Priority (Order does not matter):
 - [] Add new regular monsters
 - [] Add Purchase Function
 - [] Add Upgrade Bullet Function
