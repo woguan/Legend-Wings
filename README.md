@@ -41,6 +41,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
     - [] Double Shoot
    - [] Add new regular monsters
    - [] Add new Boss
+   - [] Add new drops from monsters (diamonds, trophy)
 
 - ### Low Priority (Order does not matter):
    - [] Add Level&Exp System for Account
