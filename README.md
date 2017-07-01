@@ -23,7 +23,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
--- ### One step before going to TODO List (Order does not matter):
+- ### One step before going to TODO List (Order does not matter):
 - [] Add new bullets for characters:
    - [] Add Alpha Bullet Sprites
    - [] Add Beta Bullet Sprites
@@ -34,7 +34,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - [] Add Upgrade Bullet Function
 - [] Display current level of bullet and its image on Character Scene
 
-### High Priority (Order does not matter):
+- ### High Priority (Order does not matter):
 - [] Add Power-Ups
    - [] Imune Item
    - [] Increase Fire Power
