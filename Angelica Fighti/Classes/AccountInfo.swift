@@ -67,7 +67,7 @@ class AccountInfo{
         return true
     }
     
-    internal func getGoldAmount() -> Int{
+    internal func getGoldBalance() -> Int{
         return self.gold
     }
     

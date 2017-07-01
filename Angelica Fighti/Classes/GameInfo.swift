@@ -65,7 +65,6 @@ class GameInfo: GameInfoDelegate{
         gamestate = .NoState
         timePerWave = 3.0 // 3.0 is default
         infobar = Infobar(name: "infobar")
-        
         // delegates
         regular_enemies.delegate = self
         boss.delegate = self
@@ -85,6 +84,8 @@ class GameInfo: GameInfoDelegate{
             return (false, "account error")
         }
         
+        // update infobar
+        infobar.updateGoldBalnceLabel(balance: account.getGoldBalance())
         addChild(infobar)
         
         loadStatus = self.createWalls(leftXBound: 0, rightXBound:screenSize.width, width: 50, height: screenSize.height)

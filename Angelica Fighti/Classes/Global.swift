@@ -407,7 +407,6 @@ class Global {
         
         self.serialQueue.async {
             
-            print("before current: ", self.currentFilesLoaded)
             let nc = NotificationCenter.default
             
             // Checkmark
@@ -419,8 +418,6 @@ class Global {
                 nc.post(name: Notification.Name("ProgressNotification"), object: nil, userInfo: ["Left":left])
             }
             
-            
-            print("current: ", self.currentFilesLoaded)
             // Send Notification if all loaded
             if self.currentFilesLoaded == self.totalFilesToLoad {
                 let nfname = Notification.Name("PreloadNotification")
