@@ -12,7 +12,7 @@ class RegularEnemy:SKSpriteNode{
     
     
     private var currency:Currency = Currency(type: .Coin)
-    private var velocity = CGVector(dx: 0, dy: -400)
+    private var velocity = CGVector.zero
     
     private var actionsDead:[SKTexture] = []
     private var enemy_regular_node:SKSpriteNode?
@@ -21,7 +21,7 @@ class RegularEnemy:SKSpriteNode{
     
     private let minionSize = CGSize(width: screenSize.width*0.95/5, height: screenSize.width*0.95/5)
     
-    convenience init(baseHp:CGFloat){
+    convenience init(baseHp:CGFloat, speed:CGVector){
         self.init()
 
         name = "Enemy_Regular_Box"
@@ -34,7 +34,7 @@ class RegularEnemy:SKSpriteNode{
         
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
         
-        velocity = CGVector(dx: 0, dy: -350)
+        velocity = speed
         currency  = Currency(type: .Coin)
         
         actionsDead = global.getTextures(textures: .Puff_Animation)
@@ -121,13 +121,13 @@ class RegularEnemy:SKSpriteNode{
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
     }
     
-    internal func raiseBaseHp(byValue val: CGFloat){
-        self.maxHp = maxHp + val
-    }
-    
-    internal func raiseVelocity(byValue val: CGFloat){
-        velocity.dy -= val
-    }
+//    internal func raiseBaseHp(byValue val: CGFloat){
+//        self.maxHp = maxHp + val
+//    }
+//    
+//    internal func raiseVelocity(byValue val: CGFloat){
+//        velocity.dy -= val
+//    }
     
     internal func defeated(sknode:SKSpriteNode){
         sknode.physicsBody?.categoryBitMask = PhysicsCategory.None

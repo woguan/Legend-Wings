@@ -193,7 +193,7 @@ class GameInfo: GameInfoDelegate{
                 
                 mainscene.run(SKAction.sequence([SKAction.run(moveDownCloud, onChildWithName: Global.Main.StartCloud_1.rawValue + "0"), SKAction.wait(forDuration: 0.4), SKAction.run(moveDownCloud, onChildWithName: Global.Main.StartCloud_2.rawValue + "1"), SKAction.wait(forDuration: 0.4), SKAction.run(moveDownCloud, onChildWithName: Global.Main.StartCloud_1.rawValue + "2"), SKAction.wait(forDuration: 0.4), SKAction.run(moveDownCloud, onChildWithName: Global.Main.StartCloud_2.rawValue + "3")]))
                 
-                mainscene.run(SKAction.sequence([buildingsAction, SKAction.wait(forDuration: 3), SKAction.run{self.changeGameState(.WaitingState)
+                mainscene.run(SKAction.sequence([buildingsAction, SKAction.wait(forDuration: 3), SKAction.run{self.changeGameState(.Spawning)
                     }, SKAction.wait(forDuration: 0.2), SKAction.run { self.account.getCurrentToon().getNode().run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
 
                         self.addChild(self.account.getCurrentToon().getBullet().shoot())
@@ -217,7 +217,7 @@ class GameInfo: GameInfoDelegate{
             
             //totalWaves
             //wavesForNextLevel
-            let spawnAction = SKAction.repeat(action, count: wavesForNextLevel)
+            let spawnAction = SKAction.repeat(action, count: 1)
             let endAction = SKAction.run(didFinishSpawningEnemy)
             
             mainscene.run(SKAction.sequence([spawnAction, endAction]))

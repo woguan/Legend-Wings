@@ -350,12 +350,10 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         case .EnemyGotHit:
             // FX when enemy is hit
             let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: highNode.position.x, y: highNode.position.y)
-            //let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: 0, y: -lowNode.size.height/2)
-            //effect.targetNode = lowNode
             self.addChild(effect)
             // update enemy
             
-             destroy(sknode: highNode)
+            destroy(sknode: highNode)
             if lowNode.name!.contains("Regular"){
                 regular.decreaseHP(ofTarget: lowNode, hitBy: highNode)
             }
@@ -401,7 +399,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     }
     
     func destroy(sknode: SKSpriteNode){
-        
+        sknode.physicsBody?.categoryBitMask = PhysicsCategory.None
         sknode.removeAllActions()
         sknode.removeFromParent()
     }

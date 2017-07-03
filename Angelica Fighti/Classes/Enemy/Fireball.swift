@@ -11,21 +11,22 @@ import SpriteKit
 class Fireball:SKSpriteNode {
     
     private var currency:Currency = Currency(type: .Coin)
-    private var velocity = CGVector(dx: 0, dy: -400)
+    private var velocity = CGVector.zero
     private var target:SKSpriteNode?
     
-    convenience init(target:SKSpriteNode){
+    convenience init(target:SKSpriteNode, speed:CGVector){
         self.init()
         self.target = target
         name = "Enemy_Fireball"
         size = CGSize(width: screenSize.size.width/5, height: screenSize.height/5)
         position = CGPoint.zero
-        userData = NSMutableDictionary()
-        self.hp = 10.0
-        self.maxHp = 10.0
-        
-        currency  = Currency(type: .None)
+        velocity = speed
 
+        
+        userData = NSMutableDictionary()
+        hp = 10.0
+        maxHp = 10.0
+        currency  = Currency(type: .None)
         initialSetup()
         applyAI()
     }

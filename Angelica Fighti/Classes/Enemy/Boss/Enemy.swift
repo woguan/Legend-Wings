@@ -16,11 +16,11 @@ class EnemyModel: NSObject{
         print("Enemy Class Deinitiated")
     }
     
-    enum EnemyType{
-        case Boss
-        case Regular
-        case Fireball
-        case Special
+    enum EnemyType: String{
+        case Boss = "Boss Type"
+        case Regular = "Regular Type"
+        case Fireball = "Fireball Type"
+        case Special = "Special Type"
     }
     
     enum BossType{
@@ -35,10 +35,16 @@ class EnemyModel: NSObject{
     private var enemyModel:SKSpriteNode!
     private var currency:Currency?
     private var bossType:BossType
+    private var BossBaseHP:CGFloat = 1500.0
+    private var RegularBaseHP:CGFloat = 100.0
     
-    private var baseHP:CGFloat = 0
-    private var velocity:CGVector = CGVector.zero
     
+    private var velocity:CGVector = CGVector(dx: 0, dy: -350)
+    
+    
+    // Boss Variables - Implement later
+    private let PinkyPercentage:Int = 100
+    private let BomberPercentage:Int = 0
     
     var delegate:GameInfoDelegate?
     
@@ -55,22 +61,20 @@ class EnemyModel: NSObject{
         
         switch enemyType {
         case .Regular:
-            enemyModel = RegularEnemy(baseHp: 100.0)
-    
+            enemyModel = RegularEnemy(baseHp: RegularBaseHP, speed: velocity)
         case .Boss:
-            let r = randomInt(min: 0, max: 100)
-                if r < 50{
+            let chance = randomInt(min: 0, max: 100)
+                if chance < 50{
                     bossType = .Bomber
-                    enemyModel = Bomber(hp: 2000)
+                    enemyModel = Bomber(hp: BossBaseHP)
                 }
                 else{
                     bossType = .Pinky
-                    enemyModel = Pinky(hp: 2000.0, lives: 2, isClone: false)
+                    enemyModel = Pinky(hp: BossBaseHP, lives: 2, isClone: false)
                 }
             
         case .Fireball:
-            enemyModel = Fireball(target: (delegate?.getCurrentToonNode())!)
-
+            enemyModel = Fireball(target: (delegate?.getCurrentToonNode())!, speed: velocity)
         default:
             break
         }
@@ -82,14 +86,14 @@ class EnemyModel: NSObject{
         // Increase HP & Speed
         switch enemyType {
         case .Regular:
-            guard let model = enemyModel as? RegularEnemy else{
-                print("FAIL TO CAST")
-                return
-            }
-            model.raiseBaseHp(byValue: 100)
-            model.raiseVelocity(byValue: 100)
+            RegularBaseHP += 50
+            velocity.dy -= 25
+        case .Boss:
+            BossBaseHP += 500
+        case .Fireball:
+            velocity.dy -= 50
         default:
-            print("no increase")
+            print("No increase for \(enemyType.rawValue)")
         }
     }
     
@@ -99,23 +103,20 @@ class EnemyModel: NSObject{
             return
         }
         
-        hitBy.physicsBody?.categoryBitMask = PhysicsCategory.None
         ofTarget.hp = ofTarget.hp - hitBy.power
-        
         
         if (hitBy.name == "bullet"){
             
             let percentage = ofTarget.hp > 0.0 ? ofTarget.hp/ofTarget.maxHp : 0.0
             
-            
-            let bar = enemyHpBar.childNode(withName: "hpBorder")! as! SKShapeNode
-            let originalBarSize = bar.frame.width * 0.98 // Note: barSize = 0.98 * border
-            
+            let originalBarSize = enemyHpBar.parent!.frame.size.width * 0.882 // Note: barSize = parent's width * 0.9 * 0.98
+
             enemyHpBar.run(SKAction.resize(toWidth: originalBarSize * percentage, duration: 0.03))
           
             update(sknode: ofTarget)
             
             if (ofTarget.hp <= 0){
+                ofTarget.physicsBody?.categoryBitMask = PhysicsCategory.None
                 enemyHpBar.removeFromParent()
                 explode(sknode: ofTarget)
                 return
@@ -125,8 +126,6 @@ class EnemyModel: NSObject{
                     enemyHpBar.isHidden = false
                 }
             }
-        
-            
         }
         
     }
@@ -190,7 +189,7 @@ class EnemyModel: NSObject{
                 minion.multiply()
                 
                 let mainBoss = enemyModel as! Pinky
-                
+                print("calling is defeated....")
                 if mainBoss.isDefeated(){
                     self.delegate?.changeGameState(.WaitingState)
                 }
