@@ -15,33 +15,30 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## TODO list:
-
-
+  - [] Add new bullets for characters:
+     - [*] Add Alpha Bullet Sprites
+     - [] Add Beta Bullet Sprites
+     - [] Add Celta Bullet Sprites
+     - [] Add Delta Bullet Sprites
+     - [*] Add Class to create custom bullet sprite
+  - [] Add Bullet Power Logic
+  - [] Add Upgrade Bullet Function
+  - [] Display current level of bullet and its image on Character Scene
 
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
-   - [] Add new bullets for characters:
-      - [] Add Alpha Bullet Sprites
-      - [] Add Beta Bullet Sprites
-      - [] Add Celta Bullet Sprites
-      - [] Add Delta Bullet Sprites
-      - [] Add Class to create custom bullet sprite
-   - [] Add Bullet Power Logic
-   - [] Add Upgrade Bullet Function
-   - [] Display current level of bullet and its image on Character Scene
-
+   - [] Add Magnefic Field on Character ( Easier to pick up coins )
+   - [] Add new regular monsters
+   - [] Add new Boss
 - ### High Priority (Order does not matter):
    - [] Add Power-Ups
     - [] Imune Item
     - [] Increase Fire Power
     - [] Double Shoot
-   - [] Add new regular monsters
-   - [] Add new Boss
    - [] Add new drops from monsters (diamonds, trophy)
-   - [] Add Magnefic Field on Character ( Easier to pick up coins )
-
+   
 - ### Low Priority (Order does not matter):
    - [] Add Level&Exp System for Account
       - [] Customized UI Progress Bar
