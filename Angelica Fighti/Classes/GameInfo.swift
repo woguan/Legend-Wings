@@ -217,7 +217,7 @@ class GameInfo: GameInfoDelegate{
             
             //totalWaves
             //wavesForNextLevel
-            let spawnAction = SKAction.repeat(action, count: 1)
+            let spawnAction = SKAction.repeat(action, count: wavesForNextLevel)
             let endAction = SKAction.run(didFinishSpawningEnemy)
             
             mainscene.run(SKAction.sequence([spawnAction, endAction]))
