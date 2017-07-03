@@ -2,7 +2,7 @@
 
 **EverWing** is a popular action game. Survive as much you can, earn gold, and upgrade/purchase new characters.
 
-## Videos - Alpha v3.04 - Date Recorded: 06/20/2017:
+## Videos - Alpha v3.0.4 - Date Recorded: 06/20/2017:
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
