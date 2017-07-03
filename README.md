@@ -17,7 +17,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 ## TODO list:
 
 - [✔️] "Fix" and find a better logic for the top bar which displays account progress
-- [] Re-implement logic to increase enemies' HP and Velocity over time 
+- [*] Re-implement logic to increase enemies' HP and Velocity over time 
 - [✔️] Add customized font ttf for Gold Label with OpenGL shader
 
 [*] = Working [✔️] = Done
@@ -25,11 +25,11 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
    - [] Add new bullets for characters:
-    - [] Add Alpha Bullet Sprites
-    - [] Add Beta Bullet Sprites
-    - [] Add Celta Bullet Sprites
-    - [] Add Delta Bullet Sprites
-    - [] Add Class to create custom bullet sprite
+      - [] Add Alpha Bullet Sprites
+      - [] Add Beta Bullet Sprites
+      - [] Add Celta Bullet Sprites
+      - [] Add Delta Bullet Sprites
+      - [] Add Class to create custom bullet sprite
    - [] Add Bullet Power Logic
    - [] Add Upgrade Bullet Function
    - [] Display current level of bullet and its image on Character Scene
