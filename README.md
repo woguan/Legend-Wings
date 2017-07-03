@@ -42,6 +42,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
    - [] Add new regular monsters
    - [] Add new Boss
    - [] Add new drops from monsters (diamonds, trophy)
+   - [] Add Magnefic Field on Character ( Easier to pick up coins )
 
 - ### Low Priority (Order does not matter):
    - [] Add Level&Exp System for Account
