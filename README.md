@@ -83,7 +83,7 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
   - [✔️] Add Pinky Boss Actions
 - [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
 - [✔️] Add particle effects when selecting character - <b>06/29/2017</b>
-- [✔️] "Fix" and find a better logic for the top bar which displays account progress <b>07/30/2017</b>
+- [✔️] "Fix" and find a better logic for the top bar which displays account progress <b>06/30/2017</b>
 - [✔️] Add customized font ttf for Gold Label with OpenGL shader <b>06/30/2017</b>
 - [✔️] Re-implement logic to increase enemies' HP and Velocity over time  <b>07/03/2017</b>
 
