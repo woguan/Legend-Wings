@@ -35,7 +35,7 @@ struct Projectile {
         bulletnode!.size = size
         
         bulletnode!.userData = NSMutableDictionary()
-        bulletnode!.power = self.power
+        bulletnode!.power = power
         bulletnode!.name = name
         bulletnode!.physicsBody = SKPhysicsBody(texture: bulletnode!.texture!, size: bulletnode!.size)
         
@@ -54,7 +54,6 @@ struct Projectile {
         bullet.position = CGPoint(x: originX, y: originY)
         bullet.run(SKAction.scale(to: 3, duration: 0.28))
         bullet.run(SKAction.sequence([SKAction.wait(forDuration: 1.5), SKAction.removeFromParent()]))
-        
         return bullet
     }
     

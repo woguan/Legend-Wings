@@ -53,6 +53,7 @@ class GameInfo: GameInfoDelegate{
     var fireball_enemy:EnemyModel
     var map:Map?
     
+    
      init(){
         mainAudio = AVAudio()
         currentLevel = 0
@@ -118,23 +119,7 @@ class GameInfo: GameInfoDelegate{
         
         return (true, "No errors")
     }
-    private func spawnEnemies(scene: SKScene, totalWaves: Int){
-        
-        //update state
-        self.changeGameState(.Spawning)
-   
-        let action = SKAction.sequence([SKAction.run({
-            self.regular_enemies.spawn(scene: scene)
-        }), SKAction.wait(forDuration: 3)])
-        
-        //totalWaves
-        let spawnAction = SKAction.repeat(action, count: totalWaves)
-        let endAction = SKAction.run(didFinishSpawningEnemy)
-        
-        scene.run(SKAction.sequence([spawnAction, endAction]))
-        
-    }
-    
+
     private func didFinishSpawningEnemy(){
         
         mainScene!.run(SKAction.sequence([SKAction.run {
@@ -149,7 +134,7 @@ class GameInfo: GameInfoDelegate{
     
     //  Only called when the gamestate is spawning. 
     //  This function is called every second.
-    @objc func running(){
+    @objc private func running(){
         let random = randomInt(min: 0, max: 100)
         // Fireball
         if random < 10 {
@@ -159,7 +144,7 @@ class GameInfo: GameInfoDelegate{
         
     }
     
-    func updateGameState(){
+    private func updateGameState(){
         guard let mainscene = mainScene else{
             print ("ERROR D00: Check updateGameState() from GameInfo")
             return
@@ -210,27 +195,33 @@ class GameInfo: GameInfoDelegate{
                 
                 mainscene.run(SKAction.sequence([buildingsAction, SKAction.wait(forDuration: 3), SKAction.run{self.changeGameState(.WaitingState)
                     }, SKAction.wait(forDuration: 0.2), SKAction.run { self.account.getCurrentToon().getNode().run(SKAction.repeatForever(SKAction.sequence([SKAction.run {
+
                         self.addChild(self.account.getCurrentToon().getBullet().shoot())
                         }, SKAction.wait(forDuration: 0.06)])))
                     }]))
         case .WaitingState:
-            // start enemy respawn
-            wavesForNextLevel = randomInt(min: 5, max: 10)
-            regular_enemies.increaseHP()
-            
-            // increase enemy speed
-            regular_enemies.increaseVelocityBy(amount: 50.0)
-            print(" Waves for next Boss: \(wavesForNextLevel)")
-            
-            mainScene!.run(SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.run {
-                self.spawnEnemies(scene: mainscene, totalWaves: self.wavesForNextLevel)
-                }]))
-            
+            regular_enemies.increaseDifficulty()
+            fireball_enemy.increaseDifficulty()
+            boss.increaseDifficulty()
+            self.changeGameState(.Spawning)
         case .Spawning:
-            // use this place to activate timer. Run a function called Running() 
             print("Spawning")
-            //timer = Timer(timeInterval: 1, target: self, selector: #selector(running), userInfo: nil, repeats: true)
+            
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(running), userInfo: nil, repeats: true)
+            
+            wavesForNextLevel = randomInt(min: 5, max: 10)
+            
+            let action = SKAction.sequence([SKAction.run({
+                self.regular_enemies.spawn(scene: mainscene)
+            }), SKAction.wait(forDuration: 3)])
+            
+            //totalWaves
+            //wavesForNextLevel
+            let spawnAction = SKAction.repeat(action, count: wavesForNextLevel)
+            let endAction = SKAction.run(didFinishSpawningEnemy)
+            
+            mainscene.run(SKAction.sequence([spawnAction, endAction]))
+            
         case .BossEncounter:
             // use this state to cancel the timer - invalidate
             print("Boss Encounter")

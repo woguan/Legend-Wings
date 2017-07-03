@@ -96,7 +96,6 @@ class Toon{
     }
     
     internal func load(infoDict:NSDictionary){
-        
         //Level lv: Int, Experience exp: CGFloat, Description description:[String]
         self.level = infoDict.value(forKey: "Level") as! Int
         self.experience = infoDict.value(forKey: "Experience") as! CGFloat

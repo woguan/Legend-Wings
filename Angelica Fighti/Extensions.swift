@@ -115,6 +115,17 @@ extension SKNode{
         }
     }
     
+    func run(action: SKAction, optionalCompletion: ((Void) -> Void)?){
+        guard let completion = optionalCompletion else {
+            run(action)
+            return
+        }
+        
+        run(SKAction.sequence([action, SKAction.run(completion)]))
+        
+    }
+    
+    
     
 }
 

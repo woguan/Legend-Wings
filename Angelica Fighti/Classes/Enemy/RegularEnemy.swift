@@ -19,7 +19,7 @@ class RegularEnemy:SKSpriteNode{
     
     private var remaining = 5
     
-    let minionSize = CGSize(width: screenSize.width*0.95/5, height: screenSize.width*0.95/5)
+    private let minionSize = CGSize(width: screenSize.width*0.95/5, height: screenSize.width*0.95/5)
     
     convenience init(baseHp:CGFloat){
         self.init()
@@ -119,6 +119,14 @@ class RegularEnemy:SKSpriteNode{
             }
         }
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
+    }
+    
+    internal func raiseBaseHp(byValue val: CGFloat){
+        self.maxHp = maxHp + val
+    }
+    
+    internal func raiseVelocity(byValue val: CGFloat){
+        velocity.dy -= val
     }
     
     internal func defeated(sknode:SKSpriteNode){

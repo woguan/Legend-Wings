@@ -323,7 +323,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             contactType = .Immune
         }
             
-        else if (l_node.name! == "Enemy_Regular" || l_node.name! == "Enemy_Boss" ) && h_node.name! == "bullet"{
+        else if (l_node.name! == "Enemy_Regular" || l_node.name! == "Enemy_Boss" ) && h_node.name!.contains("bullet"){
             contactType = .EnemyGotHit
         }
         else if l_node.name! == "toon" && h_node.name! == "coin"{
@@ -354,6 +354,8 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             //effect.targetNode = lowNode
             self.addChild(effect)
             // update enemy
+            
+             destroy(sknode: highNode)
             if lowNode.name!.contains("Regular"){
                 regular.decreaseHP(ofTarget: lowNode, hitBy: highNode)
             }
@@ -363,7 +365,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             else{
                 print("WARNING: Should not reach here. Check contactUpdate in StartGame.swift")
             }
-            destroy(sknode: highNode)
+           
             
         case .HitByEnemy:
             // particle effect testing

@@ -36,8 +36,8 @@ class EnemyModel: NSObject{
     private var currency:Currency?
     private var bossType:BossType
     
+    private var baseHP:CGFloat = 0
     private var velocity:CGVector = CGVector.zero
-    
     
     
     var delegate:GameInfoDelegate?
@@ -61,11 +61,11 @@ class EnemyModel: NSObject{
             let r = randomInt(min: 0, max: 100)
                 if r < 50{
                     bossType = .Bomber
-                    enemyModel = Bomber(hp: 1000)
+                    enemyModel = Bomber(hp: 2000)
                 }
                 else{
                     bossType = .Pinky
-                    enemyModel = Pinky(hp: 1000.0, lives: 2, isClone: false)
+                    enemyModel = Pinky(hp: 2000.0, lives: 2, isClone: false)
                 }
             
         case .Fireball:
@@ -78,12 +78,19 @@ class EnemyModel: NSObject{
         scene.addChild(enemyModel!)
     }
     
-    internal func increaseHP(){
-        //self.maxhp += 5
-    }
-    
-    internal func increaseVelocityBy (amount:CGFloat){
-        //self.velocity.dy += (-amount)
+    internal func increaseDifficulty(){
+        // Increase HP & Speed
+        switch enemyType {
+        case .Regular:
+            guard let model = enemyModel as? RegularEnemy else{
+                print("FAIL TO CAST")
+                return
+            }
+            model.raiseBaseHp(byValue: 100)
+            model.raiseVelocity(byValue: 100)
+        default:
+            print("no increase")
+        }
     }
     
     internal func decreaseHP(ofTarget: SKSpriteNode, hitBy: SKSpriteNode){
@@ -91,7 +98,10 @@ class EnemyModel: NSObject{
         guard let enemyHpBar = ofTarget.childNode(withName: "hpBar") else{
             return
         }
+        
+        hitBy.physicsBody?.categoryBitMask = PhysicsCategory.None
         ofTarget.hp = ofTarget.hp - hitBy.power
+        
         
         if (hitBy.name == "bullet"){
             
@@ -102,28 +112,28 @@ class EnemyModel: NSObject{
             let originalBarSize = bar.frame.width * 0.98 // Note: barSize = 0.98 * border
             
             enemyHpBar.run(SKAction.resize(toWidth: originalBarSize * percentage, duration: 0.03))
-        }
-        
-        update(sknode: ofTarget)
-        
-        if (ofTarget.hp > -5000 && ofTarget.hp <= 0){
-            ofTarget.hp = -9999
+          
+            update(sknode: ofTarget)
             
-            enemyHpBar.removeFromParent()
-            explode(sknode: ofTarget)
-            return
-        }
-        else{
-            if enemyHpBar.isHidden {
-                enemyHpBar.isHidden = false
+            if (ofTarget.hp <= 0){
+                enemyHpBar.removeFromParent()
+                explode(sknode: ofTarget)
+                return
             }
+            else{
+                if enemyHpBar.isHidden {
+                    enemyHpBar.isHidden = false
+                }
+            }
+        
+            
         }
+        
     }
     
     internal func update(sknode: SKSpriteNode){
         
         if let enemyHP = sknode.childNode(withName: "hpBar"){
-            
             let percentage = sknode.hp/sknode.maxHp
             
             if (percentage < 0.3){
