@@ -2,7 +2,7 @@
 
 **EverWing** is a popular action game. Survive as much you can, earn gold, and upgrade/purchase new characters.
 
-## Videos - Date Recorded: 06/20/2017:
+## Videos - Alpha v3.0.4 - Date Recorded: 06/20/2017:
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
@@ -11,39 +11,34 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Todo list is the feature which I'm working now OR about to start it.
+- Current version: <b>Alpha 3.2.6</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## TODO list:
-
-- [✔️] "Fix" and find a better logic for the top bar which displays account progress
-- [*] Re-implement logic to increase enemies' HP and Velocity over time 
-- [✔️] Add customized font ttf for Gold Label with OpenGL shader
+  - [] Add new bullets for characters:
+     - [*] Add Alpha Bullet Sprites
+     - [] Add Beta Bullet Sprites
+     - [] Add Celta Bullet Sprites
+     - [] Add Delta Bullet Sprites
+     - [*] Add Class to create custom bullet sprite
+  - [] Add Bullet Power Logic
+  - [] Add Upgrade Bullet Function
+  - [] Display current level of bullet and its image on Character Scene
 
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
-   - [] Add new bullets for characters:
-      - [] Add Alpha Bullet Sprites
-      - [] Add Beta Bullet Sprites
-      - [] Add Celta Bullet Sprites
-      - [] Add Delta Bullet Sprites
-      - [] Add Class to create custom bullet sprite
-   - [] Add Bullet Power Logic
-   - [] Add Upgrade Bullet Function
-   - [] Display current level of bullet and its image on Character Scene
-
+   - [] Add Magnefic Field on Character ( Easier to pick up coins )
+   - [] Add new regular monsters
+   - [] Add new Boss
 - ### High Priority (Order does not matter):
    - [] Add Power-Ups
     - [] Imune Item
     - [] Increase Fire Power
     - [] Double Shoot
-   - [] Add new regular monsters
-   - [] Add new Boss
    - [] Add new drops from monsters (diamonds, trophy)
-   - [] Add Magnefic Field on Character ( Easier to pick up coins )
-
+   
 - ### Low Priority (Order does not matter):
    - [] Add Level&Exp System for Account
       - [] Customized UI Progress Bar
@@ -85,5 +80,8 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
   - [✔️] Add Pinky Boss Actions
 - [✔️] Add Labels in Character Selection - <b>06/28/2017</b>
 - [✔️] Add particle effects when selecting character - <b>06/29/2017</b>
+- [✔️] "Fix" and find a better logic for the top bar which displays account progress <b>06/30/2017</b>
+- [✔️] Add customized font ttf for Gold Label with OpenGL shader <b>06/30/2017</b>
+- [✔️] Re-implement logic to increase enemies' HP and Velocity over time  <b>07/03/2017</b>
 
   
