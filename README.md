@@ -60,8 +60,7 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
 ## Discovered Bugs:
-- It looks like that for smaller devices such as iPhone 5, the monsters are dying quickly.
-- Characters are too big in smaller devices. This is known issue due for using "fixed" size. It will be fixed later on.
+- Characters are too big on smaller devices.
 - Pinky completly freeze itself when it kills the player
 
 ## Main Accomplishments:
