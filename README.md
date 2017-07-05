@@ -6,12 +6,13 @@
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
-PS: Videos are often outdated. Run on your device to check out new stuff!
+PS: Videos are often outdated. Run on your device to check out new stuff.
+Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha 3.2.6</b>.
+- Current version: <b>Alpha 3.3.1</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## TODO list:
