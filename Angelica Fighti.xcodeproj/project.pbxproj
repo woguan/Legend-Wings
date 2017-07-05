@@ -31,6 +31,7 @@
 		0C12CD881F05367B008BA78C /* selectedChar-Two.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0C12CD861F05367B008BA78C /* selectedChar-Two.sks */; };
 		0C12CD8E1F066CD2008BA78C /* Sansani Fonts - Cartwheel.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0C12CD8D1F066CCB008BA78C /* Sansani Fonts - Cartwheel.otf */; };
 		0C12CD901F068B00008BA78C /* Infobar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD8F1F068B00008BA78C /* Infobar.swift */; };
+		0C12CD961F0C4CB5008BA78C /* BulletMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD951F0C4CB4008BA78C /* BulletMaker.swift */; };
 		0C2520C51EC6AC0A00A03400 /* MainScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2520C41EC6AC0A00A03400 /* MainScene.swift */; };
 		0C363DC21EF4502C00CAE82F /* begin.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DA81EF4502C00CAE82F /* begin.m4a */; };
 		0C363DC31EF4502C00CAE82F /* CharacterScene.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DAB1EF4502C00CAE82F /* CharacterScene.atlas */; };
@@ -91,6 +92,7 @@
 		0C12CD861F05367B008BA78C /* selectedChar-Two.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "selectedChar-Two.sks"; sourceTree = "<group>"; };
 		0C12CD8D1F066CCB008BA78C /* Sansani Fonts - Cartwheel.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sansani Fonts - Cartwheel.otf"; sourceTree = "<group>"; };
 		0C12CD8F1F068B00008BA78C /* Infobar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Infobar.swift; sourceTree = "<group>"; };
+		0C12CD951F0C4CB4008BA78C /* BulletMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletMaker.swift; sourceTree = "<group>"; };
 		0C2520C41EC6AC0A00A03400 /* MainScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScene.swift; sourceTree = "<group>"; };
 		0C363DA81EF4502C00CAE82F /* begin.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = begin.m4a; sourceTree = "<group>"; };
 		0C363DAB1EF4502C00CAE82F /* CharacterScene.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = CharacterScene.atlas; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				0C12CD501F0293B9008BA78C /* Map.swift */,
 				0C12CD511F0293B9008BA78C /* Toon.swift */,
 				0C12CD8F1F068B00008BA78C /* Infobar.swift */,
+				0C12CD951F0C4CB4008BA78C /* BulletMaker.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				0C0655D41EE1681D00D38DA3 /* CharacterMenuScene.swift in Sources */,
 				F16A64601E0C96A000BC8255 /* AppDelegate.swift in Sources */,
 				0C12CD611F0293C4008BA78C /* AVAudio.swift in Sources */,
+				0C12CD961F0C4CB5008BA78C /* BulletMaker.swift in Sources */,
 				0C12CD5A1F0293B9008BA78C /* Toon.swift in Sources */,
 				0C12CD901F068B00008BA78C /* Infobar.swift in Sources */,
 				F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */,

@@ -348,11 +348,12 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         switch contactType{
             
         case .EnemyGotHit:
-            // FX when enemy is hit
-            let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: highNode.position.x, y: highNode.position.y)
+            // Generate FX Effect
+                //converting bullet to mainscene's coordinate
+            let newPos = self.convert(highNode.position, from: highNode.parent!)
+            let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: newPos.x, y: newPos.y)
             self.addChild(effect)
             // update enemy
-            
             destroy(sknode: highNode)
             if lowNode.name!.contains("Regular"){
                 regular.decreaseHP(ofTarget: lowNode, hitBy: highNode)

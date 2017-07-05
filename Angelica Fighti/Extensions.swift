@@ -26,12 +26,12 @@ enum GameState{
     case Start
 }
 
-enum ProjectileType{
-    case type1
-    case type2
-    case type3
-    
-}
+//enum ProjectileType{
+//    case type1
+//    case type2
+//    case type3
+//    
+//}
 
 enum ContactType{
     case HitByEnemy

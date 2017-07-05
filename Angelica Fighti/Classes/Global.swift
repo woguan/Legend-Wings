@@ -43,13 +43,36 @@ class Global {
         // Characters
         case Character_Alpha
         case Character_Alpha_Wing
+        case Character_Alpha_Projectile_1
+        case Character_Alpha_Projectile_2
+        case Character_Alpha_Projectile_3
+        case Character_Alpha_Projectile_4
+        case Character_Alpha_Projectile_5
         case Character_Alpha_Bullet_Level_1
+        
         case Character_Beta
         case Character_Beta_Wing
+        case Character_Beta_Projectile_1
+        case Character_Beta_Projectile_2
+        case Character_Beta_Projectile_3
+        case Character_Beta_Projectile_4
+        case Character_Beta_Projectile_5
+        
         case Character_Celta
         case Character_Celta_Wing
+        case Character_Celta_Projectile_1
+        case Character_Celta_Projectile_2
+        case Character_Celta_Projectile_3
+        case Character_Celta_Projectile_4
+        case Character_Celta_Projectile_5
+        
         case Character_Delta
         case Character_Delta_Wing
+        case Character_Delta_Projectile_1
+        case Character_Delta_Projectile_2
+        case Character_Delta_Projectile_3
+        case Character_Delta_Projectile_4
+        case Character_Delta_Projectile_5
         
         // Main Menu
         case Main_Menu_Background_1 = "main_background_1"
@@ -188,10 +211,11 @@ class Global {
     
     // Characters
     private var character_sprite:[(SKTexture, SKTexture)] = []
+    private var character_projectiles:[[SKTexture]?] = []
     
     // ETC
     private var isSetUp:Bool = false
-    
+    private let availableCharacters = 4
     private var totalFilesToLoad:Int = 7
     private var currentFilesLoaded:Int = 0
     private var serialQueue:DispatchQueue
@@ -222,6 +246,10 @@ class Global {
         self.classicBoss[.Bomber]![.moveAnimation] = []
         
         self.boss[.Pinky] = []
+        
+        for _ in 0..<availableCharacters{
+            character_projectiles.append(nil)
+        }
     }
     
     func prioirityLoad(){
@@ -235,14 +263,16 @@ class Global {
         
         // Order:  mapPreload -> enemyPreload -> playerPreload -> itemsPreload
         // -> hudPreload -> characterScenePreload  mainMenuPreload ->|| total: 7
+     //   DispatchQueue.global().async {
+            self.mapPreload()
+            self.enemyPreload()
+            self.playerPreload()
+            self.itemsPreload()
+            self.hudPreload()
+            self.characterScenePreload()
+            self.mainMenuPreload()
+       // }
         
-        self.mapPreload()
-        self.enemyPreload()
-        self.playerPreload()
-        self.itemsPreload()
-        self.hudPreload()
-        self.characterScenePreload()
-        self.mainMenuPreload()
     }
     
     
@@ -351,6 +381,36 @@ class Global {
                     let dt = (atlas.textureNamed("toon_\(count)_main"), atlas.textureNamed("toon_\(count)_wing"))
                     self.character_sprite.append(dt)
                 }
+                    
+                else if texture.contains("toon_1") && texture.contains("projectile"){
+                    let id = 0
+                    if self.character_projectiles[id] == nil{
+                        self.character_projectiles[id] = []
+                    }
+                    self.character_projectiles[id]!.append(atlas.textureNamed("toon_1_projectile_type_\(self.character_projectiles[id]!.count + 1)"))
+                }
+                else if texture.contains("toon_2") && texture.contains("projectile"){
+                    let id = 1
+                    if self.character_projectiles[id] == nil{
+                        self.character_projectiles[id] = []
+                    }
+                    self.character_projectiles[id]!.append(atlas.textureNamed("toon_2_projectile_type_\(self.character_projectiles[id]!.count + 1)"))
+                }
+                else if texture.contains("toon_3") && texture.contains("projectile"){
+                    let id = 2
+                    if self.character_projectiles[id] == nil{
+                        self.character_projectiles[id] = []
+                    }
+                    self.character_projectiles[id]!.append(atlas.textureNamed("toon_3_projectile_type_\(self.character_projectiles[id]!.count + 1)"))
+                }
+                else if texture.contains("toon_4") && texture.contains("projectile"){
+                    let id = 3
+                    if self.character_projectiles[id] == nil{
+                        self.character_projectiles[id] = []
+                    }
+                    self.character_projectiles[id]!.append(atlas.textureNamed("toon_4_projectile_type_\(self.character_projectiles[id]!.count + 1)"))
+                }
+                
             }
             self.checkmark()
         }
@@ -411,7 +471,7 @@ class Global {
             
             // Checkmark
             self.currentFilesLoaded += 1 // Increase Loaded File
-            
+            print("loaded: ", self.currentFilesLoaded)
             let left:Int = Int((CGFloat(self.currentFilesLoaded)/CGFloat(self.totalFilesToLoad)) * 100.0)
             
             DispatchQueue.main.async {
@@ -515,18 +575,61 @@ class Global {
             return self.character_sprite[0].1
         case .Character_Alpha_Bullet_Level_1:
             return bullet
+        case .Character_Alpha_Projectile_1:
+            return character_projectiles[0]![0]
+        case .Character_Alpha_Projectile_2:
+            return character_projectiles[0]![1]
+        case .Character_Alpha_Projectile_3:
+            return character_projectiles[0]![2]
+        case .Character_Alpha_Projectile_4:
+            return character_projectiles[0]![3]
+        case .Character_Alpha_Projectile_5:
+            return character_projectiles[0]![4]
+            
         case .Character_Beta:
             return self.character_sprite[1].0
         case .Character_Beta_Wing:
             return self.character_sprite[1].1
+        case .Character_Beta_Projectile_1:
+            return character_projectiles[1]![0]
+        case .Character_Beta_Projectile_2:
+            return character_projectiles[1]![1]
+        case .Character_Beta_Projectile_3:
+            return character_projectiles[1]![2]
+        case .Character_Beta_Projectile_4:
+            return character_projectiles[1]![3]
+        case .Character_Beta_Projectile_5:
+            return character_projectiles[1]![4]
+            
         case .Character_Celta:
             return self.character_sprite[2].0
         case .Character_Celta_Wing:
             return self.character_sprite[2].1
+        case .Character_Celta_Projectile_1:
+            return character_projectiles[2]![0]
+        case .Character_Celta_Projectile_2:
+            return character_projectiles[2]![1]
+        case .Character_Celta_Projectile_3:
+            return character_projectiles[2]![2]
+        case .Character_Celta_Projectile_4:
+            return character_projectiles[2]![3]
+        case .Character_Celta_Projectile_5:
+            return character_projectiles[2]![4]
+            
         case .Character_Delta:
-            return self.character_sprite[3].0
+            return character_sprite[3].0
         case .Character_Delta_Wing:
-            return self.character_sprite[3].1
+            return character_sprite[3].1
+        case .Character_Delta_Projectile_1:
+            return character_projectiles[3]![0]
+        case .Character_Delta_Projectile_2:
+            return character_projectiles[3]![1]
+        case .Character_Delta_Projectile_3:
+            return character_projectiles[3]![2]
+        case .Character_Delta_Projectile_4:
+            return character_projectiles[3]![3]
+        case .Character_Delta_Projectile_5:
+            return character_projectiles[3]![4]
             
             
         // Character Menu Scene

@@ -28,15 +28,16 @@ class Toon{
     private var height:CGFloat
     private var size:CGSize
     private var node:SKSpriteNode
-    private var bullet:Projectile
+    private var bullet:Projectile?
     private var description:[String] = []
     private var experience:CGFloat = 0
     private var level:Int = 0
-    private var charType:Character
     private var charName:String = "None"
     private var title:String = "None"
+    private var bulletLevel:Int = 1
     
-
+    // Initialize
+    private var charType:Character
     
     init(char:Character){
         
@@ -73,8 +74,6 @@ class Toon{
         node.size = CGSize(width: width, height: height)
         node.run(SKAction.scale(to: 0.7, duration: 0.0))
         
-        bullet = Projectile(posX: node.position.x, posY: node.position.y)
-        
         let l_wing = SKSpriteNode()
         l_wing.texture = localWingTexture
         l_wing.size = localWingTexture.size()
@@ -102,7 +101,9 @@ class Toon{
         self.description = infoDict.value(forKey: "Description") as! [String]
         self.title = infoDict.value(forKey: "Title") as! String
         self.charName = infoDict.value(forKey: "Name") as! String
-        
+        self.bulletLevel = infoDict.value(forKey: "BulletLevel") as! Int
+            
+        bullet = Projectile(posX: node.position.x, posY: node.position.y, char: self.charType, bulletLevel: bulletLevel)
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width/4, height: node.size.height/2))
         node.physicsBody!.isDynamic = true // allow physic simulation to move it
         node.physicsBody!.affectedByGravity = false
@@ -117,12 +118,11 @@ class Toon{
     }
 
     internal func updateProjectile(){
-        bullet.setPosX(x: node.position.x)
-        
+        bullet!.setPosX(x: node.position.x)
     }
  
     internal func getBullet() -> Projectile{
-        return bullet
+        return bullet!
     }
     
     internal func getToonDescription() -> [String]{
@@ -130,7 +130,6 @@ class Toon{
     }
     
     internal func getToonName() -> String{
-        //return charType.rawValue
         return charName
     }
     
