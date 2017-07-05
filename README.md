@@ -16,11 +16,11 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 
 ## TODO list:
   - [✔️] Add new bullets for characters:
-     - [✔️] Add Alpha Bullet Sprites
-     - [✔️] Add Beta Bullet Sprites
-     - [✔️] Add Celta Bullet Sprites
-     - [✔️] Add Delta Bullet Sprites
-     - [✔️] Add Class to create custom bullet sprite
+     - [✔️] Add Alpha Bullet Sprites <b> 07/04/2017 </b>
+     - [✔️] Add Beta Bullet Sprites <b> 07/04/2017 </b>
+     - [✔️] Add Celta Bullet Sprites <b> 07/04/2017 </b>
+     - [✔️] Add Delta Bullet Sprites <b> 07/04/2017 </b>
+     - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
   - [] Add Bullet Power Logic
   - [*] Add Upgrade Bullet Function
   - [*] Display current level of bullet and its image on Character Scene
