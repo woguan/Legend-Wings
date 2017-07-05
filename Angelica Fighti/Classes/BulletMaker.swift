@@ -71,86 +71,161 @@ class BulletMaker:NSObject{
         case Level_50 = 50
     }
     
-    private func addBullet(sprite:SKTexture, dx: CGFloat, dy: CGFloat, zPos:CGFloat) -> SKSpriteNode{
-        let node = SKSpriteNode(texture: sprite)
-        node.position.x = sprite.size().width*dx
-        node.position.y = sprite.size().height*dy
+    private func addBullet(sprite:(SKTexture, CGSize), dx: CGFloat, dy: CGFloat, zPos:CGFloat) -> SKSpriteNode{
+        let node = SKSpriteNode(texture: sprite.0)
+        node.size = sprite.1
+        node.position.x = node.size.width*dx
+        node.position.y = node.size.height*dy
         node.zPosition = zPos
         node.alpha = 1.0
         
         return node
     }
     
-    private func getBulletType(charType: Toon.Character, type:BulletType) -> SKTexture{
+    private func getBulletType(charType: Toon.Character, type:BulletType) -> (SKTexture, CGSize){
         
         switch charType {
         case .Alpha:
             switch type {
             case .Type_1:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_1)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_1)
+                let w = screenSize.width * 0.036
+                let h = screenSize.height * 0.034
+                return (sprite, CGSize(width: w, height: h))
             case .Type_2:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_2)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_2)
+                let w = screenSize.width * 0.051
+                let h = screenSize.height * 0.06
+                return (sprite, CGSize(width: w, height: h))
             case .Type_3:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_3)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_3)
+                let w = screenSize.width * 0.0845
+                let h = screenSize.height * 0.064
+                return (sprite, CGSize(width: w, height: h))
             case .Type_4:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_4)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_4)
+                let w = screenSize.width * 0.111
+                let h = screenSize.height * 0.079
+                return (sprite, CGSize(width: w, height: h))
             case .Type_5:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_5)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_5)
+                let w = screenSize.width * 0.152
+                let h = screenSize.height * 0.1
+                return (sprite, CGSize(width: w, height: h))
             }
         case .Beta:
             switch type {
             case .Type_1:
-                return global.getMainTexture(main: .Character_Beta_Projectile_1)
+                let sprite = global.getMainTexture(main: .Character_Beta_Projectile_1)
+                let w = screenSize.width * 0.041
+                let h = screenSize.height * 0.033
+                return (sprite, CGSize(width: w, height: h))
             case .Type_2:
-                return global.getMainTexture(main: .Character_Beta_Projectile_2)
+                let sprite = global.getMainTexture(main: .Character_Beta_Projectile_2)
+                let w = screenSize.width * 0.104
+                let h = screenSize.height * 0.083
+                return (sprite, CGSize(width: w, height: h))
             case .Type_3:
-                return global.getMainTexture(main: .Character_Beta_Projectile_3)
+                let sprite = global.getMainTexture(main: .Character_Beta_Projectile_3)
+                let w = screenSize.width * 0.109
+                let h = screenSize.height * 0.065
+                return (sprite, CGSize(width: w, height: h))
             case .Type_4:
-                return global.getMainTexture(main: .Character_Beta_Projectile_4)
+                let sprite = global.getMainTexture(main: .Character_Beta_Projectile_4)
+                let w = screenSize.width * 0.157
+                let h = screenSize.height * 0.096
+                return (sprite, CGSize(width: w, height: h))
             case .Type_5:
-                return global.getMainTexture(main: .Character_Beta_Projectile_5)
+                let sprite = global.getMainTexture(main: .Character_Beta_Projectile_5)
+                let w = screenSize.width * 0.157
+                let h = screenSize.height * 0.1
+                return (sprite, CGSize(width: w, height: h))
             }
         case .Celta:
             switch type {
             case .Type_1:
-                return global.getMainTexture(main: .Character_Celta_Projectile_1)
+                let sprite = global.getMainTexture(main: .Character_Celta_Projectile_1)
+                let w = screenSize.width * 0.039
+                let h = screenSize.height * 0.0285
+                return (sprite, CGSize(width: w, height: h))
             case .Type_2:
-                return global.getMainTexture(main: .Character_Celta_Projectile_2)
+                let sprite = global.getMainTexture(main: .Character_Celta_Projectile_2)
+                let w = screenSize.width * 0.111
+                let h = screenSize.height * 0.0625
+                return (sprite, CGSize(width: w, height: h))
             case .Type_3:
-                return global.getMainTexture(main: .Character_Celta_Projectile_3)
+                let sprite = global.getMainTexture(main: .Character_Celta_Projectile_3)
+                let w = screenSize.width * 0.08
+                let h = screenSize.height * 0.077
+                return (sprite, CGSize(width: w, height: h))
             case .Type_4:
-                return global.getMainTexture(main: .Character_Celta_Projectile_4)
+                let sprite = global.getMainTexture(main: .Character_Celta_Projectile_4)
+                let w = screenSize.width * 0.157
+                let h = screenSize.height * 0.076
+                return (sprite, CGSize(width: w, height: h))
             case .Type_5:
-                return global.getMainTexture(main: .Character_Celta_Projectile_5)
+                let sprite = global.getMainTexture(main: .Character_Celta_Projectile_5)
+                let w = screenSize.width * 0.138
+                let h = screenSize.height * 0.098
+                return (sprite, CGSize(width: w, height: h))
             }
         case .Delta:
             switch type {
             case .Type_1:
-                return global.getMainTexture(main: .Character_Delta_Projectile_1)
+                let sprite = global.getMainTexture(main: .Character_Delta_Projectile_1)
+                let w = screenSize.width * 0.036
+                let h = screenSize.height * 0.035
+                return (sprite, CGSize(width: w, height: h))
             case .Type_2:
-                return global.getMainTexture(main: .Character_Delta_Projectile_2)
+                let sprite = global.getMainTexture(main: .Character_Delta_Projectile_2)
+                let w = screenSize.width * 0.075
+                let h = screenSize.height * 0.0475
+                return (sprite, CGSize(width: w, height: h))
             case .Type_3:
-                return global.getMainTexture(main: .Character_Delta_Projectile_3)
+                let sprite = global.getMainTexture(main: .Character_Delta_Projectile_3)
+                let w = screenSize.width * 0.0845
+                let h = screenSize.height * 0.068
+                return (sprite, CGSize(width: w, height: h))
             case .Type_4:
-                return global.getMainTexture(main: .Character_Delta_Projectile_4)
+                let sprite = global.getMainTexture(main: .Character_Delta_Projectile_4)
+                let w = screenSize.width * 0.094
+                let h = screenSize.height * 0.065
+                return (sprite, CGSize(width: w, height: h))
             case .Type_5:
-                return global.getMainTexture(main: .Character_Delta_Projectile_5)
+                let sprite = global.getMainTexture(main: .Character_Delta_Projectile_5)
+                let w = screenSize.width * 0.125
+                let h = screenSize.height * 0.068
+                return (sprite, CGSize(width: w, height: h))
             }
         default:
+            print("Shold not reach here - BulletMaker Default Choice")
             switch type {
             case .Type_1:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_1)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_1)
+                let w = screenSize.width * 0.036
+                let h = screenSize.height * 0.034
+                return (sprite, CGSize(width: w, height: h))
             case .Type_2:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_2)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_2)
+                let w = screenSize.width * 0.051
+                let h = screenSize.height * 0.06
+                return (sprite, CGSize(width: w, height: h))
             case .Type_3:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_3)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_3)
+                let w = screenSize.width * 0.0845
+                let h = screenSize.height * 0.064
+                return (sprite, CGSize(width: w, height: h))
             case .Type_4:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_4)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_4)
+                let w = screenSize.width * 0.111
+                let h = screenSize.height * 0.079
+                return (sprite, CGSize(width: w, height: h))
             case .Type_5:
-                return global.getMainTexture(main: .Character_Alpha_Projectile_5)
+                let sprite = global.getMainTexture(main: .Character_Alpha_Projectile_5)
+                let w = screenSize.width * 0.152
+                let h = screenSize.height * 0.1
+                return (sprite, CGSize(width: w, height: h))
             }
-            // case .Celta:
-            // case .Delta:
         }
     }
     

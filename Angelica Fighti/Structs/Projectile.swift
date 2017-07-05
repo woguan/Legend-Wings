@@ -22,7 +22,8 @@ struct Projectile {
         originY = posY + 35
         
         if let blevel = BulletMaker.Level(rawValue: bulletLevel){
-           bulletnode = bulletMaker.make(level: blevel, char: char)
+           //bulletnode = bulletMaker.make(level: blevel, char: char)
+            bulletnode = bulletMaker.make(level: .Level_34, char: char)
         }
         else{
             print("Invalid bullet level. Returning 1")
@@ -50,7 +51,7 @@ struct Projectile {
         let bullet = bulletnode.copy() as! SKSpriteNode
         
         bullet.position = CGPoint(x: originX, y: originY)
-         bullet.run(SKAction.scale(to: 1.0, duration: 0.2))
+         bullet.run(SKAction.scale(to: 0.8, duration: 0.2))
               bullet.run(SKAction.sequence([SKAction.wait(forDuration: 0.38), SKAction.removeFromParent()]))
         
         return bullet
