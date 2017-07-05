@@ -15,15 +15,15 @@ PS: Videos are often outdated. Run on your device to check out new stuff!
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## TODO list:
-  - [] Add new bullets for characters:
-     - [*] Add Alpha Bullet Sprites
-     - [*] Add Beta Bullet Sprites
-     - [*] Add Celta Bullet Sprites
-     - [*] Add Delta Bullet Sprites
-     - [] Add Class to create custom bullet sprite
+  - [✔️] Add new bullets for characters:
+     - [✔️] Add Alpha Bullet Sprites
+     - [✔️] Add Beta Bullet Sprites
+     - [✔️] Add Celta Bullet Sprites
+     - [✔️] Add Delta Bullet Sprites
+     - [✔️] Add Class to create custom bullet sprite
   - [] Add Bullet Power Logic
-  - [] Add Upgrade Bullet Function
-  - [] Display current level of bullet and its image on Character Scene
+  - [*] Add Upgrade Bullet Function
+  - [*] Display current level of bullet and its image on Character Scene
 
 [*] = Working [✔️] = Done
 
@@ -57,6 +57,7 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 ## Discovered Bugs:
 - Characters are too big on smaller devices.
 - Pinky completly freeze itself when it kills the player
+- Pinky's clone health display are incorrect. 
 
 ## Main Accomplishments:
 - [✔️] Add support for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
