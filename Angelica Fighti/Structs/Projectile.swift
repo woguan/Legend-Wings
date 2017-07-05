@@ -22,8 +22,7 @@ struct Projectile {
         originY = posY + 35
         
         if let blevel = BulletMaker.Level(rawValue: bulletLevel){
-           //bulletnode = bulletMaker.make(level: blevel, char: char)
-            bulletnode = bulletMaker.make(level: .Level_34, char: char)
+           bulletnode = bulletMaker.make(level: blevel, char: char)
         }
         else{
             print("Invalid bullet level. Returning 1")
