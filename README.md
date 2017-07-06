@@ -12,7 +12,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha 3.3.1</b>.
+- Current version: <b>Alpha v3.4.0</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 ## TODO list:
@@ -24,7 +24,8 @@ Next video update on: <b> Alpha v4.0.0 </b>
      - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
   - [] Add Bullet Power Logic
   - [*] Add Upgrade Bullet Function
-  - [*] Display current level of bullet and its image on Character Scene
+    - [✔️] Add Upgrade Scene on Character Scene <b> 07/05/2017 </b>
+  - [✔️] Display current level of bullet and its image on Character Scene <b> 07/05/2017 </b>
 
 [*] = Working [✔️] = Done
 
