@@ -171,9 +171,9 @@
 		0C12CD661F029433008BA78C /* Enemy */ = {
 			isa = PBXGroup;
 			children = (
-				0C12CD691F029433008BA78C /* Enemy.swift */,
 				0C12CD671F029433008BA78C /* Boss */,
 				0C12CD701F029479008BA78C /* Fireball.swift */,
+				0C12CD691F029433008BA78C /* Enemy.swift */,
 				0C12CD721F0339FE008BA78C /* RegularEnemy.swift */,
 			);
 			path = Enemy;

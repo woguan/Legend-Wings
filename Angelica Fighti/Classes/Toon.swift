@@ -136,4 +136,8 @@ class Toon{
     internal func getToonTitle() -> String{
         return title
     }
+    
+    internal func getBulletLevel() -> Int{
+        return bulletLevel
+    }
 }

@@ -109,6 +109,11 @@ class Global {
         case Character_Menu_Badge
         case Character_Menu_GlowingEffect = "character_menu_glowingeffect"
         case Character_Menu_GroundEffect = "character_menu_groundeffect"
+        case Character_Menu_UpgradeBox = "character_menu_upgradebox"
+        case Character_Menu_UpgradeArrow = "character_menu_upgradearrow"
+        case Character_Menu_UpgradeIcon = "character_menu_upgradeicon"
+        case Character_Menu_UpgradeIconShade = "character_menu_upgradeiconshade"
+        case Character_Menu_UpgradeCloseButton = "character_menu_upgradeclosebutton"
         
         // Bosses
         case Boss_1 = "boss_1"
@@ -665,7 +670,16 @@ class Global {
             return self.character_menu_collection[14]
         case .Character_Menu_GroundEffect:
             return self.character_menu_collection[15]
-            
+        case .Character_Menu_UpgradeBox:
+            return self.character_menu_collection[16]
+        case .Character_Menu_UpgradeArrow:
+            return self.character_menu_collection[17]
+        case .Character_Menu_UpgradeIcon:
+            return self.character_menu_collection[18]
+        case .Character_Menu_UpgradeIconShade:
+            return self.character_menu_collection[19]
+        case .Character_Menu_UpgradeCloseButton:
+            return self.character_menu_collection[20]
             
         // Boss
         case .Boss_1:

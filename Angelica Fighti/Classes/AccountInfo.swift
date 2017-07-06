@@ -101,7 +101,11 @@ class AccountInfo{
     internal func getTitleOfToonByIndex(index: Int) -> String{
         return characters[index].getToonTitle()
     }
+    internal func getBulletLevelOfToonByIndex(index: Int) -> Int{
+        return characters[index].getBulletLevel()
+    }
     internal func prepareToChangeScene(){
         characters.removeAll()
-}
+    }
+    
 }

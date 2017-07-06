@@ -138,7 +138,7 @@ class GameInfo: GameInfoDelegate{
         let random = randomInt(min: 0, max: 100)
         // Fireball
         if random < 10 {
-            print("Fireball called with random: ", random)
+          //  print("Fireball called with random: ", random)
             fireball_enemy.spawn(scene: mainScene!)
         }
         
@@ -274,6 +274,10 @@ class GameInfo: GameInfoDelegate{
     
     internal func getTitleOfToonByIndex(index id:Int) -> String{
         return self.account.getTitleOfToonByIndex(index: id)
+    }
+    
+    internal func getBulletLevelOfToonByIndex(index id:Int) -> Int{
+        return self.account.getBulletLevelOfToonByIndex(index: id)
     }
     
     // Maybe change this later to something like:

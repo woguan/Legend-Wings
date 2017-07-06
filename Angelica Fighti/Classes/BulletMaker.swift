@@ -73,7 +73,8 @@ class BulletMaker:NSObject{
     
     private func addBullet(sprite:(SKTexture, CGSize), dx: CGFloat, dy: CGFloat, zPos:CGFloat) -> SKSpriteNode{
         let node = SKSpriteNode(texture: sprite.0)
-        node.size = sprite.1
+        node.size.height = sprite.1.height * 0.7
+        node.size.width = sprite.1.width * 0.7
         node.position.x = node.size.width*dx
         node.position.y = node.size.height*dy
         node.zPosition = zPos

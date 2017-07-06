@@ -15,17 +15,26 @@ class CharacterMenuScene:SKScene{
         print("CharacterMenuScene deinitiated")
     }
     
-    enum CurrToon:Int{
+    private enum CurrToon:Int{
         case Alpha = 0
         case Beta = 1
         case Celta = 2
         case Delta = 3
+        
+        var string:String{
+            return String(describing: self)
+        }
     }
     
-    enum Update{
+    private enum Update{
         case ToonSelected
         case ToonChanged
         case UpdateTexture
+    }
+    
+    private enum State{
+        case Select
+        case Upgrade
     }
     
     let MAXTOONS:Int = 4
@@ -35,6 +44,10 @@ class CharacterMenuScene:SKScene{
     fileprivate var gameinfo = GameInfo()
     
     fileprivate var currToonIndex = 0
+    
+    fileprivate let bulletMaker = BulletMaker()
+    
+    fileprivate var state:State = .Select
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -159,15 +172,23 @@ class CharacterMenuScene:SKScene{
         // MessageBox left Root
         let leftRoot = SKSpriteNode()
             leftRoot.color = .clear
+            leftRoot.name = "leftRoot"
             leftRoot.size = CGSize(width: msgBox.size.height/3, height: msgBox.size.height/3)
             leftRoot.position.x = -msgBox.size.width/4
             msgBox.addChild(leftRoot)
         
         // Icon Badge
         let iconBadge = SKSpriteNode()
+            iconBadge.name = "iconBadge"
             iconBadge.size = CGSize(width: leftRoot.size.width*0.9, height: leftRoot.size.height*0.9)
             iconBadge.texture = global.getMainTexture(main: .Character_Menu_Badge)
             leftRoot.addChild(iconBadge)
+        
+        // Projectile Sprite
+        let projectile = bulletMaker.make(level: .Level_1, char: .Alpha)
+            projectile.name = "projectile"
+            projectile.setScale(0.5)
+            iconBadge.addChild(projectile)
         
         // MessageBox Right Root
         let rightRoot = SKSpriteNode()
@@ -260,7 +281,7 @@ class CharacterMenuScene:SKScene{
         let gbuttonLabel = SKLabelNode(fontNamed: "Cartwheel")
             gbuttonLabel.position.y += msgGreenButton.size.height*0.377
             gbuttonLabel.fontSize = msgGreenButton.size.width/5
-            gbuttonLabel.text = "Selected"
+            gbuttonLabel.text = "Update"
             msgGreenButton.addChild(gbuttonLabel)
         
         // Blue Button
@@ -288,21 +309,55 @@ class CharacterMenuScene:SKScene{
         for touch in touches{
             pos = touch.location(in: self)
         }
-        let childs = self.nodes(at: pos)
-        for c in childs{
-            if c.name == Global.Main.Character_Menu_BackArrow.rawValue{
-                doTask(gb: .Character_Menu_BackArrow)
+        
+        switch state {
+        case .Select:
+            for c in nodes(at: pos){
+                if c.name == "pause"{
+                    return
+                }
+                else if c.name == Global.Main.Character_Menu_BackArrow.rawValue{
+                    doTask(gb: .Character_Menu_BackArrow)
+                }
+                else if c.name == Global.Main.Character_Menu_RightArrow.rawValue{
+                    doTask(gb: .Character_Menu_RightArrow)
+                }
+                else if c.name == Global.Main.Character_Menu_LeftArrow.rawValue{
+                    doTask(gb: .Character_Menu_LeftArrow)
+                }
+                else if c.name == Global.Main.Character_Menu_BlueButton.rawValue{
+                    doTask(gb: .Character_Menu_BlueButton)
+                   // self.customPause(timeInterval: 2.0)
+                    let delay = SKSpriteNode()
+                    delay.size = self.size
+                    delay.color = .black
+                    delay.alpha = 0.0
+                    delay.zPosition = 15.0
+                    delay.name = "pause"
+                    let fadein = SKAction.fadeAlpha(to: 0.7, duration: 1.3)
+                    let fadeout = SKAction.fadeAlpha(to: 0.0, duration: 0.7)
+                    delay.run(SKAction.sequence([fadein, fadeout]))
+                    self.addChild(delay)
+                    run(SKAction.sequence([SKAction.wait(forDuration: 2.0)]), completion: delay.removeFromParent)
+                }
+                else if c.name == Global.Main.Character_Menu_GreenButton.rawValue{
+                    state = .Upgrade
+                    doTask(gb: .Character_Menu_GreenButton)
+                }
             }
-            else if c.name == Global.Main.Character_Menu_RightArrow.rawValue{
-                doTask(gb: .Character_Menu_RightArrow)
-            }
-            else if c.name == Global.Main.Character_Menu_LeftArrow.rawValue{
-                doTask(gb: .Character_Menu_LeftArrow)
-            }
-            else if c.name == Global.Main.Character_Menu_BlueButton.rawValue{
-                doTask(gb: .Character_Menu_BlueButton)
+        case .Upgrade:
+            for c in nodes(at: pos){
+                if c.name == Global.Main.Character_Menu_UpgradeCloseButton.rawValue{
+                    run(SKAction.sequence([SKAction.run {
+                        self.doTask(gb: .Character_Menu_UpgradeCloseButton)
+                        }, SKAction.wait(forDuration: 0.15)]), completion: {
+                        self.state = .Select
+                    })
+                    
+                }
             }
         }
+    
     }
     
     private func doTask(gb:Global.Main){
@@ -322,7 +377,10 @@ class CharacterMenuScene:SKScene{
         case .Character_Menu_BlueButton:
             self.gameinfo.selectToonIndex(index: self.currToonIndex)
            update(Case: .ToonSelected)
-            
+        case .Character_Menu_GreenButton:
+            showUpgrade()
+        case .Character_Menu_UpgradeCloseButton:
+            closeUpgrade()
         default:
             print("Should not reach Here - doTask from CharacterMenuScene")
         }
@@ -367,6 +425,8 @@ class CharacterMenuScene:SKScene{
     
     private func updateToonUI(toon:CurrToon){
         let msgbox = self.childNode(withName: Global.Main.Character_Menu_MessageBox.rawValue)!
+        let leftRoot = msgbox.childNode(withName: "leftRoot")!
+        let icon = leftRoot.childNode(withName: "iconBadge")!
         let charBoxName = msgbox.childNode(withName: "char_name_box")!
         let nameBoxLabelEffect = charBoxName.childNode(withName: "nameBoxLabel") as! SKEffectNode
         let nameBoxLabel = nameBoxLabelEffect.childNode(withName: "nameBoxLabel") as! SKLabelNode
@@ -401,6 +461,22 @@ class CharacterMenuScene:SKScene{
         // Update Name & Title
             nameBoxLabel.text = gameinfo.getNameOfToonByIndex(index: toon.rawValue)
             titleBoxLabel.text = gameinfo.getTitleOfToonByIndex(index: toon.rawValue)
+        
+        // Update Projectile (Bullet)
+        let bulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: toon.rawValue)
+        guard let currToon = Toon.Character(rawValue: toon.string),
+              let blevel = BulletMaker.Level(rawValue: bulletLevel)
+        else{
+            return
+        }
+        
+        if let bullet = icon.childNode(withName: "projectile"){
+        bullet.removeFromParent()
+        }
+        let newBullet = bulletMaker.make(level: blevel, char: currToon)
+        newBullet.name = "projectile"
+        newBullet.setScale(0.5)
+        icon.addChild(newBullet)
     }
     private func nextArrow(currToon:CurrToon){
         currToonIndex = currToon.rawValue + 1
@@ -463,6 +539,160 @@ class CharacterMenuScene:SKScene{
         effect5?.emissionAngle = CGFloat(Double.pi/180 * 80)
         effect5?.xAcceleration = -400
         addChild(effect5!)
+        
+    }
+    
+    private func showUpgrade(){
+        let root = SKSpriteNode()
+        root.name = "upgrade_rootView"
+        root.zPosition = 10.0
+        
+        let bground = SKSpriteNode()
+        bground.size = self.size
+        bground.color = .black
+        bground.name = "upgrade_background"
+        bground.alpha = 0.0
+        bground.run(SKAction.fadeAlpha(to: 0.7, duration: 0.15))
+        root.addChild(bground)
+        
+        
+        let contentRoot = SKSpriteNode()
+        contentRoot.setScale(0.1)
+        contentRoot.alpha = 0.1
+        contentRoot.name = "upgrade_contentRoot"
+        root.addChild(contentRoot)
+        
+        // Upgrade Box
+        let upgradeBox = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeBox))
+        upgradeBox.size.width = screenSize.width * 0.896
+        upgradeBox.size.height = screenSize.height * 0.493
+        upgradeBox.name = Global.Main.Character_Menu_UpgradeBox.rawValue
+        contentRoot.addChild(upgradeBox)
+        
+        // Upgrade Icon Shade
+        let iconShade = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeIconShade))
+        iconShade.size = CGSize(width: screenSize.width*0.454, height: screenSize.height*0.255)
+        iconShade.position.y += upgradeBox.size.height/4.5
+        upgradeBox.addChild(iconShade)
+        
+        // Upgrade Icon
+        let icon = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeIcon))
+        icon.size = CGSize(width: screenSize.width*0.208, height: screenSize.height*0.117)
+        icon.position.y += upgradeBox.size.height/4.5
+        upgradeBox.addChild(icon)
+        
+        // Icon Sprite (Bullet Display)
+        let nextBulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: self.currToonIndex) + 1
+        let currCharStr = CharacterMenuScene.CurrToon(rawValue: self.currToonIndex)!.string
+        guard let currToon = Toon.Character(rawValue: currCharStr),
+            let blevel = BulletMaker.Level(rawValue: nextBulletLevel)
+            else{
+                return
+        }
+        
+        let iconSprite = bulletMaker.make(level: blevel, char: currToon)
+        iconSprite.setScale(0.6)
+        icon.addChild(iconSprite)
+        
+        // Upgrade Arrow
+        let arrow = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeArrow))
+        arrow.size = CGSize(width: screenSize.width*0.051, height: screenSize.height*0.031)
+        arrow.setScale(1.5)
+        arrow.position.y -= arrow.size.height/2
+        upgradeBox.addChild(arrow)
+        
+        // Upgrade Button
+        let button = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_GreenButton))
+            button.name = Global.Main.Character_Menu_GreenButton.rawValue
+        button.size = CGSize(width: upgradeBox.size.width/4, height: upgradeBox.size.height/8)
+        button.position.y -= upgradeBox.size.height/3.5
+        upgradeBox.addChild(button)
+        
+        // Close Button
+        let closeButton = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeCloseButton))
+        closeButton.size = CGSize(width: screenSize.width*0.094, height: screenSize.height*0.049)
+        closeButton.name = Global.Main.Character_Menu_UpgradeCloseButton.rawValue
+        closeButton.anchorPoint = CGPoint(x: 0.75, y: 0.75)
+        closeButton.position.x = upgradeBox.frame.maxX
+        closeButton.position.y = upgradeBox.frame.maxY
+        upgradeBox.addChild(closeButton)
+        
+        // Left Text Area
+        let leftTextArea = SKSpriteNode()
+        leftTextArea.size = CGSize(width: upgradeBox.size.width/4.0, height: upgradeBox.size.width/4.0)
+        leftTextArea.color = .clear
+        leftTextArea.position.y = arrow.position.y
+        leftTextArea.position.x -= upgradeBox.size.width/4
+        upgradeBox.addChild(leftTextArea)
+        
+        let toonLevel = gameinfo.getBulletLevelOfToonByIndex(index: currToonIndex)
+        
+        let leftLevelLabel = SKLabelNode()
+        leftLevelLabel.text = "Lv \(String(toonLevel))"
+        leftLevelLabel.fontSize = leftTextArea.size.width/3.0
+        leftLevelLabel.horizontalAlignmentMode = .left
+        leftLevelLabel.fontName = "Cartwheel"
+        leftLevelLabel.position.x -= leftTextArea.size.width/4
+        leftTextArea.addChild(leftLevelLabel.shadowNode(nodeName: "leftlevellabelshadow"))
+        
+        let leftDmgLabel = SKLabelNode()
+        leftDmgLabel.fontName = "GillSans-Bold"
+        leftDmgLabel.text = "DMG: \(String(20 + toonLevel*5))"
+        leftDmgLabel.horizontalAlignmentMode = .left
+        leftDmgLabel.fontColor = .brown
+        leftDmgLabel.fontSize = leftTextArea.size.width/6.0
+        leftDmgLabel.position.x -= leftTextArea.size.width/3.0
+        leftDmgLabel.position.y -= leftTextArea.size.height/3.8
+        leftTextArea.addChild(leftDmgLabel)
+        
+        // Right Text Area
+        let rightTextArea = SKSpriteNode()
+        rightTextArea.size = CGSize(width: upgradeBox.size.width/4.0, height: upgradeBox.size.width/4.0)
+        rightTextArea.color = .clear
+        rightTextArea.position.y = arrow.position.y
+        rightTextArea.position.x += upgradeBox.size.width/4
+        upgradeBox.addChild(rightTextArea)
+        
+        let rightLevelLabel = SKLabelNode()
+        rightLevelLabel.text = "Lv \(String(toonLevel+1))"
+        rightLevelLabel.fontSize = rightTextArea.size.width/3.0
+        rightLevelLabel.horizontalAlignmentMode = .left
+        rightLevelLabel.fontName = "Cartwheel"
+        rightLevelLabel.fontColor = .orange
+        rightLevelLabel.position.x -= rightTextArea.size.width/3.0
+        rightTextArea.addChild(rightLevelLabel.shadowNode(nodeName: "rightlevellabelshadow"))
+        
+        let rightDmgLabel = SKLabelNode()
+        rightDmgLabel.fontName = "GillSans-Bold"
+        rightDmgLabel.text = "DMG: \(String(20 + (toonLevel+1)*5))"
+        rightDmgLabel.horizontalAlignmentMode = .left
+        rightDmgLabel.fontColor = .brown
+        rightDmgLabel.fontSize = rightTextArea.size.width/6.0
+        rightDmgLabel.position.x -= rightTextArea.size.width/2.5
+        rightDmgLabel.position.y -= rightTextArea.size.height/3.8
+        rightTextArea.addChild(rightDmgLabel)
+        
+        // Action Show Up
+        let scaleAction = SKAction.scale(to: 1.0, duration: 0.15)
+        let fadeIn = SKAction.fadeIn(withDuration: 0.15)
+        contentRoot.run(SKAction.group([scaleAction, fadeIn]))
+        
+        
+        addChild(root)
+    }
+    
+    private func closeUpgrade(){
+        
+        let root = childNode(withName: "upgrade_rootView")!
+        let bground = root.childNode(withName: "upgrade_background")!
+        let contentRoot = root.childNode(withName: "upgrade_contentRoot")!
+        bground.run(SKAction.fadeAlpha(to: 0.0, duration: 0.1))
+        
+        let scaleAction = SKAction.scale(to: 0.0, duration: 0.1)
+        let fadeIn = SKAction.fadeOut(withDuration: 0.1)
+        contentRoot.run(SKAction.group([scaleAction, fadeIn]))
+        
+        root.run(SKAction.sequence([SKAction.wait(forDuration: 0.15), SKAction.removeFromParent()]))
         
     }
     

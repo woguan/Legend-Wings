@@ -126,7 +126,7 @@ class Infobar:SKSpriteNode{
         else if templateStyle == .Second || templateStyle == .Third{
             let rect = CGRect(x: self.size.width*0.038, y: 0, width: barWidth, height: barHeight)
             let bar = SKShapeNode(rect: rect, cornerRadius: 10.0)
-            bar.alpha = 0.75
+            bar.alpha = 0.65
             bar.fillColor = .black
             bar.strokeColor = .black
             bar.name = "bar"
@@ -143,7 +143,7 @@ class Infobar:SKSpriteNode{
             
             if templateStyle == .Second{
                 label.text = "123"
-                label.fontColor = .orange
+                label.fontColor = SKColor(red: 254/255, green: 189/255, blue: 62/255, alpha: 1)
                 bar.addChild(label.shadowNode(nodeName: "labelCoinEffect"))
             }
             else{
