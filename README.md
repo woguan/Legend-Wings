@@ -96,5 +96,5 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 ## Available
 If you like what I do, and are looking for an iOS Mobile developer, [hire me!](mailto:diego@Lailibr.com)
 
-Donations are welcome :)
+Donations are welcome :) <p>
 [![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/11812852/repos/77804932)
