@@ -16,10 +16,10 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 #### Important Message:
-- [07/06/2017]:
-         - Today will have no update since I will have an interview tomorrow
-         - Next update will change to new IDE <b>Xcode Beta 9</b>, but iOS version will stay 10.3
-         - The next update will have a "better" look for the upgrade scene. I have reworked the sprites.
+- [07/06/2017]
+- First Message
+- Second Message
+- Third Message
              
 ## TODO list:
   - [✔️] Add new bullets for characters:
