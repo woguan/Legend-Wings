@@ -6,7 +6,7 @@
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
-PS: Videos are often outdated. Run on your device to check out new stuff.
+PS: Videos are often outdated. Run on your device to check out new features.
 Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
@@ -17,8 +17,8 @@ Next video update on: <b> Alpha v4.0.0 </b>
 
 <b>Important Message: </b>
 [07/05/2017] - Today will have no update since I will have an interview tomorrow <p>
-             - Next update will change the Xcode Beta 9, but version will be still 10.3 <p>
-             - The next update will have a "better" look for the upgrade scene. I have re-worked the sprites. <p>
+         - Next update will change the Xcode Beta 9, but version will be still 10.3 <p>
+         - The next update will have a "better" look for the upgrade scene. I have reworked the sprites. <p>
              
 ## TODO list:
   - [✔️] Add new bullets for characters:
