@@ -15,6 +15,11 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - Current version: <b>Alpha v3.4.0</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
+<b>Important Message: </b>
+[07/05/2017] - Today will have no update since I will have an interview tomorrow
+             - Next update will change the Xcode Beta 9, but version will be still 10.3
+             - The next update will have a "better" look for the upgrade scene. I have re-worked the sprites.
+             
 ## TODO list:
   - [✔️] Add new bullets for characters:
      - [✔️] Add Alpha Bullet Sprites <b> 07/04/2017 </b>
@@ -31,7 +36,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
-   - [] Add Magnefic Field on Character ( Easier to pick up coins )
+   - [] Add Magnetic Field on Character ( Easier to pick up coins )
    - [] Add new regular monsters
    - [] Add new Boss
 - ### High Priority (Order does not matter):
