@@ -42,9 +42,9 @@ Next video update on: <b> Alpha v4.0.0 </b>
    - [] Add new Boss
 - ### High Priority (Order does not matter):
    - [] Add Power-Ups
-    - [] Imune Item
-    - [] Increase Fire Power
-    - [] Double Shoot
+      - [] Imune Item
+      - [] Increase Fire Power
+      - [] Double Shoot
    - [] Add new drops from monsters (diamonds, trophy)
    
 - ### Low Priority (Order does not matter):
@@ -93,4 +93,8 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 - [✔️] Add customized font ttf for Gold Label with OpenGL shader <b>06/30/2017</b>
 - [✔️] Re-implement logic to increase enemies' HP and Velocity over time  <b>07/03/2017</b>
 
-  
+## Available
+If you like what I do, and are looking for an iOS Mobile developer, [hire me!](mailto:diego@Lailibr.com)
+
+Donations are welcome :)
+[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/11812852/repos/77804932)
