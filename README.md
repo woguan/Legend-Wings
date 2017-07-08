@@ -25,7 +25,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
    - [] Replace regular monsters
       - [*] Add new regular monsters sprites - Boring part again...
    - [] Add new Boss
-   
+   - [*] Re-work on difficulty over time
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
