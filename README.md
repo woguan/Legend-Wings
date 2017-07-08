@@ -10,13 +10,10 @@ PS: Videos are often outdated. Run on your device to check out new features.
 Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
-- Xcode Version: <b>9.0 Beta 2</b>| Latest iOS 10.3
+- Xcode Version: <b>9.0 Beta 2</b>| Latest iOS: <b>10.3</b>
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha v3.4.0</b>.
+- Current version: <b>Alpha v3.4.1</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
-
-#### Important Message:
-
              
 ## TODO list:
   - [✔️] Add new bullets for characters:
