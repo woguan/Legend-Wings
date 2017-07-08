@@ -24,16 +24,20 @@ Next video update on: <b> Alpha v4.0.0 </b>
    - [] Add Magnetic Field on Character ( Easier to pick up coins )
    - [] Add new regular monsters
    - [] Add new Boss
+   
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
+   - [] Add new drops from monsters (diamonds, trophy... etc?)
+    - [] Gems (Red, Green, Purple)
+   - [] Add new map
+   - [] Re-work drop system. 
+   - [] Add chance to summon shiny regular monster. (They drop Power-Ups)
    - [] Add Power-Ups
       - [] Imune Item
       - [] Increase Fire Power
       - [] Double Shoot
-   - [] Add new drops from monsters (diamonds, trophy)
-   - [] Add new map
 - ### High Priority (Order does not matter):
    - [] Add Level&Exp System for Account
       - [] Customized UI Progress Bar
@@ -47,6 +51,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
    - [] Add sound when Fireball is incoming
    - [] Pinky constant speed
    - [] Add Unit Test
+   - [] Add Character unique skills
 
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
