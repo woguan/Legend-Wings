@@ -100,6 +100,9 @@ class AccountInfo{
         }
     }
     
+    internal func upgradeBullet(){
+        
+    }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
         return characters[index].getToonDescription()
     }
