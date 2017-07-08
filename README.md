@@ -10,16 +10,13 @@ PS: Videos are often outdated. Run on your device to check out new features.
 Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
-- Xcode Version: 8.3.3 | Latest iOS 10.3
+- Xcode Version: <b>9.0 Beta 2</b>| Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
 - Current version: <b>Alpha v3.4.0</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 #### Important Message:
-- [07/06/2017]
-  - Today will have no update since I will have an interview tomorrow
-  - Next update will change to new IDE <b>Xcode Beta 9</b>, but iOS version will stay 10.3
-  - The next update will have a "better" look for the upgrade scene. I have reworked the sprites.
+
              
 ## TODO list:
   - [✔️] Add new bullets for characters:
