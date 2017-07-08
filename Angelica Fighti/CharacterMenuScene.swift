@@ -454,16 +454,16 @@ class CharacterMenuScene:SKScene{
         }
         
         // Update Description
-            flabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[0]
-            slabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[1]
-            tlabel.text = self.gameinfo.getDescriptionOfToonByIndex(index: toon.rawValue)[2]
+            flabel.text = self.gameinfo.requestToonDescription(index: toon.rawValue)[0]
+            slabel.text = self.gameinfo.requestToonDescription(index: toon.rawValue)[1]
+            tlabel.text = self.gameinfo.requestToonDescription(index: toon.rawValue)[2]
         
         // Update Name & Title
-            nameBoxLabel.text = gameinfo.getNameOfToonByIndex(index: toon.rawValue)
-            titleBoxLabel.text = gameinfo.getTitleOfToonByIndex(index: toon.rawValue)
+            nameBoxLabel.text = gameinfo.requestToonName(index: toon.rawValue)
+            titleBoxLabel.text = gameinfo.requestToonTitle(index: toon.rawValue)
         
         // Update Projectile (Bullet)
-        let bulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: toon.rawValue)
+        let bulletLevel = gameinfo.requestToonBulletLevel(index: toon.rawValue)
         guard let currToon = Toon.Character(rawValue: toon.string),
               let blevel = BulletMaker.Level(rawValue: bulletLevel)
         else{
@@ -544,8 +544,8 @@ class CharacterMenuScene:SKScene{
     
     private func showUpgrade(){
         
-        let toonLevel = gameinfo.getBulletLevelOfToonByIndex(index: currToonIndex)
-        let nextBulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: self.currToonIndex) + 1
+        let toonLevel = gameinfo.requestToonBulletLevel(index: currToonIndex)
+        let nextBulletLevel = gameinfo.requestToonBulletLevel(index: self.currToonIndex) + 1
         let currCharStr = CharacterMenuScene.CurrToon(rawValue: self.currToonIndex)!.string
         guard let currToon = Toon.Character(rawValue: currCharStr),
             let blevel = BulletMaker.Level(rawValue: nextBulletLevel)

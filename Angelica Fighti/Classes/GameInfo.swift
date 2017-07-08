@@ -265,19 +265,19 @@ class GameInfo: GameInfoDelegate{
     internal func selectToonIndex(index: Int){
         self.account.selectToonIndex(index: index)
     }
-    internal func getDescriptionOfToonByIndex(index id:Int) -> [String]{
+    internal func requestToonDescription(index id:Int) -> [String]{
         return self.account.getToonDescriptionByIndex(index: id)
     }
     
-    internal func getNameOfToonByIndex(index id:Int) -> String{
+    internal func requestToonName(index id:Int) -> String{
         return self.account.getNameOfToonByIndex(index: id)
     }
     
-    internal func getTitleOfToonByIndex(index id:Int) -> String{
+    internal func requestToonTitle(index id:Int) -> String{
         return self.account.getTitleOfToonByIndex(index: id)
     }
     
-    internal func getBulletLevelOfToonByIndex(index id:Int) -> Int{
+    internal func requestToonBulletLevel(index id:Int) -> Int{
         return self.account.getBulletLevelOfToonByIndex(index: id)
     }
     

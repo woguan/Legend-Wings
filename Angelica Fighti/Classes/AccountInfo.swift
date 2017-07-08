@@ -91,10 +91,8 @@ class AccountInfo{
     }
     
     internal func selectToonIndex(index: Int){
-        
             currentToonIndex = index
             data.plist.setValue(index, forKey: "CurrentToon")
-
         if !data.plist.write(toFile: data.fullPath, atomically: false){
             print("Saving Error - AccountInfo.selectToonIndex")
         }
