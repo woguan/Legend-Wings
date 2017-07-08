@@ -98,22 +98,22 @@ class AccountInfo{
         }
     }
     
-    internal func upgradeBullet() -> Bool{
+    internal func upgradeBullet() -> (Bool, String){
         let cost = (characters[currentToonIndex].getLevel() + 1) * 100
         
         if gold < cost {
-            return false
+            return (false, "Not enough gold")
         }
         
         gold -= cost
         data.plist.setValue(gold, forKey: "Coin")
+        
         if !data.plist.write(toFile: data.fullPath, atomically: false){
-            print("Saving Error - AccountInfo.upgradeBullet")
-            return false
+            return (false, "Saving error: AccountInfo.upgradeBullet")
         }
         
         guard let toonDict = data.plist.value(forKey: characters[currentToonIndex].getToonName()) as? NSMutableDictionary else{
-            return false
+            return (false, "Saving error: AccountInfo.upgradeBullet")
         }
         let currenteLevel:Int = characters[currentToonIndex].getLevel()
         
@@ -121,11 +121,10 @@ class AccountInfo{
         toonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
-            print("Saving Error - AccountInfo.upgradeBullet")
-            return false
+            return (false, "Saving Error")
         }
         
-        return true
+        return (true, "Success")
     }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
         return characters[index].getToonDescription()

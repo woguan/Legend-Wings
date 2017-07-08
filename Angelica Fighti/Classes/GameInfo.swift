@@ -281,6 +281,10 @@ class GameInfo: GameInfoDelegate{
         return self.account.getBulletLevelOfToonByIndex(index: id)
     }
     
+    internal func requestUpgradeBullet() -> (Bool, String){
+        return self.account.upgradeBullet()
+    }
+    
     // Maybe change this later to something like:
     // Enum CurrencyType: .Gold, .Diamond... etc
     internal func addCoin(amount:Int){
