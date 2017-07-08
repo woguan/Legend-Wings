@@ -12,7 +12,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## Notes:
 - Xcode Version: <b>9.0 Beta 2</b>| Latest iOS: <b>10.3</b>
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha v3.5.0</b>.
+- Current version: <b>Alpha v3.5.1</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
              
 ## TODO list:
@@ -40,6 +40,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
       - [] Increase Fire Power
       - [] Double Shoot
    - [] Add new drops from monsters (diamonds, trophy)
+   - [] Add new map
    
 - ### Low Priority (Order does not matter):
    - [] Add Level&Exp System for Account
