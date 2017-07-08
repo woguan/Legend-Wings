@@ -112,21 +112,22 @@ class AccountInfo{
         if !data.plist.write(toFile: data.fullPath, atomically: false){
             return (false, "Saving error: AccountInfo.upgradeBullet[1]")
         }
+        
         let toonDict = data.plist.value(forKey: "Toons") as! NSDictionary
         guard let currToonDict = toonDict.value(forKey: characters[currentToonIndex].getCharacter().string) as? NSMutableDictionary else{
-            return (false, "Saving error: AccountInfo.upgradeBullet[2]")
+            return (false, "Error: AccountInfo.upgradeBullet[2]")
         }
-        let currenteLevel:Int = characters[currentToonIndex].getLevel()
-        currToonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
+        
+        if !characters[currentToonIndex].advanceBulletLevel(){
+            return (false, "Max Level Achieved")
+        }
+        
+        currToonDict.setValue(characters[currentToonIndex].getBulletLevel(), forKey: "BulletLevel")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
             return (false, "Saving Error")
         }
         
-        // Update
-        if !characters[currentToonIndex].advanceBulletLevel(){
-            print("Max Level Achieved")
-        }
         
         return (true, "Success")
     }
