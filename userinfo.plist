@@ -18,8 +18,6 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
-			<key>Name</key>
-			<string>None</string>
 			<key>Title</key>
 			<string>None</string>
 			<key>Description</key>
@@ -39,8 +37,6 @@
 		<dict>
 			<key>Purchased</key>
 			<true/>
-			<key>Name</key>
-			<string>ALPHA</string>
 			<key>Title</key>
 			<string>GUARDIAN OF DRAGONS</string>
 			<key>Description</key>
@@ -60,8 +56,6 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
-			<key>Name</key>
-			<string>BETA</string>
 			<key>Title</key>
 			<string>GUARDIAN OF ADVENTURE</string>
 			<key>Description</key>
@@ -81,8 +75,6 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
-			<key>Name</key>
-			<string>CELTA</string>
 			<key>Title</key>
 			<string>GUARDIAN OF TWILIGHT</string>
 			<key>Description</key>
@@ -102,8 +94,6 @@
 		<dict>
 			<key>Purchased</key>
 			<false/>
-			<key>Name</key>
-			<string>DELTA</string>
 			<key>Title</key>
 			<string>GUARDIAN OF FORTUNE</string>
 			<key>Description</key>

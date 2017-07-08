@@ -12,12 +12,12 @@ import SpriteKit
 class Toon{
     
     enum Character:String{
-        case Alpha = "Alpha"
-        case Beta = "Beta"
-        case Celta = "Celta"
-        case Delta = "Delta"
-        case Felta = "Felta"
-        case Gelta = "Gelta"
+        case Alpha = "ALPHA"
+        case Beta = "BETA"
+        case Celta = "CELTA"
+        case Delta = "DELTA"
+        case Felta = "FELTA"
+        case Gelta = "GELTA"
     }
     deinit {
         print ("Toon class has been deinitiated.")
@@ -31,7 +31,6 @@ class Toon{
     private var bullet:Projectile?
     private var description:[String] = []
     private var experience:CGFloat = 0
-    private var charName:String = "None"
     private var title:String = "None"
     private var level:Int = 1 // Maximum level bullet can be switch to.
     private var bulletLevel:Int = 1
@@ -100,7 +99,6 @@ class Toon{
         self.experience = infoDict.value(forKey: "Experience") as! CGFloat
         self.description = infoDict.value(forKey: "Description") as! [String]
         self.title = infoDict.value(forKey: "Title") as! String
-        self.charName = infoDict.value(forKey: "Name") as! String
         self.bulletLevel = infoDict.value(forKey: "BulletLevel") as! Int
             
         bullet = Projectile(posX: node.position.x, posY: node.position.y, char: self.charType, bulletLevel: bulletLevel)
@@ -130,7 +128,7 @@ class Toon{
     }
     
     internal func getToonName() -> String{
-        return charName
+        return charType.rawValue
     }
     
     internal func getToonTitle() -> String{
