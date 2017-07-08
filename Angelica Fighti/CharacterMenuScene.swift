@@ -22,7 +22,8 @@ class CharacterMenuScene:SKScene{
         case Delta = 3
         
         var string:String{
-            return String(describing: self)
+            let name = String(describing: self)
+            return name.uppercased()
         }
     }
     
@@ -550,6 +551,7 @@ class CharacterMenuScene:SKScene{
         guard let currToon = Toon.Character(rawValue: currCharStr),
             let blevel = BulletMaker.Level(rawValue: nextBulletLevel)
             else{
+                print(currCharStr)
                 return
             }
         
