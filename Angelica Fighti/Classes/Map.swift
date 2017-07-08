@@ -102,7 +102,7 @@ class Map: NSObject{
         top.run(SKAction.repeatForever(moveDown))
     }
     
-     func update(){
+     @objc func update(){
         if (bottom.position.y <= -bottom.size.height){
             bottom.texture = getNextTexture()
             bottom.position.y = top.position.y + top.size.height

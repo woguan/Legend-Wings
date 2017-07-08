@@ -115,7 +115,7 @@ extension SKNode{
         }
     }
     
-    func run(action: SKAction, optionalCompletion: ((Void) -> Void)?){
+    func run(action: SKAction, optionalCompletion: (() -> Void)?){
         guard let completion = optionalCompletion else {
             run(action)
             return

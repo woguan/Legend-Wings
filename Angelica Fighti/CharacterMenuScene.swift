@@ -47,7 +47,7 @@ class CharacterMenuScene:SKScene{
     
     fileprivate let bulletMaker = BulletMaker()
     
-    fileprivate var state:State = .Select
+    private var state:State = .Select
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
@@ -543,6 +543,16 @@ class CharacterMenuScene:SKScene{
     }
     
     private func showUpgrade(){
+        
+        let toonLevel = gameinfo.getBulletLevelOfToonByIndex(index: currToonIndex)
+        let nextBulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: self.currToonIndex) + 1
+        let currCharStr = CharacterMenuScene.CurrToon(rawValue: self.currToonIndex)!.string
+        guard let currToon = Toon.Character(rawValue: currCharStr),
+            let blevel = BulletMaker.Level(rawValue: nextBulletLevel)
+            else{
+                return
+            }
+        
         let root = SKSpriteNode()
         root.name = "upgrade_rootView"
         root.zPosition = 10.0
@@ -573,40 +583,44 @@ class CharacterMenuScene:SKScene{
         let iconShade = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeIconShade))
         iconShade.size = CGSize(width: screenSize.width*0.454, height: screenSize.height*0.255)
         iconShade.position.y += upgradeBox.size.height/4.5
+        iconShade.alpha = 0.6
         upgradeBox.addChild(iconShade)
         
         // Upgrade Icon
         let icon = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeIcon))
-        icon.size = CGSize(width: screenSize.width*0.208, height: screenSize.height*0.117)
+        icon.size = CGSize(width: screenSize.width*0.287, height: screenSize.height*0.162)
         icon.position.y += upgradeBox.size.height/4.5
         upgradeBox.addChild(icon)
         
         // Icon Sprite (Bullet Display)
-        let nextBulletLevel = gameinfo.getBulletLevelOfToonByIndex(index: self.currToonIndex) + 1
-        let currCharStr = CharacterMenuScene.CurrToon(rawValue: self.currToonIndex)!.string
-        guard let currToon = Toon.Character(rawValue: currCharStr),
-            let blevel = BulletMaker.Level(rawValue: nextBulletLevel)
-            else{
-                return
-        }
         
         let iconSprite = bulletMaker.make(level: blevel, char: currToon)
-        iconSprite.setScale(0.6)
-        icon.addChild(iconSprite)
+            icon.addChild(iconSprite)
         
         // Upgrade Arrow
         let arrow = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeArrow))
-        arrow.size = CGSize(width: screenSize.width*0.051, height: screenSize.height*0.031)
-        arrow.setScale(1.5)
-        arrow.position.y -= arrow.size.height/2
-        upgradeBox.addChild(arrow)
+            arrow.size = CGSize(width: screenSize.width*0.051, height: screenSize.height*0.031)
+            arrow.setScale(1.5)
+            arrow.position.y -= arrow.size.height
+            upgradeBox.addChild(arrow)
         
         // Upgrade Button
         let button = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_GreenButton))
             button.name = Global.Main.Character_Menu_GreenButton.rawValue
-        button.size = CGSize(width: upgradeBox.size.width/4, height: upgradeBox.size.height/8)
-        button.position.y -= upgradeBox.size.height/3.5
-        upgradeBox.addChild(button)
+            button.size = CGSize(width: upgradeBox.size.width/4, height: upgradeBox.size.height/8)
+            button.setScale(1.2)
+            button.position.y -= upgradeBox.size.height/3.0
+            upgradeBox.addChild(button)
+        
+        // Price Label
+        let priceLabel = SKLabelNode(fontNamed: "Cartwheel")
+            priceLabel.text = "\(String(nextBulletLevel * 100))"
+            priceLabel.fontSize = button.size.width/4.0
+            priceLabel.position.x -= button.size.width/4.5
+            priceLabel.position.y -= button.size.height/5.0
+            priceLabel.fontColor = SKColor(red: 254/255, green: 189/255, blue: 62/255, alpha: 1)
+            priceLabel.horizontalAlignmentMode = .left
+            button.addChild(priceLabel.shadowNode(nodeName: "pricelabelshade"))
         
         // Close Button
         let closeButton = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_UpgradeCloseButton))
@@ -624,8 +638,6 @@ class CharacterMenuScene:SKScene{
         leftTextArea.position.y = arrow.position.y
         leftTextArea.position.x -= upgradeBox.size.width/4
         upgradeBox.addChild(leftTextArea)
-        
-        let toonLevel = gameinfo.getBulletLevelOfToonByIndex(index: currToonIndex)
         
         let leftLevelLabel = SKLabelNode()
         leftLevelLabel.text = "Lv \(String(toonLevel))"
@@ -676,7 +688,6 @@ class CharacterMenuScene:SKScene{
         let scaleAction = SKAction.scale(to: 1.0, duration: 0.15)
         let fadeIn = SKAction.fadeIn(withDuration: 0.15)
         contentRoot.run(SKAction.group([scaleAction, fadeIn]))
-        
         
         addChild(root)
     }

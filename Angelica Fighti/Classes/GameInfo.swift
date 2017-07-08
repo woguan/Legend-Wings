@@ -134,6 +134,7 @@ class GameInfo: GameInfoDelegate{
     
     //  Only called when the gamestate is spawning. 
     //  This function is called every second.
+    
     @objc private func running(){
         let random = randomInt(min: 0, max: 100)
         // Fireball
