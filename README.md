@@ -48,11 +48,12 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - ### Low Priority (Order does not matter):
    - [] Add Purchase Character Function
    - [] Add Companions System (Each side with a small minion to assist you) - Sidekicks!
-   - [] Add better effect for character's death
+   - [] Add new effect for character's death
    - [] Add sound when Fireball is incoming
    - [] Pinky constant speed
    - [] Add Unit Test
    - [] Add Character unique skills
+   - [] Add new FX for character's bullets
 
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
