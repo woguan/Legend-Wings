@@ -31,9 +31,9 @@ class Toon{
     private var bullet:Projectile?
     private var description:[String] = []
     private var experience:CGFloat = 0
-    private var level:Int = 0
     private var charName:String = "None"
     private var title:String = "None"
+    private var level:Int = 1 // Maximum level bullet can be switch to.
     private var bulletLevel:Int = 1
     
     // Initialize
