@@ -22,8 +22,8 @@ Next video update on: <b> Alpha v4.0.0 </b>
      - [✔️] Add Celta Bullet Sprites <b> 07/04/2017 </b>
      - [✔️] Add Delta Bullet Sprites <b> 07/04/2017 </b>
      - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
-  - [] Add Bullet Power Logic
-  - [*] Add Upgrade Bullet Function - Almost done!
+  - [*] Add Bullet Power Logic
+  - [✔️] Add Upgrade Bullet Function - <b> 07/08/2017 </b>
     - [✔️] Add Upgrade Scene on Character Scene <b> 07/05/2017 </b>
   - [✔️] Display current level of bullet and its image on Character Scene <b> 07/05/2017 </b>
 
