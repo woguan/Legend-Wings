@@ -6,7 +6,7 @@
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
-PS: Videos are often outdated. Run on your device to check out new features.
+
 Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
@@ -23,7 +23,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
      - [✔️] Add Delta Bullet Sprites <b> 07/04/2017 </b>
      - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
   - [] Add Bullet Power Logic
-  - [*] Add Upgrade Bullet Function
+  - [*] Add Upgrade Bullet Function - Almost done!
     - [✔️] Add Upgrade Scene on Character Scene <b> 07/05/2017 </b>
   - [✔️] Display current level of bullet and its image on Character Scene <b> 07/05/2017 </b>
 
