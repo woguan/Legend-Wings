@@ -6,15 +6,21 @@
 <p>
 <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/Intro.gif' title='Intro Video' width='200' height='357' alt='Intro Video' /> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/selection.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/startgame.gif' width='200' height='357'/> <img src='https://github.com/woguan/Legend-Wings/blob/master/Angelica%20Fighti/Gif/midgame.gif' width='200' height='357'/>
 </p><br>
-PS: Videos are often outdated. Run on your device to check out new stuff.
+PS: Videos are often outdated. Run on your device to check out new features.
 Next video update on: <b> Alpha v4.0.0 </b>
 
 ## Notes:
 - Xcode Version: 8.3.3 | Latest iOS 10.3
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha 3.3.1</b>.
+- Current version: <b>Alpha v3.4.0</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
+#### Important Message:
+- [07/06/2017]
+  - Today will have no update since I will have an interview tomorrow
+  - Next update will change to new IDE <b>Xcode Beta 9</b>, but iOS version will stay 10.3
+  - The next update will have a "better" look for the upgrade scene. I have reworked the sprites.
+             
 ## TODO list:
   - [✔️] Add new bullets for characters:
      - [✔️] Add Alpha Bullet Sprites <b> 07/04/2017 </b>
@@ -24,20 +30,21 @@ Next video update on: <b> Alpha v4.0.0 </b>
      - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
   - [] Add Bullet Power Logic
   - [*] Add Upgrade Bullet Function
-  - [*] Display current level of bullet and its image on Character Scene
+    - [✔️] Add Upgrade Scene on Character Scene <b> 07/05/2017 </b>
+  - [✔️] Display current level of bullet and its image on Character Scene <b> 07/05/2017 </b>
 
 [*] = Working [✔️] = Done
 
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
-   - [] Add Magnefic Field on Character ( Easier to pick up coins )
+   - [] Add Magnetic Field on Character ( Easier to pick up coins )
    - [] Add new regular monsters
    - [] Add new Boss
 - ### High Priority (Order does not matter):
    - [] Add Power-Ups
-    - [] Imune Item
-    - [] Increase Fire Power
-    - [] Double Shoot
+      - [] Imune Item
+      - [] Increase Fire Power
+      - [] Double Shoot
    - [] Add new drops from monsters (diamonds, trophy)
    
 - ### Low Priority (Order does not matter):
@@ -86,4 +93,7 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 - [✔️] Add customized font ttf for Gold Label with OpenGL shader <b>06/30/2017</b>
 - [✔️] Re-implement logic to increase enemies' HP and Velocity over time  <b>07/03/2017</b>
 
-  
+## Available
+If you like what I do, and you are looking for an iOS Mobile developer, [hire me!](mailto:diego@Lailibr.com)
+
+[![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/11812852/repos/77804932)
