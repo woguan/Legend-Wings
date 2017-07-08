@@ -218,7 +218,7 @@ class GameInfo: GameInfoDelegate{
             
             //totalWaves
             //wavesForNextLevel
-            let spawnAction = SKAction.repeat(action, count: wavesForNextLevel)
+            let spawnAction = SKAction.repeat(action, count: 1)
             let endAction = SKAction.run(didFinishSpawningEnemy)
             
             mainscene.run(SKAction.sequence([spawnAction, endAction]))
@@ -253,8 +253,6 @@ class GameInfo: GameInfoDelegate{
         return account.getCurrentToon().getBullet().generateTouchedEnemyEmmiterNode(x: px, y: py)
     }
     internal func prepareToChangeScene(){
-        
-        //NotificationCenter.default.removeObserver(self, name: updateNotification, object: nil)
         boss.delegate = nil
         regular_enemies.delegate = nil
         fireball_enemy.delegate = nil

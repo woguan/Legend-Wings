@@ -64,7 +64,7 @@ class EnemyModel: NSObject{
             enemyModel = RegularEnemy(baseHp: RegularBaseHP, speed: velocity)
         case .Boss:
             let chance = randomInt(min: 0, max: 100)
-                if chance < 50{
+                if chance < 0{
                     bossType = .Bomber
                     enemyModel = Bomber(hp: BossBaseHP)
                 }
@@ -99,22 +99,18 @@ class EnemyModel: NSObject{
     
     internal func decreaseHP(ofTarget: SKSpriteNode, hitBy: SKSpriteNode){
         
-        guard let enemyHpBar = ofTarget.childNode(withName: "hpBar") else{
-            return
-        }
+        
+        guard let rootBar = ofTarget.childNode(withName: "rootBar") as? SKSpriteNode,
+              let enemyHpBar = rootBar.childNode(withName: "hpBar")
+              else {return}
         
         ofTarget.hp = ofTarget.hp - hitBy.power
         
         if (hitBy.name == "bullet"){
-            
             let percentage = ofTarget.hp > 0.0 ? ofTarget.hp/ofTarget.maxHp : 0.0
-            
-            let originalBarSize = enemyHpBar.parent!.frame.size.width * 0.882 // Note: barSize = parent's width * 0.9 * 0.98
-
-            enemyHpBar.run(SKAction.resize(toWidth: originalBarSize * percentage, duration: 0.03))
-          
-            update(sknode: ofTarget)
-            
+            let originalBarSize = rootBar.size.width
+                enemyHpBar.run(SKAction.resize(toWidth: originalBarSize * percentage, duration: 0.03))
+                update(sknode: ofTarget, hpBar: enemyHpBar)
             if (ofTarget.hp <= 0){
                 ofTarget.physicsBody?.categoryBitMask = PhysicsCategory.None
                 enemyHpBar.removeFromParent()
@@ -130,19 +126,14 @@ class EnemyModel: NSObject{
         
     }
     
-    internal func update(sknode: SKSpriteNode){
-        
-        if let enemyHP = sknode.childNode(withName: "hpBar"){
-            let percentage = sknode.hp/sknode.maxHp
-            
-            if (percentage < 0.3){
-                enemyHP.run(SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.1))
+    internal func update(sknode: SKSpriteNode, hpBar: SKNode){
+        let percentage = sknode.hp/sknode.maxHp
+        if (percentage < 0.3){
+                hpBar.run(SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.1))
             }
-                
-            else if (percentage < 0.55){
-                enemyHP.run(SKAction.colorize(with: .yellow, colorBlendFactor: 1, duration: 0.1))            }
-        }
-        
+        else if (percentage < 0.55){
+                hpBar.run(SKAction.colorize(with: .yellow, colorBlendFactor: 1, duration: 0.1))
+            }
     }
     
     internal func explode(sknode: SKSpriteNode){

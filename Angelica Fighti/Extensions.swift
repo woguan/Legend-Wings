@@ -149,10 +149,16 @@ extension SKSpriteNode{
         bar.zPosition = -0.1
         bar.position.x = -(bar.size.width/2)
         bar.position.y = -size.height/2 - 10
-        bar.addChild(border)
         bar.isHidden = true
+        bar.addChild(border)
         
-        self.addChild(bar)
+        let rootBar = SKSpriteNode()
+        rootBar.size = bar.size//abs(border.frame.minX) + abs(border.frame.maxX)
+        rootBar.color = .clear
+        rootBar.name = "rootBar"
+        rootBar.addChild(bar)
+        
+        self.addChild(rootBar)
     }
 }
 
