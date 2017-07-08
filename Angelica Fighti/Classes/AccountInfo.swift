@@ -99,31 +99,37 @@ class AccountInfo{
     }
     
     internal func upgradeBullet() -> (Bool, String){
-        let cost = (characters[currentToonIndex].getLevel() + 1) * 100
+        let level = characters[currentToonIndex].getLevel()
+        let cost = (level + 1) * 100
         
         if gold < cost {
             return (false, "Not enough gold")
+        }
+        else if level >= 50 {
+            return (false, "Max Level Achieved")
         }
         
         gold -= cost
         data.plist.setValue(gold, forKey: "Coin")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
-            return (false, "Saving error: AccountInfo.upgradeBullet")
+            return (false, "Saving error: AccountInfo.upgradeBullet[1]")
         }
-        
-        guard let toonDict = data.plist.value(forKey: characters[currentToonIndex].getToonName()) as? NSMutableDictionary else{
-            return (false, "Saving error: AccountInfo.upgradeBullet")
+        let toonDict = data.plist.value(forKey: "Toons") as! NSDictionary
+        guard let currToonDict = toonDict.value(forKey: characters[currentToonIndex].getCharacter().string) as? NSMutableDictionary else{
+            return (false, "Saving error: AccountInfo.upgradeBullet[2]")
         }
         let currenteLevel:Int = characters[currentToonIndex].getLevel()
         
-        toonDict.setValue(currenteLevel + 1, forKey: "Level") // Maybe for future use
-        toonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
+        currToonDict.setValue(currenteLevel + 1, forKey: "Level") // Maybe for future use
+        currToonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
             return (false, "Saving Error")
         }
         
+        // Update
+        characters[currentToonIndex].advanceBulletLevel()
         return (true, "Success")
     }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{

@@ -18,6 +18,11 @@ class Toon{
         case Delta = "DELTA"
         case Felta = "FELTA"
         case Gelta = "GELTA"
+        
+        var string:String{
+            let name = String(describing: self)
+            return name
+        }
     }
     deinit {
         print ("Toon class has been deinitiated.")
@@ -141,5 +146,14 @@ class Toon{
     
     internal func getLevel() -> Int{
         return level
+    }
+    
+    internal func advanceBulletLevel(){
+        level += 1
+        bulletLevel += 1
+    }
+    // Remove below function later on. Combine it with getToonName
+    internal func getCharacter() -> Character{
+        return charType
     }
 }

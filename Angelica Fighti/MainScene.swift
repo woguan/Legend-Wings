@@ -191,7 +191,6 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     
    private func loadgameinfo(){
         // Check if any error from loading gameinfo
-    
         let check = gameinfo.load(scene: self)
         
         if(!check.0){
@@ -201,7 +200,6 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         
         // Add Character
         self.addChild(gameinfo.getCurrentToonNode())
-
     }
     
    private func createUIButton(bname: String, offsetPosX dx:CGFloat, offsetPosY dy:CGFloat) -> SKSpriteNode{

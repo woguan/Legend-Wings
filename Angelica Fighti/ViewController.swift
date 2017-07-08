@@ -275,7 +275,6 @@ class ViewController: UIViewController {
             print("Load Status: Normal")
             print(msg)
             mainmenu()
-            //startgame()
         case .Warning:
             print("Load Status: Warning")
             print(msg)

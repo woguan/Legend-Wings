@@ -282,6 +282,7 @@ class GameInfo: GameInfoDelegate{
     }
     
     internal func requestUpgradeBullet() -> (Bool, String){
+        self.infobar.updateGoldBalnceLabel(balance: self.account.getGoldBalance())
         return self.account.upgradeBullet()
     }
     
