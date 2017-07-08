@@ -22,7 +22,8 @@ Next video update on: <b> Alpha v4.0.0 </b>
              
 ## TODO list:
    - [] Add Magnetic Field on Character ( Easier to pick up coins )
-   - [] Add new regular monsters
+   - [] Replace regular monsters
+      - [*] Add new regular monsters sprites - Boring part again...
    - [] Add new Boss
    
 [*] = Working [✔️] = Done
