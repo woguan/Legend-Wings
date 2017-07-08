@@ -56,7 +56,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
-## Discovered Bugs (Unless it is critical errors, This section is usually in low priority):
+## Discovered Bugs (Unless it is critical error, this section is usually in low priority):
 - Characters are too big on smaller devices.
 - Pinky completly freeze itself when it kills the player
 - Pinky's clone health display are incorrect. 
