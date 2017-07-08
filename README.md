@@ -59,7 +59,6 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 ## Discovered Bugs (Unless it is critical error, this section is usually in low priority):
 - Characters are too big on smaller devices.
 - Pinky completly freeze itself when it kills the player
-- Pinky's clone health display are incorrect. 
 
 ## Main Accomplishments:
 - [✔️] Add support for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
