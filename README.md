@@ -30,7 +30,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## Future Implementations:
 - ### About to join TODO List (Order does not matter):
    - [] Add new drops from monsters (diamonds, trophy... etc?)
-    - [] Gems (Red, Green, Purple)
+      - [] Gems (Red, Green, Purple)
    - [] Add new map
    - [] Re-work drop system. 
    - [] Add chance to summon shiny regular monster. (They drop Power-Ups)
