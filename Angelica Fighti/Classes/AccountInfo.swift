@@ -28,7 +28,7 @@ class AccountInfo{
     private struct Data{
         private let documentDir:NSString
         let fullPath:String
-        let plist:NSMutableDictionary!
+        let plist:NSMutableDictionary
         
         init(){
          documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
@@ -98,8 +98,23 @@ class AccountInfo{
         }
     }
     
-    internal func upgradeBullet(){
+    internal func upgradeBullet() -> Bool{
+        let cost = (characters[currentToonIndex].getLevel() + 1) * 100
         
+        if gold < cost {
+            return false
+        }
+        
+        gold -= cost
+        data.plist.setValue(gold, forKey: "Coin")
+        if !data.plist.write(toFile: data.fullPath, atomically: false){
+            print("Saving Error - AccountInfo.upgradeBullet")
+            return false
+        }
+        
+       // let toonDict = data.plist.value(forKey: characters[currentToonIndex])
+        //data.plist.setValue(characters[currentToonIndex].getBulletLevel() + 1, forKey: "")
+        return true
     }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
         return characters[index].getToonDescription()
