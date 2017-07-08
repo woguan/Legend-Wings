@@ -140,4 +140,8 @@ class Toon{
     internal func getBulletLevel() -> Int{
         return bulletLevel
     }
+    
+    internal func getLevel() -> Int{
+        return level
+    }
 }
