@@ -280,8 +280,12 @@ class GameInfo: GameInfoDelegate{
     }
     
     internal func requestUpgradeBullet() -> (Bool, String){
-        self.infobar.updateGoldBalnceLabel(balance: self.account.getGoldBalance())
-        return self.account.upgradeBullet()
+        let (success, response) = self.account.upgradeBullet()
+        
+        if success {
+            self.infobar.updateGoldBalnceLabel(balance: self.account.getGoldBalance())
+        }
+        return (success, response)
     }
     
     // Maybe change this later to something like:

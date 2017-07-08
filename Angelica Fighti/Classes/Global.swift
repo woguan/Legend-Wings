@@ -269,7 +269,6 @@ class Global {
         
         // Order:  mapPreload -> enemyPreload -> playerPreload -> itemsPreload
         // -> hudPreload -> characterScenePreload  mainMenuPreload ->|| total: 7
-     //   DispatchQueue.global().async {
             self.mapPreload()
             self.enemyPreload()
             self.playerPreload()
@@ -277,8 +276,6 @@ class Global {
             self.hudPreload()
             self.characterScenePreload()
             self.mainMenuPreload()
-       // }
-        
     }
     
     
@@ -325,11 +322,11 @@ class Global {
             for texture in atlas.textureNames{
                 if texture.contains("map1_"){
                     self.map[.Ragnarok]!.append(atlas.textureNamed("map1_\(self.map[.Ragnarok]!.count + 1)"))
+                    print(texture)
                 }
             }
             self.checkmark()
         }
-        
     }
     
     private func enemyPreload(){

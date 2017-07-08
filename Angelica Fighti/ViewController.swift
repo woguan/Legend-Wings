@@ -107,7 +107,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Add Notification
         let preloadNotification = Notification.Name(rawValue:"PreloadNotification")
         let progressNotification = Notification.Name(rawValue:"ProgressNotification")

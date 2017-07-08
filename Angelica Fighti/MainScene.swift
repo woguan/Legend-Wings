@@ -197,7 +197,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             print("LOADING ERROR: ", check.1)
             return
         }
-        
+
         // Add Character
         self.addChild(gameinfo.getCurrentToonNode())
     }

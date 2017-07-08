@@ -10,6 +10,9 @@ import SpriteKit
 
 class BulletMaker:NSObject{
     
+    deinit{
+        print("bullet maker deinit")
+    }
     enum BulletType {
         case Type_1
         case Type_2

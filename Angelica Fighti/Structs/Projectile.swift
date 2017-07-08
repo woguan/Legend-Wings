@@ -10,12 +10,13 @@ import Foundation
 import SpriteKit
 
 struct Projectile {
-    var originX:CGFloat
-    var originY:CGFloat
-    var name = "bullet" // Do not change it.
-    var bulletnode:SKSpriteNode
-    var bulletLevel:Int
-    let bulletMaker = BulletMaker()
+    
+    private var originX:CGFloat
+    private var originY:CGFloat
+    private var name = "bullet" // Do not change it.
+    private var bulletnode:SKSpriteNode
+    private var bulletLevel:Int
+    private let bulletMaker = BulletMaker()
     
     init (posX:CGFloat, posY:CGFloat, char:Toon.Character, bulletLevel: Int){
         originX = posX

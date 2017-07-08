@@ -8,7 +8,9 @@
 import SpriteKit
 
 class Infobar:SKSpriteNode{
-    
+    deinit{
+        print("infobar deinit")
+    }
     private enum Template{
         case First // Display Level&Exp
         case Second // Display account's money
