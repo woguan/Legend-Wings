@@ -14,11 +14,6 @@ class AccountInfo{
     deinit{
         print("AccountInfo Deinitiated")
     }
-    
-    let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
-    
-    let fullPath:String
-    let plist:NSMutableDictionary?
     // For future update
     /* struct Bag{
      var something:Int
@@ -26,7 +21,24 @@ class AccountInfo{
      init(){
      something = 0
      }
-     }*/
+     }
+  var inventory:Bag
+     */
+    
+    private struct Data{
+        private let documentDir:NSString
+        let fullPath:String
+        let plist:NSMutableDictionary!
+        
+        init(){
+         documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
+             fullPath = documentDir.appendingPathComponent("userinfo.plist")
+            guard let plist = NSMutableDictionary(contentsOfFile: fullPath) else {
+                fatalError("plist is nil - Check AccountInfo.swift")
+            }
+            self.plist = plist
+        }
+    }
     
     private var level:Int
     private var currentToonIndex:Int
@@ -34,32 +46,29 @@ class AccountInfo{
     private var gold:Int
     private var experience:CGFloat
     private var highscore:Int
-    //  var inventory:Bag
+    private let data:Data
     
     init(){
+        //inventory = Bag()
         level = 0
         currentToonIndex = 0
-        //   inventory = Bag()
         gold = 0
         experience = 0.0
         characters = [Toon(char: .Alpha), Toon(char: .Beta), Toon(char: .Celta), Toon(char: .Delta)]
         highscore = 0
-        
-        fullPath = documentDir.appendingPathComponent("userinfo.plist")
-        plist = NSMutableDictionary(contentsOfFile: fullPath)
-        
+        data = Data()
     }
     
     func load() -> Bool{
 
         // Update Root
-            level = plist?.value(forKey: "Level") as! Int
-            gold = plist?.value(forKey: "Coin") as! Int
-            experience = plist?.value(forKey: "Experience") as! CGFloat
-            highscore = plist?.value(forKey: "Highscore") as! Int
-            currentToonIndex = plist?.value(forKey: "CurrentToon") as! Int
+            level = data.plist.value(forKey: "Level") as! Int
+            gold = data.plist.value(forKey: "Coin") as! Int
+            experience = data.plist.value(forKey: "Experience") as! CGFloat
+            highscore = data.plist.value(forKey: "Highscore") as! Int
+            currentToonIndex = data.plist.value(forKey: "CurrentToon") as! Int
         
-        let toondDict = plist?.value(forKey: "Toons") as! NSDictionary
+        let toondDict = data.plist.value(forKey: "Toons") as! NSDictionary
         
             characters[0].load(infoDict: toondDict.value(forKey: "Alpha") as! NSDictionary)
             characters[1].load(infoDict: toondDict.value(forKey: "Beta") as! NSDictionary)
@@ -84,9 +93,9 @@ class AccountInfo{
     internal func selectToonIndex(index: Int){
         
             currentToonIndex = index
-            plist!.setValue(index, forKey: "CurrentToon")
+            data.plist.setValue(index, forKey: "CurrentToon")
 
-        if !plist!.write(toFile: fullPath, atomically: false){
+        if !data.plist.write(toFile: data.fullPath, atomically: false){
             print("Saving Error - AccountInfo.selectToonIndex")
         }
     }
