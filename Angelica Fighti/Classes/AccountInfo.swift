@@ -112,8 +112,19 @@ class AccountInfo{
             return false
         }
         
-       // let toonDict = data.plist.value(forKey: characters[currentToonIndex])
-        //data.plist.setValue(characters[currentToonIndex].getBulletLevel() + 1, forKey: "")
+        guard let toonDict = data.plist.value(forKey: characters[currentToonIndex].getToonName()) as? NSMutableDictionary else{
+            return false
+        }
+        let currenteLevel:Int = characters[currentToonIndex].getLevel()
+        
+        toonDict.setValue(currenteLevel + 1, forKey: "Level")
+        toonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
+        
+        if !data.plist.write(toFile: data.fullPath, atomically: false){
+            print("Saving Error - AccountInfo.upgradeBullet")
+            return false
+        }
+        
         return true
     }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
