@@ -17,7 +17,8 @@ class AccountInfo{
     
     let documentDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString
     
-    
+    let fullPath:String
+    let plist:NSMutableDictionary?
     // For future update
     /* struct Bag{
      var something:Int
@@ -44,12 +45,13 @@ class AccountInfo{
         characters = [Toon(char: .Alpha), Toon(char: .Beta), Toon(char: .Celta), Toon(char: .Delta)]
         highscore = 0
         
+        fullPath = documentDir.appendingPathComponent("userinfo.plist")
+        plist = NSMutableDictionary(contentsOfFile: fullPath)
+        
     }
     
     func load() -> Bool{
-        
-        let plist = NSDictionary(contentsOfFile: documentDir.appendingPathComponent("userinfo.plist"))
-        
+
         // Update Root
             level = plist?.value(forKey: "Level") as! Int
             gold = plist?.value(forKey: "Coin") as! Int
@@ -80,9 +82,6 @@ class AccountInfo{
     }
     
     internal func selectToonIndex(index: Int){
-        
-        let fullPath = documentDir.appendingPathComponent("userinfo.plist")
-        let plist = NSMutableDictionary(contentsOfFile: fullPath)
         
             currentToonIndex = index
             plist!.setValue(index, forKey: "CurrentToon")
