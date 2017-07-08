@@ -64,7 +64,7 @@ class EnemyModel: NSObject{
             enemyModel = RegularEnemy(baseHp: RegularBaseHP, speed: velocity)
         case .Boss:
             let chance = randomInt(min: 0, max: 100)
-                if chance < 0{
+                if chance < 50{
                     bossType = .Bomber
                     enemyModel = Bomber(hp: BossBaseHP)
                 }
