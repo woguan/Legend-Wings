@@ -87,10 +87,10 @@ Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In
 - [✔️] Add customized font ttf for Gold Label with OpenGL shader <b>06/30/2017</b>
 - [✔️] Re-implement logic to increase enemies' HP and Velocity over time  <b>07/03/2017</b>
 - [✔️] Add new bullets for characters:
-- [✔️] Add Alpha Bullet Sprites <b> 07/04/2017 </b>
-- [✔️] Add Beta Bullet Sprites <b> 07/04/2017 </b>
-- [✔️] Add Celta Bullet Sprites <b> 07/04/2017 </b>
-- [✔️] Add Delta Bullet Sprites <b> 07/04/2017 </b>
+  - [✔️] Add Alpha Bullet Sprites <b> 07/04/2017 </b>
+  - [✔️] Add Beta Bullet Sprites <b> 07/04/2017 </b>
+  - [✔️] Add Celta Bullet Sprites <b> 07/04/2017 </b>
+  - [✔️] Add Delta Bullet Sprites <b> 07/04/2017 </b>
 - [✔️] Add Class to create custom bullet sprite <b> 07/04/2017 </b>
 - [✔️] Add Bullet Power Logic - <b> 07/08/2017 </b>
 - [✔️] Add Upgrade Bullet Function - <b> 07/08/2017 </b>
