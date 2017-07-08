@@ -114,6 +114,7 @@ class Global {
         case Character_Menu_UpgradeIcon = "character_menu_upgradeicon"
         case Character_Menu_UpgradeIconShade = "character_menu_upgradeiconshade"
         case Character_Menu_UpgradeCloseButton = "character_menu_upgradeclosebutton"
+        case Character_Menu_UpgradeGreenButton = "character_menu_upgradegreenbutton"
         
         // Bosses
         case Boss_1 = "boss_1"
@@ -680,6 +681,8 @@ class Global {
             return self.character_menu_collection[19]
         case .Character_Menu_UpgradeCloseButton:
             return self.character_menu_collection[20]
+        case .Character_Menu_UpgradeGreenButton:
+            return self.character_menu_collection[21]
             
         // Boss
         case .Boss_1:
