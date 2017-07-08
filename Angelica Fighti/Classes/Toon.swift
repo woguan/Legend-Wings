@@ -32,7 +32,7 @@ class Toon{
     private var description:[String] = []
     private var experience:CGFloat = 0
     private var title:String = "None"
-    private var level:Int = 1 // Maximum level bullet can be switch to.
+    private var level:Int = 1 // For future use
     private var bulletLevel:Int = 1
     
     // Initialize

@@ -117,7 +117,7 @@ class AccountInfo{
         }
         let currenteLevel:Int = characters[currentToonIndex].getLevel()
         
-        toonDict.setValue(currenteLevel + 1, forKey: "Level")
+        toonDict.setValue(currenteLevel + 1, forKey: "Level") // Maybe for future use
         toonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
