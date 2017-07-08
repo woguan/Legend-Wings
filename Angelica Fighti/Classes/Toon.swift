@@ -38,7 +38,7 @@ class Toon{
     private var experience:CGFloat = 0
     private var title:String = "None"
     private var level:Int = 1 // For future use
-    private var bulletLevel:Int = 1
+// private var bulletLevel:Int = 1
     
     // Initialize
     private var charType:Character
@@ -104,8 +104,9 @@ class Toon{
         self.experience = infoDict.value(forKey: "Experience") as! CGFloat
         self.description = infoDict.value(forKey: "Description") as! [String]
         self.title = infoDict.value(forKey: "Title") as! String
-        self.bulletLevel = infoDict.value(forKey: "BulletLevel") as! Int
-            
+        
+        let bulletLevel = infoDict.value(forKey: "BulletLevel") as! Int
+        
         bullet = Projectile(posX: node.position.x, posY: node.position.y, char: self.charType, bulletLevel: bulletLevel)
         node.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: node.size.width/4, height: node.size.height/2))
         node.physicsBody!.isDynamic = true // allow physic simulation to move it
@@ -141,16 +142,16 @@ class Toon{
     }
     
     internal func getBulletLevel() -> Int{
-        return bulletLevel
+        //return bulletLevel
+        return bullet!.getBulletLevel()
     }
     
     internal func getLevel() -> Int{
         return level
     }
     
-    internal func advanceBulletLevel(){
-        level += 1
-        bulletLevel += 1
+    internal func advanceBulletLevel() -> Bool{
+        return bullet!.upgrade()
     }
     // Remove below function later on. Combine it with getToonName
     internal func getCharacter() -> Character{

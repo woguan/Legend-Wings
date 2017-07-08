@@ -12,28 +12,25 @@ import SpriteKit
 struct Projectile {
     var originX:CGFloat
     var originY:CGFloat
-    var power:CGFloat
-    var name = "bullet"
+    var name = "bullet" // Do not change it.
     var bulletnode:SKSpriteNode
+    var bulletLevel:Int
     let bulletMaker = BulletMaker()
     
     init (posX:CGFloat, posY:CGFloat, char:Toon.Character, bulletLevel: Int){
         originX = posX
         originY = posY + 35
+        self.bulletLevel = bulletLevel
         
         if let blevel = BulletMaker.Level(rawValue: bulletLevel){
            bulletnode = bulletMaker.make(level: blevel, char: char)
-            //bulletnode = bulletMaker.make(level: .Level_50, char: char)
         }
         else{
             print("Invalid bullet level. Returning 1")
             bulletnode = bulletMaker.make(level: .Level_1, char: char)
         }
-
-        power = 25.0 * CGFloat(bulletLevel)
         
         bulletnode.userData = NSMutableDictionary()
-        bulletnode.power = 25.0
         bulletnode.name = name
         bulletnode.setScale(0.25)
         bulletnode.physicsBody = SKPhysicsBody(circleOfRadius: 3)
@@ -49,13 +46,11 @@ struct Projectile {
     func shoot() -> SKSpriteNode{
         
         let bullet = bulletnode.copy() as! SKSpriteNode
-        
+        bullet.power = getPowerValue()
         bullet.position = CGPoint(x: originX, y: originY)
          bullet.run(SKAction.scale(to: 1.0, duration: 0.2))
               bullet.run(SKAction.sequence([SKAction.wait(forDuration: 0.38), SKAction.removeFromParent()]))
-        
         return bullet
-    
     }
     
     func generateTouchedEnemyEmmiterNode(x posX:CGFloat, y posY:CGFloat) -> SKEmitterNode{
@@ -77,6 +72,25 @@ struct Projectile {
     
     func printPosition(){
         print ("This: ", originX, originY)
+    }
+    
+    func getPowerValue() -> CGFloat{
+        return 25 + 5.0*CGFloat(bulletLevel)
+    }
+    func getBulletLevel() -> Int{
+        return bulletLevel
+    }
+    
+    mutating func setBulletLevel(level: Int){
+        self.bulletLevel = level
+    }
+    
+    mutating func upgrade() -> Bool{
+        if bulletLevel >= 50 {
+            return false
+        }
+        self.bulletLevel += 1
+        return true
     }
     
 }

@@ -105,9 +105,6 @@ class AccountInfo{
         if gold < cost {
             return (false, "Not enough gold")
         }
-        else if level >= 50 {
-            return (false, "Max Level Achieved")
-        }
         
         gold -= cost
         data.plist.setValue(gold, forKey: "Coin")
@@ -120,8 +117,6 @@ class AccountInfo{
             return (false, "Saving error: AccountInfo.upgradeBullet[2]")
         }
         let currenteLevel:Int = characters[currentToonIndex].getLevel()
-        
-        currToonDict.setValue(currenteLevel + 1, forKey: "Level") // Maybe for future use
         currToonDict.setValue(currenteLevel + 1, forKey: "BulletLevel")
         
         if !data.plist.write(toFile: data.fullPath, atomically: false){
@@ -129,7 +124,10 @@ class AccountInfo{
         }
         
         // Update
-        characters[currentToonIndex].advanceBulletLevel()
+        if !characters[currentToonIndex].advanceBulletLevel(){
+            print("Max Level Achieved")
+        }
+        
         return (true, "Success")
     }
     internal func getToonDescriptionByIndex(index: Int) -> [String]{
