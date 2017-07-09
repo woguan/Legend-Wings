@@ -17,13 +17,13 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## Notes:
 - Xcode Version: <b>9.0 Beta 2</b>| Latest iOS: <b>10.3</b>
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha v3.5.1</b>.
+- Current version: <b>Alpha v3.5.2</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
              
 ## TODO list:
-   - [] Add Magnetic Field on Character ( Easier to pick up coins )
+   - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
    - [] Replace regular monsters
-      - [*] Add new regular monsters sprites - Boring part again...
+      - [*] Add new regular monsters sprites
    - [] Add new Boss
    - [*] Re-work on difficulty over time
    
