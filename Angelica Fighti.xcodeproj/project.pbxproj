@@ -54,10 +54,6 @@
 		0C363DDE1EF4AA7800CAE82F /* trail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DDC1EF4AA7800CAE82F /* trail.sks */; };
 		0C363DE01EF4AAC500CAE82F /* fx_5_smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DDF1EF4AAC500CAE82F /* fx_5_smoke.png */; };
 		0C363DE81EF4BE9100CAE82F /* initial_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */; };
-		0C86BBDA1EF9CDCB000B8A50 /* Intro.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C86BBD91EF9CDCB000B8A50 /* Intro.gif */; };
-		0C86BBDE1EF9D0F1000B8A50 /* startgame.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C86BBDB1EF9D0F1000B8A50 /* startgame.gif */; };
-		0C86BBDF1EF9D0F1000B8A50 /* midgame.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C86BBDC1EF9D0F1000B8A50 /* midgame.gif */; };
-		0C86BBE01EF9D0F1000B8A50 /* selection.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0C86BBDD1EF9D0F1000B8A50 /* selection.gif */; };
 		F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */; };
 		F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */; };
 		F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7091E16705300A5DEE9 /* Extensions.swift */; };
@@ -115,10 +111,6 @@
 		0C363DDC1EF4AA7800CAE82F /* trail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = trail.sks; sourceTree = "<group>"; };
 		0C363DDF1EF4AAC500CAE82F /* fx_5_smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fx_5_smoke.png; sourceTree = "<group>"; };
 		0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initial_main_bg.png; sourceTree = "<group>"; };
-		0C86BBD91EF9CDCB000B8A50 /* Intro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Intro.gif; sourceTree = "<group>"; };
-		0C86BBDB1EF9D0F1000B8A50 /* startgame.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = startgame.gif; sourceTree = "<group>"; };
-		0C86BBDC1EF9D0F1000B8A50 /* midgame.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = midgame.gif; sourceTree = "<group>"; };
-		0C86BBDD1EF9D0F1000B8A50 /* selection.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = selection.gif; sourceTree = "<group>"; };
 		F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = userinfo.plist; path = ../userinfo.plist; sourceTree = "<group>"; };
 		F112A7091E16705300A5DEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -287,17 +279,6 @@
 			path = SKS;
 			sourceTree = "<group>";
 		};
-		0C86BBD81EF9CDB1000B8A50 /* Gif */ = {
-			isa = PBXGroup;
-			children = (
-				0C86BBDB1EF9D0F1000B8A50 /* startgame.gif */,
-				0C86BBDC1EF9D0F1000B8A50 /* midgame.gif */,
-				0C86BBDD1EF9D0F1000B8A50 /* selection.gif */,
-				0C86BBD91EF9CDCB000B8A50 /* Intro.gif */,
-			);
-			path = Gif;
-			sourceTree = "<group>";
-		};
 		F16A64531E0C969F00BC8255 = {
 			isa = PBXGroup;
 			children = (
@@ -317,7 +298,6 @@
 		F16A645E1E0C96A000BC8255 /* Angelica Fighti */ = {
 			isa = PBXGroup;
 			children = (
-				0C86BBD81EF9CDB1000B8A50 /* Gif */,
 				0C363DA61EF4502C00CAE82F /* Resources */,
 				0C12CD471F0293B9008BA78C /* Classes */,
 				0C12CD5B1F0293C4008BA78C /* Structs */,
@@ -397,14 +377,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C363DC31EF4502C00CAE82F /* CharacterScene.atlas in Resources */,
-				0C86BBDE1EF9D0F1000B8A50 /* startgame.gif in Resources */,
 				0C363DD51EF4502C00CAE82F /* puff.m4a in Resources */,
 				F16A646A1E0C96A000BC8255 /* LaunchScreen.storyboard in Resources */,
 				0C363DCC1EF4502C00CAE82F /* fx_2.png in Resources */,
 				0C12CD871F05367B008BA78C /* selectedChar-Three.sks in Resources */,
 				0C363DC41EF4502C00CAE82F /* Enemy.atlas in Resources */,
 				F16A64671E0C96A000BC8255 /* Assets.xcassets in Resources */,
-				0C86BBDA1EF9CDCB000B8A50 /* Intro.gif in Resources */,
 				0C12CD791F03E304008BA78C /* famifont.ttf in Resources */,
 				0C363DDE1EF4AA7800CAE82F /* trail.sks in Resources */,
 				0C363DC71EF4502C00CAE82F /* Items.atlas in Resources */,
@@ -413,7 +391,6 @@
 				0C363DDD1EF4AA7800CAE82F /* bulling.sks in Resources */,
 				0C12CD801F04EC8D008BA78C /* gradientMonoTone.fsh in Resources */,
 				0C363DE01EF4AAC500CAE82F /* fx_5_smoke.png in Resources */,
-				0C86BBDF1EF9D0F1000B8A50 /* midgame.gif in Resources */,
 				0C363DCB1EF4502C00CAE82F /* fx_1.png in Resources */,
 				0C12CD881F05367B008BA78C /* selectedChar-Two.sks in Resources */,
 				0C363DD21EF4502C00CAE82F /* Logo.png in Resources */,
@@ -427,7 +404,6 @@
 				0C12CD831F052772008BA78C /* selectedChar-One.sks in Resources */,
 				0C363DCE1EF4502C00CAE82F /* fx_4.png in Resources */,
 				0C363DC61EF4502C00CAE82F /* HUD.atlas in Resources */,
-				0C86BBE01EF9D0F1000B8A50 /* selection.gif in Resources */,
 				0C12CD7A1F03E304008BA78C /* Quebab-Shadow-ffp.ttf in Resources */,
 				0C363DC51EF4502C00CAE82F /* GUI.atlas in Resources */,
 				0C363DD11EF4502C00CAE82F /* initial_bg.png in Resources */,
