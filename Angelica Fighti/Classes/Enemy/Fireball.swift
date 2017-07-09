@@ -122,6 +122,7 @@ class Fireball:SKSpriteNode {
         auranode.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
         auranode.physicsBody!.contactTestBitMask = PhysicsCategory.Player
         auranode.physicsBody!.collisionBitMask = 0
+        auranode.physicsBody!.fieldBitMask = GravityCategory.None // Not affect by magnetic
         auranode.physicsBody!.velocity.dy = 0
 
         

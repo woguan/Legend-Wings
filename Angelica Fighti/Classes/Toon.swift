@@ -115,6 +115,17 @@ class Toon{
         node.physicsBody!.collisionBitMask = 0
         node.physicsBody!.categoryBitMask = PhysicsCategory.Player
         node.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
+        
+        
+        // Apply Magnetic Field
+        let mfield = SKFieldNode.radialGravityField()
+        mfield.region = SKRegion(radius: Float(node.size.width))
+        print(node.size.width/2)
+        mfield.strength = 5.0
+        mfield.categoryBitMask = GravityCategory.Player
+        mfield.falloff = 4.0
+        node.addChild(mfield)
+        
     }
     
     internal func getNode() -> SKSpriteNode{

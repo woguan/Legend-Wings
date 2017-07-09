@@ -23,7 +23,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
     }
     
     var gameinfo = GameInfo()
-    var isPlayerTouched:Bool = false
+    var isPlayerMoved:Bool = false
     
     override func didMove(to view: SKView) {
         
@@ -218,7 +218,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             pos = touch.location(in: self)
         }
         
-        if isPlayerTouched{
+        if isPlayerMoved{
             // If player has swiped, it will not trigger this function
             return
         }
@@ -235,8 +235,8 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
         let toon = gameinfo.getCurrentToon()
         let player = gameinfo.getCurrentToonNode()
         
-        if !isPlayerTouched{
-            isPlayerTouched = true
+        if !isPlayerMoved{
+            isPlayerMoved = true
             gameinfo.changeGameState(.Start)
         }
         

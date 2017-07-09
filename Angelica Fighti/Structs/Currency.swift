@@ -51,6 +51,7 @@ struct Currency{
             c.physicsBody!.categoryBitMask = PhysicsCategory.Currency
             c.physicsBody!.contactTestBitMask = PhysicsCategory.Player
             c.physicsBody!.collisionBitMask = PhysicsCategory.Wall
+            c.physicsBody!.fieldBitMask = GravityCategory.Player // Pullable by player
         }
         
         if (animation){

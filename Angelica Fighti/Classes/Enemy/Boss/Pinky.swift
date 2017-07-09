@@ -150,6 +150,7 @@ class Pinky:SKSpriteNode{
         root.physicsBody!.restitution = 1
         root.physicsBody!.allowsRotation = false
         root.physicsBody!.linearDamping = 0
+        root.physicsBody!.fieldBitMask = GravityCategory.None
         
         root.addHealthBar()
         setInitialAction()

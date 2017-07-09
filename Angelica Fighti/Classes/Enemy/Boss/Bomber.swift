@@ -46,6 +46,7 @@ class Bomber:SKSpriteNode{
         self.physicsBody!.isDynamic = true // allow physic simulation to move it
         self.physicsBody!.categoryBitMask = PhysicsCategory.Imune // None at beginning
         self.physicsBody!.affectedByGravity = false
+        self.physicsBody!.fieldBitMask = GravityCategory.None
         self.physicsBody!.collisionBitMask = 0
         
         // Set up Animation of Boss
@@ -70,6 +71,7 @@ class Bomber:SKSpriteNode{
                 att.physicsBody!.affectedByGravity = true
                 att.physicsBody!.categoryBitMask = PhysicsCategory.Enemy
                 att.physicsBody!.contactTestBitMask = PhysicsCategory.Player
+                att.physicsBody!.fieldBitMask = GravityCategory.None
                 att.physicsBody!.collisionBitMask = 0
                 
                 att.run(SKAction.sequence([SKAction.wait(forDuration: 3.5), SKAction.removeFromParent()]))

@@ -38,9 +38,11 @@ struct Projectile {
         bulletnode.physicsBody!.affectedByGravity = false
         bulletnode.physicsBody!.collisionBitMask = 0
         bulletnode.physicsBody!.categoryBitMask = PhysicsCategory.Projectile
+        bulletnode.physicsBody!.fieldBitMask = GravityCategory.None // Not affect by Magnetic Force
         bulletnode.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy | PhysicsCategory.Imune
         bulletnode.physicsBody!.allowsRotation = false
         bulletnode.physicsBody!.velocity = CGVector(dx: 0, dy: 1500)
+        
         
     }
     

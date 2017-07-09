@@ -63,6 +63,7 @@ class RegularEnemy:SKSpriteNode{
         enemy_regular_node.physicsBody!.affectedByGravity = false
         enemy_regular_node.physicsBody!.collisionBitMask = 0
         enemy_regular_node.physicsBody!.velocity = self.velocity
+        enemy_regular_node.physicsBody!.fieldBitMask = GravityCategory.None // Not affect by magnetic
         enemy_regular_node.addHealthBar()
         
         for i in 0..<3{

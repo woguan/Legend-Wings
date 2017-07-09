@@ -18,3 +18,8 @@ struct PhysicsCategory {
     static let Wall: UInt32 = 1 << 5
     static let Imune       : UInt32 = 1 << 7
 }
+
+struct GravityCategory{
+    static let None : UInt32 = 0
+    static let Player : UInt32 = 1 << 0
+}
