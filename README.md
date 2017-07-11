@@ -21,9 +21,9 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - <b>*Best experience with iPhone 7 Plus. </b>
 
 #### Message from Developer [07/11/2017]:
- > Hello everyone, there is good and bad news.
- Good: I have completed 2 regular enemy sprites.
- Bad: Those 2 new enemies will not look "perfect" because it's too challenging, haha. I will post the spritesheet if you want to try to put in order. (Haha..)
+ > Hello everyone, there is good and bad news. <br>
+ Good: I have completed 2 regular enemy sprites. <br>
+ Bad: Those 2 new enemies will not look "perfect" because it's too challenging, haha. I will post the spritesheet if you want to try to put in order. (Haha..)<br>
  I will see if I can use RegularEnemy class to add them. The problem is that those new sprites come with different sizes.
  
 ## TODO list:
