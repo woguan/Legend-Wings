@@ -99,7 +99,7 @@ class AccountInfo{
     }
     
     internal func upgradeBullet() -> (Bool, String){
-        let level = characters[currentToonIndex].getLevel()
+        let level = characters[currentToonIndex].getBulletLevel()
         let cost = (level + 1) * 100
         
         if gold < cost {
