@@ -30,7 +30,14 @@ Next video update on: <b> Alpha v4.0.0 </b>
    - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
    - [] Replace regular monsters
       - [*] Add new regular monsters sprites
+        - [✔️] Redder - <b>07/11/2017</b>
+        - [✔️] Grenner - <b>07/11/2017</b>
+        - [*] Bluer
+        - [*] Pupler
    - [] Add new Boss
+     - [] Add Trent Sprites
+     - [] Add Class for Trent
+     - [] Add Actions for Trent
    - [*] Re-work on difficulty over time
    
 [*] = Working [✔️] = Done
