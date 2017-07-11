@@ -35,9 +35,9 @@ Next video update on: <b> Alpha v4.0.0 </b>
         - [*] Bluer
         - [*] Pupler
    - [] Add new Boss
-     - [] Add Trent Sprites
-     - [] Add Class for Trent
-     - [] Add Actions for Trent
+     - [] Add Treant Sprites
+     - [] Add Class for Treant
+     - [] Add Actions for Treant
    - [*] Re-work on difficulty over time
    
 [*] = Working [✔️] = Done
