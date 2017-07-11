@@ -127,7 +127,7 @@ class Infobar:SKSpriteNode{
         }
         else if templateStyle == .Second || templateStyle == .Third{
             let rect = CGRect(x: self.size.width*0.038, y: 0, width: barWidth, height: barHeight)
-            let bar = SKShapeNode(rect: rect, cornerRadius: 10.0)
+            let bar = SKShapeNode(rect: rect, cornerRadius: screenSize.height * 0.01)
             bar.alpha = 0.65
             bar.fillColor = .black
             bar.strokeColor = .black
