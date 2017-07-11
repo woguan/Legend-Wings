@@ -20,9 +20,12 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - Current version: <b>Alpha v3.5.2</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
 
-#### Message from Developer:
- > Hello everyone, As you can see from the Todo List, I am working on the new regular monster sprites. This will take more than a day of work... it is just tons of image. Therefore, 07/09/2017 is not likely to have an update. Also, I am trying to create a blog where I can post the TODO list and updates. It is very normal to take 1-3 days when adding new enemies since I want to make sure its size fits for all supported devices.
-             
+#### Message from Developer [07/11/2017]:
+ > Hello everyone, there is good and bad news. <br>
+ Good: I have completed 2 regular enemy sprites. <br>
+ Bad: Those 2 new enemies will not look "perfect" because it's too challenging, haha. I will post the spritesheet if you want to try to put in order. (Haha..)<br>
+ I will see if I can use RegularEnemy class to add them. The problem is that those new sprites come with different sizes.
+ 
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
    - [] Replace regular monsters
