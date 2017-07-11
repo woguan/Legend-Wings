@@ -71,9 +71,12 @@ Next video update on: <b> Alpha v4.0.0 </b>
 
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
-## Discovered Bugs (Unless it is critical error, this section is usually in low priority):
-- Characters are too big on smaller devices.
+## Discovered Bugs:
+- Characters are too big on smaller devices. [07/11/2017]: I will add to High Priority soon
 - Pinky completly freeze itself when it kills the player
+
+#### Note about bugs:
+Unless it crashes the game. Above bugs are put in low priority to be fixed. 
 
 ## Main Accomplishments:
 - [✔️] Add support for iPhone 5, iPhone 6, iPhone 6 Plus, iPhone 7, iPhone 7 Plus 
