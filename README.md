@@ -33,7 +33,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
         - [✔️] Redder - <b>07/11/2017</b>
         - [✔️] Grenner - <b>07/11/2017</b>
         - [✔️] Bluer - <b>07/11/2017</b>
-        - [*] Pupler
+        - [✔️] Pupler - <b>07/11/2017</b>
    - [] Add new Boss
      - [] Add Treant Sprites
      - [] Add Class for Treant
