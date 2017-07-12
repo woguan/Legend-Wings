@@ -36,6 +36,10 @@ class Global {
         case Fireball_Aura
         case Fireball_Face
         case Fireball_Smoke
+        case Regular_Redder_Sprites
+        case Regular_Grenner_Sprites
+        case Regular_Purpler_Sprites
+        case Regular_Bluer_Sprites
     }
     
     enum Main:String{
@@ -191,6 +195,12 @@ class Global {
         case moveAnimation
     }
     
+    enum Regular{
+        case Redder
+        case Grenner
+        case Bluer
+        case Purpler
+    }
     enum Boss{
         case Pinky
     }
@@ -203,6 +213,7 @@ class Global {
     // Enemies
     private var boss = [Boss:[SKTexture]]()
     private var classicBoss = [ClassicBoss:[ClassicBossTexture:[SKTexture]]]()
+    private var regularEnemy = [Regular:[SKTexture]]()
     private var fireball_enemy_collection = [FireballType:[SKTexture]]()
     private var puff_regular_animation:[SKTexture] = []
     private var enemy_main_collection = [SKTexture]()
@@ -253,6 +264,11 @@ class Global {
         
         self.boss[.Pinky] = []
         
+        self.regularEnemy[.Redder] = []
+        self.regularEnemy[.Grenner] = []
+        self.regularEnemy[.Bluer] = []
+        self.regularEnemy[.Purpler] = []
+        
         for _ in 0..<availableCharacters{
             character_projectiles.append(nil)
         }
@@ -269,13 +285,13 @@ class Global {
         
         // Order:  mapPreload -> enemyPreload -> playerPreload -> itemsPreload
         // -> hudPreload -> characterScenePreload  mainMenuPreload ->|| total: 7
-            self.mapPreload()
-            self.enemyPreload()
-            self.playerPreload()
-            self.itemsPreload()
-            self.hudPreload()
-            self.characterScenePreload()
-            self.mainMenuPreload()
+        self.mapPreload()
+        self.enemyPreload()
+        self.playerPreload()
+        self.itemsPreload()
+        self.hudPreload()
+        self.characterScenePreload()
+        self.mainMenuPreload()
     }
     
     
@@ -370,6 +386,23 @@ class Global {
                 else if texture.contains("boss_2_sprite"){
                     self.boss[.Pinky]!.append(atlas.textureNamed("boss_2_sprite\(self.boss[.Pinky]!.count + 1)"))
                 }
+                else if texture.contains("enemy_red_"){
+                    
+                    self.regularEnemy[.Redder]!.append(atlas.textureNamed("enemy_red_\(self.regularEnemy[.Redder]!.count + 1)"))
+                }
+                else if texture.contains("enemy_green_"){
+                    
+                    self.regularEnemy[.Grenner]!.append(atlas.textureNamed("enemy_green_\(self.regularEnemy[.Grenner]!.count + 1)"))
+                }
+                else if texture.contains("enemy_blue_"){
+                    
+                    self.regularEnemy[.Bluer]!.append(atlas.textureNamed("enemy_blue_\(self.regularEnemy[.Bluer]!.count + 1)"))
+                }
+                else if texture.contains("enemy_purple_"){
+                    
+                    self.regularEnemy[.Purpler]!.append(atlas.textureNamed("enemy_purple_\(self.regularEnemy[.Purpler]!.count + 1)"))
+                }
+                
             }
             self.checkmark()
         }
@@ -529,8 +562,14 @@ class Global {
             return fireball_enemy_collection[.Aura]!
         case .Fireball_Smoke:
             return fireball_enemy_collection[.Smoke]!
-            
-            
+        case .Regular_Redder_Sprites:
+            return self.regularEnemy[.Redder]!
+        case .Regular_Grenner_Sprites:
+            return self.regularEnemy[.Grenner]!
+        case .Regular_Bluer_Sprites:
+            return self.regularEnemy[.Bluer]!
+        case .Regular_Purpler_Sprites:
+            return self.regularEnemy[.Purpler]!
         }
         
     }
@@ -755,3 +794,5 @@ class Global {
 }
 
 let global:Global = Global.sharedInstance // Using this Singleton to access all textures
+
+
