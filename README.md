@@ -17,17 +17,11 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## Notes:
 - Xcode Version: <b>9.0 Beta 2</b>| Latest iOS: <b>10.3</b>
 - Using Xcode's simulator will be a bit laggy. Use Device for best experience.
-- Current version: <b>Alpha v3.5.2</b>.
+- Current version: <b>Alpha v3.5.3</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
-
-#### Message from Developer [07/11/2017]:
- > Hello everyone, there is good and bad news. <br>
- Good: I have completed 2 regular enemy sprites. <br>
- Bad: Those 2 new enemies will not look "perfect" because it's too challenging, haha. I will post the spritesheet if you want to try to put in order. (Haha..)<br>
- I will see if I can use RegularEnemy class to add them. The problem is that those new sprites come with different sizes.
  
 ## TODO list:
-   - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
+   - [✔️] Add Basic Magnetic Field on Characters - <b>07/08/2017</b>
    - [✔️] Replace regular monsters - <b>07/12/2017</b>
       - [✔️] Add new regular monsters sprites - <b>07/11/2017</b>
         - [✔️] Redder - <b>07/11/2017</b>
@@ -72,7 +66,6 @@ Next video update on: <b> Alpha v4.0.0 </b>
 Note: Each new feature moves from Low Priority -> High Priority -> Todo List. In short, low priority items will go up.
 
 ## Discovered Bugs:
-- Characters are too big on smaller devices. [07/11/2017]: I will add to High Priority soon
 - Pinky completly freeze itself when it kills the player
 
 #### Note about bugs:
