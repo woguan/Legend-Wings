@@ -28,14 +28,14 @@ Next video update on: <b> Alpha v4.0.0 </b>
  
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
-   - [*] Replace regular monsters
+   - [✔️] Replace regular monsters - <b>07/12/2017</b>
       - [✔️] Add new regular monsters sprites - <b>07/11/2017</b>
         - [✔️] Redder - <b>07/11/2017</b>
         - [✔️] Grenner - <b>07/11/2017</b>
         - [✔️] Bluer - <b>07/11/2017</b>
         - [✔️] Pupler - <b>07/11/2017</b>
-   - [] Add new Boss
-     - [] Add Treant Sprites
+   - [*] Add new Boss
+     - [*] Add Treant Sprites
      - [] Add Class for Treant
      - [] Add Actions for Treant
    - [*] Re-work on difficulty over time
