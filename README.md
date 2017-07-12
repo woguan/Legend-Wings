@@ -29,7 +29,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - 07/08/2017
    - [*] Replace regular monsters
-      - [*] Add new regular monsters sprites
+      - [✔️] Add new regular monsters sprites - <b>07/11/2017</b>
         - [✔️] Redder - <b>07/11/2017</b>
         - [✔️] Grenner - <b>07/11/2017</b>
         - [✔️] Bluer - <b>07/11/2017</b>
