@@ -86,12 +86,12 @@ class EnemyModel: NSObject{
         // Increase HP & Speed
         switch enemyType {
         case .Regular:
-            RegularBaseHP += 50
-            velocity.dy -= 25
-        case .Boss:
-            BossBaseHP += 500
-        case .Fireball:
+            RegularBaseHP += 100
             velocity.dy -= 50
+        case .Boss:
+            BossBaseHP += 1500
+        case .Fireball:
+            velocity.dy -= 250
         default:
             print("No increase for \(enemyType.rawValue)")
         }

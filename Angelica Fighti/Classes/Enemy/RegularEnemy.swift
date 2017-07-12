@@ -69,14 +69,14 @@ class RegularEnemy:Enemy{
         for i in 0..<3{
             
             if i == 0 {
-                let node = enemy_regular_node.copy() as! SKSpriteNode
+                let node = enemy_regular_node.copy() as! Enemy
                 self.addChild(node)
                 continue
             }
             else{
-                let lnode = enemy_regular_node.copy() as! SKSpriteNode
+                let lnode = enemy_regular_node.copy() as! Enemy
                 lnode.position.x = CGFloat(-i)*minionSize.width
-                let rnode = enemy_regular_node.copy() as! SKSpriteNode
+                let rnode = enemy_regular_node.copy() as! Enemy
                 rnode.position.x = CGFloat(i)*minionSize.width
                 self.addChild(lnode)
                 self.addChild(rnode)
@@ -87,37 +87,36 @@ class RegularEnemy:Enemy{
     
     private func setMinions(){
         
-        func modifyHP(sknode: Enemy, multiplier: CGFloat, newTexture: SKTexture){
+        func modifyHP(sknode: Enemy, multiplier: CGFloat){
             sknode.hp = self.maxHp * multiplier
             sknode.maxHp = self.maxHp * multiplier
-            sknode.texture = newTexture
         }
         
         for enemy in self.children {
             
-            let x = randomInt(min: 1, max: 7)
+            let x = randomInt(min: 1, max: 100)
             let enemySK = enemy as! Enemy
-            if x == 1{
-                modifyHP(sknode: enemySK, multiplier: 1.0, newTexture: global.getMainTexture(main: .Enemy_1))
+            
+            if x < 5{
+                enemySK.size = CGSize(width: 70, height: 74)
+                enemy.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Bluer_Sprites), timePerFrame: 0.07)))
+                modifyHP(sknode: enemySK, multiplier: 2.0)
             }
-            else if x == 2 {
-                modifyHP(sknode: enemySK, multiplier: 1.05, newTexture: global.getMainTexture(main: .Enemy_2))
+            else if x >= 5 && x < 20 {
+                enemySK.size = CGSize(width: 86, height: 85)
+                enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Grenner_Sprites), timePerFrame: 0.07)))
+                modifyHP(sknode: enemySK, multiplier: 1.5)
             }
-            else if x == 3 {
-                modifyHP(sknode: enemySK, multiplier: 1.1, newTexture: global.getMainTexture(main: .Enemy_3))
+            else if x >= 20 && x < 40 {
+                enemySK.size = CGSize(width: 68, height: 73)
+                enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Purpler_Sprites), timePerFrame: 0.07)))
+                modifyHP(sknode: enemySK, multiplier: 1.3)
             }
-            else if x == 4 {
-                modifyHP(sknode: enemySK, multiplier: 1.12, newTexture: global.getMainTexture(main: .Enemy_4))
+            else {
+                enemySK.size = CGSize(width: 69, height: 71)
+                enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Redder_Sprites), timePerFrame: 0.07)))
             }
-            else if x == 5 {
-                modifyHP(sknode: enemySK, multiplier: 1.13, newTexture: global.getMainTexture(main: .Enemy_5))
-            }
-            else if x == 6 {
-                modifyHP(sknode: enemySK, multiplier: 1.14, newTexture: global.getMainTexture(main: .Enemy_6))
-            }
-            else{
-                modifyHP(sknode: enemySK, multiplier: 1.15, newTexture: global.getMainTexture(main: .Enemy_7))
-            }
+            
         }
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
     }
