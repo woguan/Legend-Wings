@@ -8,14 +8,14 @@
 
 import SpriteKit
 
-class RegularEnemy:SKSpriteNode{
+class RegularEnemy:Enemy{
     
     
     private var currency:Currency = Currency(type: .Coin)
     private var velocity = CGVector.zero
     
     private var actionsDead:[SKTexture] = []
-    private var enemy_regular_node:SKSpriteNode?
+    private var enemy_regular_node:Enemy?
     
     private var remaining = 5
     
@@ -38,7 +38,7 @@ class RegularEnemy:SKSpriteNode{
         currency  = Currency(type: .Coin)
         
         actionsDead = global.getTextures(textures: .Puff_Animation)
-        enemy_regular_node = SKSpriteNode()
+        enemy_regular_node = Enemy()
         enemy_regular_node!.size = self.size
         enemy_regular_node!.texture = global.getMainTexture(main: .Enemy_1)
         
@@ -87,7 +87,7 @@ class RegularEnemy:SKSpriteNode{
     
     private func setMinions(){
         
-        func modifyHP(sknode: SKSpriteNode, multiplier: CGFloat, newTexture: SKTexture){
+        func modifyHP(sknode: Enemy, multiplier: CGFloat, newTexture: SKTexture){
             sknode.hp = self.maxHp * multiplier
             sknode.maxHp = self.maxHp * multiplier
             sknode.texture = newTexture
@@ -96,7 +96,7 @@ class RegularEnemy:SKSpriteNode{
         for enemy in self.children {
             
             let x = randomInt(min: 1, max: 7)
-            let enemySK = enemy as! SKSpriteNode
+            let enemySK = enemy as! Enemy
             if x == 1{
                 modifyHP(sknode: enemySK, multiplier: 1.0, newTexture: global.getMainTexture(main: .Enemy_1))
             }

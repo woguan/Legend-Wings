@@ -104,6 +104,10 @@ class EnemyModel: NSObject{
               let enemyHpBar = rootBar.childNode(withName: "hpBar")
               else {return}
         
+        guard let ofTarget = ofTarget as? Enemy else{
+            return
+        }
+        
         ofTarget.hp = ofTarget.hp - hitBy.power
         
         if (hitBy.name == "bullet"){
@@ -127,6 +131,10 @@ class EnemyModel: NSObject{
     }
     
     internal func update(sknode: SKSpriteNode, hpBar: SKNode){
+        guard let sknode = sknode as? Enemy else{
+            return
+        }
+        
         let percentage = sknode.hp/sknode.maxHp
         if (percentage < 0.3){
                 hpBar.run(SKAction.colorize(with: .red, colorBlendFactor: 1, duration: 0.1))

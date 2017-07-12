@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Pinky:SKSpriteNode{
+class Pinky:Enemy{
     
     enum PinkyType:String{
         case Original = "Pinky_Original"
@@ -22,16 +22,16 @@ class Pinky:SKSpriteNode{
         case Random
     }
     // fileprivate
-    fileprivate let body = SKSpriteNode()
-    fileprivate let leftEar = SKSpriteNode()
-    fileprivate let rightEar = SKSpriteNode()
-    fileprivate let leftEye = SKSpriteNode()
-    fileprivate let rightEye = SKSpriteNode()
-    fileprivate let leftEyebrow = SKSpriteNode()
-    fileprivate let rightEyebrow = SKSpriteNode()
-    fileprivate let leftWing = SKSpriteNode()
-    fileprivate let rightWing = SKSpriteNode()
-    fileprivate let root = SKSpriteNode()
+    fileprivate let body = Enemy()
+    fileprivate let leftEar = Enemy()
+    fileprivate let rightEar = Enemy()
+    fileprivate let leftEye = Enemy()
+    fileprivate let rightEye = Enemy()
+    fileprivate let leftEyebrow = Enemy()
+    fileprivate let rightEyebrow = Enemy()
+    fileprivate let leftWing = Enemy()
+    fileprivate let rightWing = Enemy()
+    fileprivate let root = Enemy()
     
     fileprivate var life:Int = 0
     
@@ -43,12 +43,9 @@ class Pinky:SKSpriteNode{
     
     
     convenience init(hp:CGFloat, lives:Int, isClone:Bool){
-        self.init()
-        
-        self.userData = NSMutableDictionary()
+        self.init(hp: hp)
         self.hp = hp
         self.maxHp = hp
-        
         self.remaining = isClone ? 0 : Int(pow(2, Double(lives+1)))-1
         
         self.name = isClone ? PinkyType.Clone.rawValue : PinkyType.Original.rawValue
@@ -60,7 +57,7 @@ class Pinky:SKSpriteNode{
     
     private func setUp(){
         
-        root.userData = NSMutableDictionary()
+       // root.userData = NSMutableDictionary()
         root.alpha = 0
         root.zPosition = 2
         root.size = CGSize(width: 157, height: 170)
@@ -238,7 +235,7 @@ class Pinky:SKSpriteNode{
             }, SKAction.wait(forDuration: 2)]))]))
     }
     
-    private func getRoot() -> SKSpriteNode{
+    private func getRoot() -> Enemy{
         return root
     }
     

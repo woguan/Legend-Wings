@@ -26,13 +26,6 @@ enum GameState{
     case Start
 }
 
-//enum ProjectileType{
-//    case type1
-//    case type2
-//    case type3
-//    
-//}
-
 enum ContactType{
     case HitByEnemy
     case EnemyGotHit
@@ -61,60 +54,6 @@ extension SKNode{
         }
     }
     
-    var hp:CGFloat!{
-        get {
-            
-            if let v = userData?.value(forKey: "hp") as? CGFloat{
-                return v
-            }
-            else{
-                print ("Extension SKNode Error for HP Variable: ",  userData?.value(forKey: "hp") ?? -1.0 )
-                return -9999.0
-            }
-            
-        }
-        
-        set(newValue) {
-            userData?.setValue(newValue, forKey: "hp")
-        }
-    }
-    
-    var maxHp:CGFloat!{
-        get {
-            
-            if let v = userData?.value(forKey: "maxHp") as? CGFloat{
-                return v
-            }
-            else{
-                print ("Extension SKNode Error for maxHp Variable: ",  userData?.value(forKey: "maxHp") ?? -1.0 )
-                return -9999.0
-            }
-            
-        }
-        
-        set(newValue) {
-            userData?.setValue(newValue, forKey: "maxHp")
-        }
-    }
-    
-    var sound:AVAudioPlayer?{
-        get {
-            
-            if let v = userData?.value(forKey: "audio") as? AVAudioPlayer{
-                return v
-            }
-            else{
-                print ("Extension SKNode Error for sound Variable: ")
-                return nil
-            }
-            
-        }
-        
-        set(newValue) {
-            userData?.setValue(newValue, forKey: "audio")
-        }
-    }
-    
     func run(action: SKAction, optionalCompletion: (() -> Void)?){
         guard let completion = optionalCompletion else {
             run(action)
@@ -127,39 +66,6 @@ extension SKNode{
     
     
     
-}
-
-extension SKSpriteNode{
-    func addHealthBar(){
-        let w:CGFloat = size.width * 0.9
-        let h:CGFloat = 10.0
-        
-        let shape = CGRect(x: 0, y: -5, width: w, height: h)
-        let border = SKShapeNode(rect: shape, cornerRadius: 5)
-        border.glowWidth = 1.5
-        border.strokeColor = .black
-        border.name = "hpBorder"
-        border.lineWidth = 1.5
-        
-        let bar = SKSpriteNode()
-        bar.anchorPoint.x = -0.01
-        bar.name = "hpBar"
-        bar.size = CGSize(width: w*0.98, height: h*0.8)
-        bar.color = .green
-        bar.zPosition = -0.1
-        bar.position.x = -(bar.size.width/2)
-        bar.position.y = -size.height/2 - 10
-        bar.isHidden = true
-        bar.addChild(border)
-        
-        let rootBar = SKSpriteNode()
-        rootBar.size = bar.size//abs(border.frame.minX) + abs(border.frame.maxX)
-        rootBar.color = .clear
-        rootBar.name = "rootBar"
-        rootBar.addChild(bar)
-        
-        self.addChild(rootBar)
-    }
 }
 
 

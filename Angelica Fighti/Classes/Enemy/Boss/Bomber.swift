@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class Bomber:SKSpriteNode{
+class Bomber:Enemy{
     
     private var actionsStandBy:[SKTexture] = []
     private var actionsDead:[SKTexture] = []
