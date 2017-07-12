@@ -98,22 +98,22 @@ class RegularEnemy:Enemy{
             let enemySK = enemy as! Enemy
             
             if x < 5{
-                enemySK.size = CGSize(width: 70, height: 74)
+                enemySK.size = CGSize(width: screenSize.width * 0.169, height: screenSize.height * 0.1005)
                 enemy.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Bluer_Sprites), timePerFrame: 0.07)))
                 modifyHP(sknode: enemySK, multiplier: 2.0)
             }
             else if x >= 5 && x < 20 {
-                enemySK.size = CGSize(width: 86, height: 85)
+                enemySK.size = CGSize(width: screenSize.width * 0.208, height: screenSize.height * 0.115)
                 enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Grenner_Sprites), timePerFrame: 0.07)))
                 modifyHP(sknode: enemySK, multiplier: 1.5)
             }
             else if x >= 20 && x < 40 {
-                enemySK.size = CGSize(width: 68, height: 73)
+                enemySK.size = CGSize(width: screenSize.width * 0.164, height: screenSize.height * 0.1)
                 enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Purpler_Sprites), timePerFrame: 0.07)))
                 modifyHP(sknode: enemySK, multiplier: 1.3)
             }
             else {
-                enemySK.size = CGSize(width: 69, height: 71)
+                enemySK.size = CGSize(width: screenSize.width * 0.1667, height: screenSize.height * 0.096)
                 enemySK.run(SKAction.repeatForever(SKAction.animate(with: global.getTextures(textures: .Regular_Redder_Sprites), timePerFrame: 0.07)))
             }
             
