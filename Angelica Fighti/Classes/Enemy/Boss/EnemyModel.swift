@@ -13,7 +13,7 @@ import SpriteKit
 class EnemyModel: NSObject{
     
     deinit{
-        print("Enemy Class Deinitiated")
+        print("EnemyModel Class Deinitiated")
     }
     
     enum EnemyType: String{

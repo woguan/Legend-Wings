@@ -28,9 +28,6 @@ class Toon{
         print ("Toon class has been deinitiated.")
     }
     
-   // private var description:[String]
- //   private var width:CGFloat
- //   private var height:CGFloat
     private var size:CGSize
     private var node:SKSpriteNode
     private var bullet:Projectile?
@@ -38,7 +35,6 @@ class Toon{
     private var experience:CGFloat = 0
     private var title:String = "None"
     private var level:Int = 1 // For future use
-// private var bulletLevel:Int = 1
     
     // Initialize
     private var charType:Character
@@ -121,7 +117,6 @@ class Toon{
         self.experience = infoDict.value(forKey: "Experience") as! CGFloat
         self.description = infoDict.value(forKey: "Description") as! [String]
         self.title = infoDict.value(forKey: "Title") as! String
-        
         let bulletLevel = infoDict.value(forKey: "BulletLevel") as! Int
         
         bullet = Projectile(posX: node.position.x, posY: node.position.y, char: self.charType, bulletLevel: bulletLevel)
@@ -133,14 +128,11 @@ class Toon{
         node.physicsBody!.categoryBitMask = PhysicsCategory.Player
         node.physicsBody!.contactTestBitMask = PhysicsCategory.Enemy
         
-        
         // Apply Magnetic Field
         let mfield = SKFieldNode.radialGravityField()
         mfield.region = SKRegion(radius: Float(node.size.width))
-        print(node.size.width/2)
-        mfield.strength = 5.0
+        mfield.strength = 120.0
         mfield.categoryBitMask = GravityCategory.Player
-        mfield.falloff = 4.0
         node.addChild(mfield)
         
     }

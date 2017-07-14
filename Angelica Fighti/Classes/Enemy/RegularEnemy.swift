@@ -121,14 +121,6 @@ class RegularEnemy:Enemy{
         self.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.removeFromParent()]))
     }
     
-//    internal func raiseBaseHp(byValue val: CGFloat){
-//        self.maxHp = maxHp + val
-//    }
-//    
-//    internal func raiseVelocity(byValue val: CGFloat){
-//        velocity.dy -= val
-//    }
-    
     internal func defeated(sknode:SKSpriteNode){
         sknode.physicsBody?.categoryBitMask = PhysicsCategory.None
         sknode.position.y -= 50

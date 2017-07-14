@@ -49,7 +49,7 @@ class CharacterMenuScene:SKScene{
     
     override func didMove(to view: SKView) {
         self.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        currToonIndex = gameinfo.getCurrentToonIndex()
+        currToonIndex = gameinfo.requestCurrentToonIndex()
         loadBackground()
         load()
         
@@ -76,7 +76,7 @@ class CharacterMenuScene:SKScene{
         }
         
         // update index
-            currToonIndex = self.gameinfo.getCurrentToonIndex()
+            currToonIndex = self.gameinfo.requestCurrentToonIndex()
 
         // Title
         let title = SKSpriteNode(texture: global.getMainTexture(main: .Character_Menu_TitleMenu))
@@ -407,7 +407,7 @@ class CharacterMenuScene:SKScene{
       
         case .ToonChanged:
             
-            if toon!.rawValue != gameinfo.getCurrentToonIndex(){
+            if toon!.rawValue != gameinfo.requestCurrentToonIndex(){
                 glowingEffect.isHidden = true
                 groundEffect.isHidden = true
                 blueButton.isHidden = false
@@ -422,7 +422,7 @@ class CharacterMenuScene:SKScene{
             updateToonUI(toon: toon!)
       
         case .ToonSelected:
-            self.gameinfo.selectToonIndex(index: self.currToonIndex)
+            self.gameinfo.requestChangeToon(index: self.currToonIndex)
             glowingEffect.isHidden = false
             groundEffect.isHidden = false
             blueButton.isHidden = true

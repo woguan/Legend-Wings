@@ -241,7 +241,7 @@ class GameInfo: GameInfoDelegate{
        return account.getCurrentToon().getNode()
     }
     
-    internal func getCurrentToonIndex() -> Int{
+    internal func requestCurrentToonIndex() -> Int{
         return account.getCurrentToonIndex()
     }
     
@@ -249,18 +249,10 @@ class GameInfo: GameInfoDelegate{
         return account.getCurrentToon().getBullet()
     }
     
-    internal func getCurrentToonBulletEmmiterNode(x px:CGFloat, y py:CGFloat) -> SKEmitterNode{
+    internal func getToonBulletEmmiterNode(x px:CGFloat, y py:CGFloat) -> SKEmitterNode{
         return account.getCurrentToon().getBullet().generateTouchedEnemyEmmiterNode(x: px, y: py)
     }
-    internal func prepareToChangeScene(){
-        boss.delegate = nil
-        regular_enemies.delegate = nil
-        fireball_enemy.delegate = nil
-        mainAudio.stop()
-        map?.prepareToChangeScene()
-        timer?.invalidate()
-    }
-    internal func selectToonIndex(index: Int){
+    internal func requestChangeToon(index: Int){
         self.account.selectToonIndex(index: index)
     }
     internal func requestToonDescription(index id:Int) -> [String]{
@@ -288,6 +280,15 @@ class GameInfo: GameInfoDelegate{
         return (success, response)
     }
     
+    internal func prepareToChangeScene(){
+        boss.delegate = nil
+        regular_enemies.delegate = nil
+        fireball_enemy.delegate = nil
+        mainAudio.stop()
+        map?.prepareToChangeScene()
+        timer?.invalidate()
+    }
+    
     // Maybe change this later to something like:
     // Enum CurrencyType: .Gold, .Diamond... etc
     internal func addCoin(amount:Int){
@@ -299,8 +300,6 @@ class GameInfo: GameInfoDelegate{
         return self.currentGold
     }
     
-    
-   
     // delegate functions
     internal func addChild(_ sknode: SKNode){
         guard let mainscene = mainScene else{
@@ -313,7 +312,6 @@ class GameInfo: GameInfoDelegate{
     internal func changeGameState(_ state: GameState){
         gamestate = state
         updateGameState()
-        //NotificationCenter.default.post(name: updateNotification, object: nil)
     }
     
 }

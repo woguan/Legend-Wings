@@ -13,7 +13,7 @@ import SpriteKit
 class MainScene:SKScene, SKPhysicsContactDelegate{
     
     deinit{
-        print("MainScene is being deInitialized. REMOVE THIS FUNCTION WHEN IT IS SENDING TO APPSTORE");
+        print("MainScene is being deInitialized.");
     }
     
     enum Scene{
@@ -349,7 +349,7 @@ class MainScene:SKScene, SKPhysicsContactDelegate{
             // Generate FX Effect
                 //converting bullet to mainscene's coordinate
             let newPos = self.convert(highNode.position, from: highNode.parent!)
-            let effect = gameinfo.getCurrentToonBulletEmmiterNode(x: newPos.x, y: newPos.y)
+            let effect = gameinfo.getToonBulletEmmiterNode(x: newPos.x, y: newPos.y)
             self.addChild(effect)
             // update enemy
             destroy(sknode: highNode)
