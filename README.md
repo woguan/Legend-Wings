@@ -20,6 +20,10 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - Current version: <b>Alpha v3.5.3</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
  
+#### Message from developer [07/12/2017]:
+> I am working on the Treant sprites. I have the idle position done, but still need to work on the attack positions. Total time estimated:<Br>
+2-3 days for sprites + 1 day for class + 2-3 days = 1 week. <Br> Meanwhile, I will make small improvement for data structure as I did for the Enemy class.
+
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - <b>07/08/2017</b>
    - [✔️] Replace regular monsters - <b>07/12/2017</b>
