@@ -507,7 +507,7 @@ class Global {
             
             // Checkmark
             self.currentFilesLoaded += 1 // Increase Loaded File
-            print("loaded: ", self.currentFilesLoaded)
+            //print("loaded: ", self.currentFilesLoaded)
             let left:Int = Int((CGFloat(self.currentFilesLoaded)/CGFloat(self.totalFilesToLoad)) * 100.0)
             
             DispatchQueue.main.async {
