@@ -19,7 +19,6 @@
 		0C12CD641F0293C4008BA78C /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD5F1F0293C4008BA78C /* PhysicsCategory.swift */; };
 		0C12CD651F0293C4008BA78C /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD601F0293C4008BA78C /* Projectile.swift */; };
 		0C12CD6C1F029433008BA78C /* Bomber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD681F029433008BA78C /* Bomber.swift */; };
-		0C12CD6D1F029433008BA78C /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD691F029433008BA78C /* EnemyModel.swift */; };
 		0C12CD6E1F029433008BA78C /* Pinky.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD6A1F029433008BA78C /* Pinky.swift */; };
 		0C12CD711F029479008BA78C /* Fireball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD701F029479008BA78C /* Fireball.swift */; };
 		0C12CD731F0339FE008BA78C /* RegularEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C12CD721F0339FE008BA78C /* RegularEnemy.swift */; };
@@ -55,6 +54,7 @@
 		0C363DE01EF4AAC500CAE82F /* fx_5_smoke.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DDF1EF4AAC500CAE82F /* fx_5_smoke.png */; };
 		0C363DE81EF4BE9100CAE82F /* initial_main_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */; };
 		0CB6F24C1F15EBCC00BE6AFD /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6F24B1F15EBCC00BE6AFD /* Enemy.swift */; };
+		0CD399A11F185C9700B7AC4C /* EnemyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD399A01F185C9000B7AC4C /* EnemyModel.swift */; };
 		F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */; };
 		F112A7001E11FA5B00A5DEE9 /* userinfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */; };
 		F112A70A1E16705300A5DEE9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112A7091E16705300A5DEE9 /* Extensions.swift */; };
@@ -77,7 +77,6 @@
 		0C12CD5F1F0293C4008BA78C /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		0C12CD601F0293C4008BA78C /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		0C12CD681F029433008BA78C /* Bomber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bomber.swift; sourceTree = "<group>"; };
-		0C12CD691F029433008BA78C /* EnemyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EnemyModel.swift; path = Boss/EnemyModel.swift; sourceTree = "<group>"; };
 		0C12CD6A1F029433008BA78C /* Pinky.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pinky.swift; sourceTree = "<group>"; };
 		0C12CD701F029479008BA78C /* Fireball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fireball.swift; sourceTree = "<group>"; };
 		0C12CD721F0339FE008BA78C /* RegularEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegularEnemy.swift; sourceTree = "<group>"; };
@@ -113,6 +112,7 @@
 		0C363DDF1EF4AAC500CAE82F /* fx_5_smoke.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fx_5_smoke.png; sourceTree = "<group>"; };
 		0C363DE71EF4BE9100CAE82F /* initial_main_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = initial_main_bg.png; sourceTree = "<group>"; };
 		0CB6F24B1F15EBCC00BE6AFD /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		0CD399A01F185C9000B7AC4C /* EnemyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnemyModel.swift; sourceTree = "<group>"; };
 		F112A6F71E0EA2B000A5DEE9 /* EndGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		F112A6FF1E11FA5B00A5DEE9 /* userinfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = userinfo.plist; path = ../userinfo.plist; sourceTree = "<group>"; };
 		F112A7091E16705300A5DEE9 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 			children = (
 				0C12CD671F029433008BA78C /* Boss */,
 				0C12CD701F029479008BA78C /* Fireball.swift */,
-				0C12CD691F029433008BA78C /* EnemyModel.swift */,
+				0CD399A01F185C9000B7AC4C /* EnemyModel.swift */,
 				0C12CD721F0339FE008BA78C /* RegularEnemy.swift */,
 				0CB6F24B1F15EBCC00BE6AFD /* Enemy.swift */,
 			);
@@ -422,6 +422,7 @@
 			files = (
 				0C12CD621F0293C4008BA78C /* Currency.swift in Sources */,
 				0C12CD6E1F029433008BA78C /* Pinky.swift in Sources */,
+				0CD399A11F185C9700B7AC4C /* EnemyModel.swift in Sources */,
 				0C2520C51EC6AC0A00A03400 /* MainScene.swift in Sources */,
 				F16A64621E0C96A000BC8255 /* ViewController.swift in Sources */,
 				0C12CD631F0293C4008BA78C /* HUD.swift in Sources */,
@@ -432,7 +433,6 @@
 				0C12CD5A1F0293B9008BA78C /* Toon.swift in Sources */,
 				0C12CD901F068B00008BA78C /* Infobar.swift in Sources */,
 				F112A6F81E0EA2B000A5DEE9 /* EndGame.swift in Sources */,
-				0C12CD6D1F029433008BA78C /* EnemyModel.swift in Sources */,
 				0C12CD581F0293B9008BA78C /* Global.swift in Sources */,
 				0C12CD711F029479008BA78C /* Fireball.swift in Sources */,
 				0C12CD521F0293B9008BA78C /* AccountInfo.swift in Sources */,
