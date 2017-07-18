@@ -20,9 +20,10 @@ Next video update on: <b> Alpha v4.0.0 </b>
 - Current version: <b>Alpha v3.5.3</b>.
 - <b>*Best experience with iPhone 7 Plus. </b>
  
-#### Message from developer [07/12/2017]:
-> I am working on the Treant sprites. I have the idle position done, but still need to work on the attack positions. Total time estimated:<Br>
-2-3 days for sprites + 1 day for class + 2-3 days = 1 week. <Br> Meanwhile, I will make small improvement for data structure as I did for the Enemy class.
+#### Message from developer [07/18/2017]:
+> This week I had attended many meetings, and due to lack of time, I did not have updates. I have finished the sprites for treant. But, I want to let you guys know that I this project will slow down since I am working on another project that uses WebSockets.<Br>
+I have received many private messages about using the source code, so I will use this place to answer it.<Br>
+Even though this is an open source project, but this does mean you can use it for commercial-use or public on AppStore by re-skin/re-modeling the sprites. The main purpose of this project is to show what we can achieve with the Apple's SpriteKit and it is also my hobby to do so. Of course, if your purpose is just to learn and/or practice, you are free to use the code. 
 
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - <b>07/08/2017</b>
