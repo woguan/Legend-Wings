@@ -23,7 +23,7 @@ Next video update on: <b> Alpha v4.0.0 </b>
 #### Message from developer [07/18/2017]:
 > This week I had attended many meetings, and due to lack of time, I did not work on the treant class. I have finished the sprites for treant. But, I want to let you know that this project will slow down significantly since I am working on other projects.<Br>
 I have received many private messages about using the source code, so I will use this place to answer it.<Br>
-Even though this is an open source project, but this does mean you can use it for commercial-purpose or publish on AppStore by re-skin/re-modeling the sprites. The main purpose of this project is to show what we can achieve with the Apple's SpriteKit and it is also my hobby to do so. Of course, if your purpose is just to learn and/or practice, you are free to use the code as you like. 
+Even though this is an open source project, but this does <b>NOT</b> mean you can use it for commercial-purpose or publish on AppStore by re-skin/re-modeling the sprites. The main purpose of this project is to show what we can achieve with the Apple's SpriteKit and it is also my hobby to do so. Of course, if your purpose is just to learn and/or practice, you are free to use the code as you like. 
 
 ## TODO list:
    - [✔️] Add Basic Magnetic Field on Characters - <b>07/08/2017</b>
